@@ -2109,12 +2109,28 @@
 
     // Grid Auto-Injection (Wishlist & Compare) & Image Click for Quick View
     document.querySelectorAll('.product-img-wrap').forEach(wrap => {
+        const card = wrap.closest('.product-card');
+        
         // Open Quick View on Image Click
         wrap.addEventListener('click', function() {
-            const card = this.closest('.product-card');
             openQuickView(card);
         });
         
+        // Actions Container
+        let actions = card.querySelector('.product-card-actions');
+        if (!actions) {
+            actions = document.createElement('div');
+            actions.className = 'product-card-actions';
+            // Move Add to Cart button inside if it exists
+            const cartBtn = card.querySelector('.add-to-cart-btn');
+            if (cartBtn) {
+                cartBtn.parentNode.insertBefore(actions, cartBtn);
+                actions.appendChild(cartBtn);
+            } else {
+                card.appendChild(actions);
+            }
+        }
+
         // Wishlist Heart
         const wlBtn = document.createElement('button');
         wlBtn.className = 'wishlist-heart';
@@ -2123,7 +2139,6 @@
         wlBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            const card = this.closest('.product-card');
             const product = {
                 name: card.querySelector('.product-name').textContent,
                 price: card.querySelector('.product-price').textContent,
@@ -2140,7 +2155,6 @@
         compBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            const card = this.closest('.product-card');
             const product = {
                 name: card.querySelector('.product-name').textContent,
                 price: card.querySelector('.product-price').textContent,
@@ -2150,8 +2164,8 @@
             toggleCompare(product);
         });
 
-        wrap.appendChild(wlBtn);
-        wrap.appendChild(compBtn);
+        actions.appendChild(wlBtn);
+        actions.appendChild(compBtn);
     });
 
     function openQuickView(card) {
