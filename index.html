@@ -2,191 +2,377 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TechOne – Your one-stop shop for premium tech gadgets, laptops, smartphones, cameras, and more.">
+    <title>TechOne – Premium Tech E-Commerce</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechOne</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
-<!-- navbar starts here -->
-    <div class="navbar">
-        <div class="nav-logo border">
-            <div class="logo"></div>
-        </div>
 
-        <div class="nav-address border">
-            <p class="one">Deliver to</p>
-            <div class="add-icon">
-                <i class="fa-solid fa-location-dot"></i>
-                <p class="two">Bangladesh</p>
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <div class="top-bar-left">
+                <i class="fa-solid fa-bolt"></i>
+                <span>Free shipping on orders over <strong>$49</strong> | Flash Sale ends in <strong id="countdown">02:45:30</strong></span>
+            </div>
+            <div class="top-bar-right">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
             </div>
         </div>
+    </div>
 
-        <div class="nav-search">
-            <select class="search-select">
-                <option>ALL</option>
-                <input placeholder="Search TechOne" class="search-input">
-                <div class="search-icon">
-                    <i class="fa-solid fa-magnifying-glass"></i>
+    <!-- Main Navbar -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+
+            <!-- Logo -->
+            <a href="index.html" class="nav-logo">
+                <div class="logo-img"></div>
+            </a>
+
+            <!-- Delivery -->
+            <div class="nav-deliver" id="nav-deliver-btn">
+                <i class="fa-solid fa-location-dot nav-deliver-icon"></i>
+                <div>
+                    <span class="nav-sub-label">Deliver to</span>
+                    <select class="country-select" id="country-select">
+                        <option value="BD">Bangladesh</option>
+                        <option value="US">USA</option>
+                        <option value="UK">UK</option>
+                        <option value="CA">Canada</option>
+                        <option value="AU">Australia</option>
+                        <option value="DE">Germany</option>
+                        <option value="JP">Japan</option>
+                        <option value="AE">UAE</option>
+                    </select>
                 </div>
-            </select>
-        </div>
-
-        <a href="login.html" style="text-decoration: none; color: inherit;">
-            <div class="border" style="padding: 0 10px;">Sign In</div>
-        </a>
-        <a href="signup.html" style="text-decoration: none; color: inherit;">
-            <div class="border" style="padding: 0 10px;">Sign Up</div>
-        </a>
-    
-        <div class="nav-return border">
-            <p><span>Returns</span></p>
-            <p class="nav-one">& Orders</p>
-        </div>
-
-        <a href="cart.html" style="text-decoration: none; color: inherit;">
-            <div class="nav-cart border">
-                <i class="fa-solid fa-cart-plus"></i>
-                Cart
             </div>
-        </a>
-    </div>
-<!-- navbar ends here -->
 
-<!-- panel starts here -->
-<div class="panel">
-    <div class="panel-all">
-        <i class="fa-solid fa-bars"></i>
-        All
+            <!-- Search -->
+            <div class="nav-search">
+                <select class="search-category" id="search-category">
+                    <option>All</option>
+                    <option>Laptops</option>
+                    <option>Phones</option>
+                    <option>Audio</option>
+                    <option>Cameras</option>
+                    <option>Gaming</option>
+                    <option>Wearables</option>
+                </select>
+                <input type="text" class="search-input" id="search-input" placeholder="Search for tech products...">
+                <button class="search-btn" id="search-btn" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+
+            <!-- Right Nav Items -->
+            <div class="nav-right">
+                <a href="login.html" class="nav-item" id="nav-signin">
+                    <span class="nav-sub-label">Hello, Sign in</span>
+                    <span class="nav-main-label">Account <i class="fa-solid fa-chevron-down nav-chevron"></i></span>
+                </a>
+                <a href="login.html" class="nav-item" id="nav-orders">
+                    <span class="nav-sub-label">Returns &</span>
+                    <span class="nav-main-label">Orders</span>
+                </a>
+                <a href="cart.html" class="nav-item nav-cart" id="nav-cart">
+                    <div class="cart-icon-wrap">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-badge">3</span>
+                    </div>
+                    <span class="nav-main-label">Cart</span>
+                </a>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Category Strip -->
+    <div class="cat-strip">
+        <div class="cat-strip-inner">
+            <button class="cat-all-btn" id="cat-all-btn"><i class="fa-solid fa-bars"></i> All Categories</button>
+            <nav class="cat-links">
+                <a href="#" class="cat-link">Today's Deals</a>
+                <a href="#" class="cat-link">Laptops</a>
+                <a href="#" class="cat-link">Smartphones</a>
+                <a href="#" class="cat-link">Headphones</a>
+                <a href="#" class="cat-link">Gaming</a>
+                <a href="#" class="cat-link">Cameras</a>
+                <a href="#" class="cat-link">Smart Home</a>
+                <a href="#" class="cat-link cat-highlight">🔥 Flash Sale</a>
+            </nav>
+        </div>
     </div>
-    <div class="panel-options">
-        <p>Today's Deals</p>
-    <p>Customer Service</p>
-    <p>Registry</p>
-    <p>Gift Cards</p>
-    <p>Sell</p>
-    </div>
-    <div class="panel-deals">
-        Shop deals in Electronics
-    </div>
-</div>
-<!-- panel ends here -->
+
 </header>
 
-<!-- message section starts here -->
-<div class="big-poster">
-    <div class="message">
-        <p>You are on techone.com. You can also shop on TechOne BD for millions of tech gadgets with super fast delivery. <a>Click here to go to techone.bd</a></p>
+<!-- ===== HERO SECTION ===== -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-text-block">
+            <span class="hero-badge"><i class="fa-solid fa-bolt"></i> Flash Sale – Up to 40% Off</span>
+            <h1 class="hero-title">The Future of Tech<br><span class="hero-accent">At Your Fingertips</span></h1>
+            <p class="hero-sub">Discover the latest laptops, smartphones, audio gear, and more — curated for tech enthusiasts.</p>
+            <div class="hero-actions">
+                <a href="#shop" class="hero-btn-primary">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#" class="hero-btn-secondary">Explore Deals</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <strong>50K+</strong><span>Products</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <strong>120+</strong><span>Brands</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <strong>1M+</strong><span>Happy Customers</span>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<!-- message section ends here -->
+</section>
 
-<!-- shop section starts here -->
-<div class="shop-section">
-    <div class="box">
-        <div class="box-content">
-            <h2>Headphones & Earphones</h2>
-        <div class="box-img" style="background-image: url(./Image/Headphone.jpg);"></div>
-        <p>See more</p>
+<!-- ===== FEATURES STRIP ===== -->
+<section class="features-strip">
+    <div class="features-inner">
+        <div class="feature-item">
+            <i class="fa-solid fa-truck-fast"></i>
+            <div>
+                <strong>Free Shipping</strong>
+                <span>On orders over $49</span>
+            </div>
+        </div>
+        <div class="feature-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div>
+                <strong>2-Year Warranty</strong>
+                <span>On all products</span>
+            </div>
+        </div>
+        <div class="feature-item">
+            <i class="fa-solid fa-rotate-left"></i>
+            <div>
+                <strong>Easy Returns</strong>
+                <span>30-day hassle free</span>
+            </div>
+        </div>
+        <div class="feature-item">
+            <i class="fa-solid fa-headset"></i>
+            <div>
+                <strong>24/7 Support</strong>
+                <span>Always here to help</span>
+            </div>
         </div>
     </div>
-    <div class="box">
-        <div class="box-content">
-            <h2>Smartwatch & Smartband</h2>
-        <div class="box-img" style="background-image: url(./Image/Apple-watch.jpg);"></div>
-        <p>See more</p>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-content">
-            <h2>Laptops</h2>
-        <div class="box-img" style="background-image: url(./Image/Laptop.jpg);"></div>
-        <p>See more</p>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-content">
-            <h2>Game Console</h2>
-        <div class="box-img" style="background-image: url(./Image/Game-Console.jpg);"></div>
-        <p>See more</p>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-content">
-            <h2>TVs & Monitors</h2>
-        <div class="box-img" style="background-image: url(./Image/Monitor.jpg);"></div>
-        <p>See more</p>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-content">
-            <h2>Smartphones</h2>
-        <div class="box-img" style="background-image: url(./Image/Iphone.jpeg);"></div>
-        <p>See more</p>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-content">
-            <h2>Camera</h2>
-        <div class="box-img" style="background-image: url(./Image/Camera.jpg);"></div>
-        <p>See more</p>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-content">
-            <h2>Drones</h2>
-        <div class="box-img" style="background-image: url(./Image/Drones.jpg);"></div>
-        <p>See more</p>
-        </div>
-    </div>
-</div>
-<!-- shop section ends here -->
+</section>
 
-<!-- footer section starts here -->
-<footer>
-    <div class="foot-panel1">
-        Back to Top
+<!-- ===== SHOP CATEGORIES ===== -->
+<section class="shop-section" id="shop">
+    <div class="section-header">
+        <h2>Shop by Category</h2>
+        <a href="#" class="view-all-link">View All <i class="fa-solid fa-arrow-right"></i></a>
     </div>
-    <div class="foot-panel2">
-        <ul>
-        <p>Get to know Us</p>
-            <a>Careers</a>
-            <a>Blog</a>
-            <a>About Us</a>
-        </ul>
-        <ul>
-        <p>Make Money with Us</p>
-            <a>Sell products on TechOne</a>
-            <a>Sell on TechOne Business</a>
-            <a>Sells apps on TechOne</a>
-            <a>Become an Affiliate</a>
-            <a>Advertise Your Products</a>
-            <a>Self-Publish with Us</a>
-        </ul>
-        <ul>
-        <p>TechOne Payment Products</p>
-            <a>TechOne Business Card</a>
-            <a>Shop with Points</a>
-            <a>Reload Your Balance</a>
-        </ul>
-        <ul>
-        <p>Let Us Help You</p>
-            <a>Your Account</a>
-            <a>Your Orders</a>
-            <a>Shipping Rates</a>
-            <a>Returns</a>
-            <a>Help</a>
-        </ul>
+    <div class="shop-grid">
+
+        <div class="category-card">
+            <div class="card-img" style="background-image: url(./Image/Headphone.jpg);"></div>
+            <div class="card-body">
+                <h3>Headphones & Audio</h3>
+                <p>Premium sound, zero compromise</p>
+                <a href="#" class="card-link">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="card-img" style="background-image: url(./Image/Apple-watch.jpg);"></div>
+            <div class="card-body">
+                <h3>Smartwatches</h3>
+                <p>Stay connected & stylish</p>
+                <a href="#" class="card-link">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="card-img" style="background-image: url(./Image/Laptop.jpg);"></div>
+            <div class="card-body">
+                <h3>Laptops</h3>
+                <p>Power-packed for every need</p>
+                <a href="#" class="card-link">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="card-img" style="background-image: url(./Image/Game-Console.jpg);"></div>
+            <div class="card-body">
+                <h3>Gaming</h3>
+                <p>Level up your setup</p>
+                <a href="#" class="card-link">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="card-img" style="background-image: url(./Image/Monitor.jpg);"></div>
+            <div class="card-body">
+                <h3>Monitors & TVs</h3>
+                <p>Crystal clear displays</p>
+                <a href="#" class="card-link">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="card-img" style="background-image: url(./Image/Iphone.jpeg);"></div>
+            <div class="card-body">
+                <h3>Smartphones</h3>
+                <p>Latest flagship & budget picks</p>
+                <a href="#" class="card-link">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="card-img" style="background-image: url(./Image/Camera.jpg);"></div>
+            <div class="card-body">
+                <h3>Cameras</h3>
+                <p>Capture every moment in 4K</p>
+                <a href="#" class="card-link">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="card-img" style="background-image: url(./Image/Drones.jpg);"></div>
+            <div class="card-body">
+                <h3>Drones</h3>
+                <p>Fly higher, shoot better</p>
+                <a href="#" class="card-link">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
     </div>
-    <div class="foot-panel3">
-        <div class="logo-for-footer"></div>
+</section>
+
+<!-- ===== PROMO BANNER ===== -->
+<section class="promo-banner">
+    <div class="promo-inner">
+        <div class="promo-text">
+            <span class="promo-tag">Limited Time</span>
+            <h2>Get 20% Off Your First Order</h2>
+            <p>Sign up now and unlock exclusive member-only deals and early access to sales.</p>
+            <a href="signup.html" class="promo-btn">Create Free Account <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="promo-icon-grid">
+            <i class="fa-solid fa-laptop"></i>
+            <i class="fa-solid fa-mobile-screen"></i>
+            <i class="fa-solid fa-headphones"></i>
+            <i class="fa-solid fa-camera"></i>
+        </div>
     </div>
-    <div class="copyright">
-        <p>Copyright © 2024 TechOne Limited. All Right Reserved</p>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+
+    <div class="footer-top-btn" id="back-to-top">
+        <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
+            <i class="fa-solid fa-chevron-up"></i> Back to Top
+        </button>
     </div>
+
+    <div class="footer-main">
+        <div class="footer-col">
+            <h4>Get to Know Us</h4>
+            <ul>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">About TechOne</a></li>
+                <li><a href="#">Press Center</a></li>
+                <li><a href="#">Investor Relations</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Make Money with Us</h4>
+            <ul>
+                <li><a href="#">Sell on TechOne</a></li>
+                <li><a href="#">Sell Apps</a></li>
+                <li><a href="#">Become an Affiliate</a></li>
+                <li><a href="#">Advertise</a></li>
+                <li><a href="#">Self-Publish</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Payment & Delivery</h4>
+            <ul>
+                <li><a href="#">TechOne Pay</a></li>
+                <li><a href="#">Shop with Points</a></li>
+                <li><a href="#">Reload Balance</a></li>
+                <li><a href="#">Payment Methods</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Let Us Help You</h4>
+            <ul>
+                <li><a href="#">Your Account</a></li>
+                <li><a href="#">Your Orders</a></li>
+                <li><a href="#">Shipping Rates</a></li>
+                <li><a href="#">Returns & Replacements</a></li>
+                <li><a href="#">Help Center</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-brand">
+        <div class="footer-logo"></div>
+        <div class="footer-socials">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>Copyright &copy; 2025 TechOne Limited. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Cookies</a>
+        </div>
+    </div>
+
 </footer>
-<!-- footer section ends here -->
+
+<script>
+    // Countdown Timer
+    function startCountdown(seconds) {
+        const el = document.getElementById('countdown');
+        if (!el) return;
+        setInterval(() => {
+            if (seconds <= 0) { seconds = 9999; return; }
+            seconds--;
+            const h = String(Math.floor(seconds / 3600)).padStart(2,'0');
+            const m = String(Math.floor((seconds % 3600) / 60)).padStart(2,'0');
+            const s = String(seconds % 60).padStart(2,'0');
+            el.textContent = `${h}:${m}:${s}`;
+        }, 1000);
+    }
+    startCountdown(9930);
+
+    // Back to top visible on scroll
+    window.addEventListener('scroll', () => {
+        const btn = document.getElementById('back-to-top');
+        if (btn) btn.style.opacity = window.scrollY > 300 ? '1' : '0.6';
+    });
+</script>
 
 </body>
 </html>

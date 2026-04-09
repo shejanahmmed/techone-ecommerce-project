@@ -2,58 +2,80 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your TechOne Shopping Cart – Review and checkout your selected tech products.">
+    <title>Shopping Cart – TechOne</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechOne Shopping Cart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="cart-body">
-<header>
-<!-- navbar starts here -->
-    <div class="navbar">
-        <div class="nav-logo border">
-            <a href="index.html" style="display: block; width: 100%; height: 100%;"><div class="logo"></div></a>
-        </div>
 
-        <div class="nav-address border">
-            <p class="one">Deliver to</p>
-            <div class="add-icon">
-                <i class="fa-solid fa-location-dot"></i>
-                <p class="two">Bangladesh</p>
-            </div>
-        </div>
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+    <nav class="navbar">
+        <div class="navbar-inner">
 
-        <div class="nav-search">
-            <select class="search-select">
-                <option>ALL</option>
-                <input placeholder="Search TechOne" class="search-input">
-                <div class="search-icon">
-                    <i class="fa-solid fa-magnifying-glass"></i>
+            <a href="index.html" class="nav-logo">
+                <div class="logo-img"></div>
+            </a>
+
+            <div class="nav-deliver">
+                <i class="fa-solid fa-location-dot nav-deliver-icon"></i>
+                <div>
+                    <span class="nav-sub-label">Deliver to</span>
+                    <select class="country-select">
+                        <option value="BD">Bangladesh</option>
+                        <option value="US">USA</option>
+                        <option value="UK">UK</option>
+                        <option value="CA">Canada</option>
+                        <option value="AU">Australia</option>
+                        <option value="DE">Germany</option>
+                        <option value="JP">Japan</option>
+                        <option value="AE">UAE</option>
+                    </select>
                 </div>
-            </select>
-        </div>
-
-        <a href="login.html" style="text-decoration: none; color: inherit;">
-            <div class="border" style="padding: 0 10px;">Sign In</div>
-        </a>
-        <a href="signup.html" style="text-decoration: none; color: inherit;">
-            <div class="border" style="padding: 0 10px;">Sign Up</div>
-        </a>
-    
-        <div class="nav-return border">
-            <p><span>Returns</span></p>
-            <p class="nav-one">& Orders</p>
-        </div>
-
-        <a href="cart.html" style="text-decoration: none; color: inherit;">
-            <div class="nav-cart border">
-                <i class="fa-solid fa-cart-plus"></i>
-                Cart
             </div>
-        </a>
-    </div>
+
+            <div class="nav-search">
+                <select class="search-category">
+                    <option>All</option>
+                    <option>Laptops</option>
+                    <option>Phones</option>
+                    <option>Audio</option>
+                    <option>Cameras</option>
+                    <option>Gaming</option>
+                    <option>Wearables</option>
+                </select>
+                <input type="text" class="search-input" placeholder="Search for tech products...">
+                <button class="search-btn" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+
+            <div class="nav-right">
+                <a href="login.html" class="nav-item">
+                    <span class="nav-sub-label">Hello, Sign in</span>
+                    <span class="nav-main-label">Account <i class="fa-solid fa-chevron-down nav-chevron"></i></span>
+                </a>
+                <a href="login.html" class="nav-item">
+                    <span class="nav-sub-label">Returns &</span>
+                    <span class="nav-main-label">Orders</span>
+                </a>
+                <a href="cart.html" class="nav-item nav-cart">
+                    <div class="cart-icon-wrap">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-badge">3</span>
+                    </div>
+                    <span class="nav-main-label">Cart</span>
+                </a>
+            </div>
+
+        </div>
+    </nav>
 </header>
 
+<!-- ===== CART MAIN ===== -->
 <main class="cart-main">
     <div class="cart-left">
         <h1>Shopping Cart</h1>
@@ -112,47 +134,66 @@
     </div>
 </main>
 
-<!-- footer section starts here -->
-<footer>
-    <div class="foot-panel1">
-        Back to Top
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+    <div class="footer-top-btn">
+        <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
+            <i class="fa-solid fa-chevron-up"></i> Back to Top
+        </button>
     </div>
-    <div class="foot-panel2">
-        <ul>
-        <p>Get to know Us</p>
-            <a>Careers</a>
-            <a>Blog</a>
-            <a>About Us</a>
-        </ul>
-        <ul>
-        <p>Make Money with Us</p>
-            <a>Sell products on TechOne</a>
-            <a>Sell on TechOne Business</a>
-            <a>Sells apps on TechOne</a>
-            <a>Become an Affiliate</a>
-            <a>Advertise Your Products</a>
-            <a>Self-Publish with Us</a>
-        </ul>
-        <ul>
-        <p>TechOne Payment Products</p>
-            <a>TechOne Business Card</a>
-            <a>Shop with Points</a>
-            <a>Reload Your Balance</a>
-        </ul>
-        <ul>
-        <p>Let Us Help You</p>
-            <a>Your Account</a>
-            <a>Your Orders</a>
-            <a>Shipping Rates</a>
-            <a>Returns</a>
-            <a>Help</a>
-        </ul>
+    <div class="footer-main">
+        <div class="footer-col">
+            <h4>Get to Know Us</h4>
+            <ul>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">About TechOne</a></li>
+                <li><a href="#">Press Center</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Make Money with Us</h4>
+            <ul>
+                <li><a href="#">Sell on TechOne</a></li>
+                <li><a href="#">Become an Affiliate</a></li>
+                <li><a href="#">Advertise</a></li>
+                <li><a href="#">Self-Publish</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Payment & Delivery</h4>
+            <ul>
+                <li><a href="#">TechOne Pay</a></li>
+                <li><a href="#">Shop with Points</a></li>
+                <li><a href="#">Payment Methods</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Let Us Help You</h4>
+            <ul>
+                <li><a href="#">Your Account</a></li>
+                <li><a href="#">Your Orders</a></li>
+                <li><a href="#">Returns & Replacements</a></li>
+                <li><a href="#">Help Center</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="foot-panel3">
-        <div class="logo-for-footer"></div>
+    <div class="footer-brand">
+        <div class="footer-logo"></div>
+        <div class="footer-socials">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
     </div>
-    <div class="copyright">
-        <p>Copyright © 2024 TechOne Limited. All Right Reserved</p>
+    <div class="footer-bottom">
+        <p>Copyright &copy; 2025 TechOne Limited. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Cookies</a>
+        </div>
     </div>
 </footer>
 
