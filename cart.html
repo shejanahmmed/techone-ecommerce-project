@@ -5,14 +5,14 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechOne</title>
+    <title>TechOne Shopping Cart</title>
 </head>
-<body>
+<body class="cart-body">
 <header>
 <!-- navbar starts here -->
     <div class="navbar">
         <div class="nav-logo border">
-            <div class="logo"></div>
+            <a href="index.html" style="display: block; width: 100%; height: 100%;"><div class="logo"></div></a>
         </div>
 
         <div class="nav-address border">
@@ -52,96 +52,65 @@
             </div>
         </a>
     </div>
-<!-- navbar ends here -->
-
-<!-- panel starts here -->
-<div class="panel">
-    <div class="panel-all">
-        <i class="fa-solid fa-bars"></i>
-        All
-    </div>
-    <div class="panel-options">
-        <p>Today's Deals</p>
-    <p>Customer Service</p>
-    <p>Registry</p>
-    <p>Gift Cards</p>
-    <p>Sell</p>
-    </div>
-    <div class="panel-deals">
-        Shop deals in Electronics
-    </div>
-</div>
-<!-- panel ends here -->
 </header>
 
-<!-- message section starts here -->
-<div class="big-poster">
-    <div class="message">
-        <p>You are on techone.com. You can also shop on TechOne BD for millions of tech gadgets with super fast delivery. <a>Click here to go to techone.bd</a></p>
-    </div>
-</div>
-<!-- message section ends here -->
+<main class="cart-main">
+    <div class="cart-left">
+        <h1>Shopping Cart</h1>
+        <p class="price-header">Price</p>
 
-<!-- shop section starts here -->
-<div class="shop-section">
-    <div class="box">
-        <div class="box-content">
-            <h2>Headphones & Earphones</h2>
-        <div class="box-img" style="background-image: url(./Image/Headphone.jpg);"></div>
-        <p>See more</p>
+        <!-- Item 1 -->
+        <div class="cart-item">
+            <div class="cart-item-img" style="background-image: url(./Image/Headphone.jpg);"></div>
+            <div class="cart-item-info">
+                <h2>Sony WH-1000XM5 Wireless Noise Canceling Headphones</h2>
+                <p class="stock">In Stock</p>
+                <div class="cart-item-actions">
+                    <label>Qty:</label>
+                    <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                    <a href="#">Delete</a>
+                    <a href="#">Save for later</a>
+                    <a href="#">Compare with similar items</a>
+                </div>
+            </div>
+            <div class="cart-item-price">$348.00</div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="cart-item">
+            <div class="cart-item-img" style="background-image: url(./Image/Apple-watch.jpg);"></div>
+            <div class="cart-item-info">
+                <h2>Apple Watch Series 9 [GPS 45mm] Smartwatch</h2>
+                <p class="stock">In Stock</p>
+                <div class="cart-item-actions">
+                    <label>Qty:</label>
+                    <select>
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                    <a href="#">Delete</a>
+                    <a href="#">Save for later</a>
+                </div>
+            </div>
+            <div class="cart-item-price">$399.00</div>
+        </div>
+
+        <div style="text-align: right; padding-top: 10px;">
+            <p style="font-size: 1.1rem;">Subtotal (2 items): <b>$747.00</b></p>
         </div>
     </div>
-    <div class="box">
-        <div class="box-content">
-            <h2>Smartwatch & Smartband</h2>
-        <div class="box-img" style="background-image: url(./Image/Apple-watch.jpg);"></div>
-        <p>See more</p>
+
+    <div class="cart-right">
+        <div class="subtotal-box">
+            <h2>Subtotal (2 items): <b>$747.00</b></h2>
+            <button class="checkout-btn">Proceed to checkout</button>
         </div>
     </div>
-    <div class="box">
-        <div class="box-content">
-            <h2>Laptops</h2>
-        <div class="box-img" style="background-image: url(./Image/Laptop.jpg);"></div>
-        <p>See more</p>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-content">
-            <h2>Game Console</h2>
-        <div class="box-img" style="background-image: url(./Image/Game-Console.jpg);"></div>
-        <p>See more</p>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-content">
-            <h2>TVs & Monitors</h2>
-        <div class="box-img" style="background-image: url(./Image/Monitor.jpg);"></div>
-        <p>See more</p>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-content">
-            <h2>Smartphones</h2>
-        <div class="box-img" style="background-image: url(./Image/Iphone.jpeg);"></div>
-        <p>See more</p>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-content">
-            <h2>Camera</h2>
-        <div class="box-img" style="background-image: url(./Image/Camera.jpg);"></div>
-        <p>See more</p>
-        </div>
-    </div>
-    <div class="box">
-        <div class="box-content">
-            <h2>Drones</h2>
-        <div class="box-img" style="background-image: url(./Image/Drones.jpg);"></div>
-        <p>See more</p>
-        </div>
-    </div>
-</div>
-<!-- shop section ends here -->
+</main>
 
 <!-- footer section starts here -->
 <footer>
@@ -186,7 +155,6 @@
         <p>Copyright © 2024 TechOne Limited. All Right Reserved</p>
     </div>
 </footer>
-<!-- footer section ends here -->
 
 </body>
 </html>
