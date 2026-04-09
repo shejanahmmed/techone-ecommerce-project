@@ -62,6 +62,20 @@
                     <span class="nav-sub-label">Returns &</span>
                     <span class="nav-main-label">Orders</span>
                 </a>
+                <a href="wishlist.html" class="nav-item" id="nav-wishlist">
+                    <div class="cart-icon-wrap">
+                        <i class="fa-solid fa-heart"></i>
+                        <span class="wishlist-badge">0</span>
+                    </div>
+                    <span class="nav-main-label">Wishlist</span>
+                </a>
+                <a href="compare.html" class="nav-item" id="nav-compare">
+                    <div class="cart-icon-wrap">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                        <span class="compare-badge">0</span>
+                    </div>
+                    <span class="nav-main-label">Compare</span>
+                </a>
                 <a href="cart.html" class="nav-item nav-cart">
                     <div class="cart-icon-wrap">
                         <i class="fa-solid fa-cart-shopping"></i>
@@ -81,58 +95,128 @@
         <h1>Shopping Cart</h1>
         <p class="price-header">Price</p>
 
-        <!-- Item 1 -->
-        <div class="cart-item">
-            <div class="cart-item-img" style="background-image: url(./Image/Headphone.jpg);"></div>
-            <div class="cart-item-info">
-                <h2>Sony WH-1000XM5 Wireless Noise Canceling Headphones</h2>
-                <p class="stock">In Stock</p>
-                <div class="cart-item-actions">
-                    <label>Qty:</label>
-                    <select>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
-                    <a href="#">Delete</a>
-                    <a href="#">Save for later</a>
-                    <a href="#">Compare with similar items</a>
-                </div>
-            </div>
-            <div class="cart-item-price">$348.00</div>
+        <div id="cart-items-container">
+            <!-- Dynamic Items Injected Here -->
         </div>
 
-        <!-- Item 2 -->
-        <div class="cart-item">
-            <div class="cart-item-img" style="background-image: url(./Image/Apple-watch.jpg);"></div>
-            <div class="cart-item-info">
-                <h2>Apple Watch Series 9 [GPS 45mm] Smartwatch</h2>
-                <p class="stock">In Stock</p>
-                <div class="cart-item-actions">
-                    <label>Qty:</label>
-                    <select>
-                        <option>1</option>
-                        <option>2</option>
-                    </select>
-                    <a href="#">Delete</a>
-                    <a href="#">Save for later</a>
-                </div>
-            </div>
-            <div class="cart-item-price">$399.00</div>
-        </div>
-
-        <div style="text-align: right; padding-top: 10px;">
-            <p style="font-size: 1.1rem;">Subtotal (2 items): <b>$747.00</b></p>
+        <div id="cart-summary-line" style="text-align: right; padding-top: 20px; border-top: 1px solid #e9ecef; margin-top: 20px;">
+            <p style="font-size: 1.2rem;">Subtotal (<span id="total-items-count">0</span> items): <b id="subtotal-display-bottom">$0.00</b></p>
         </div>
     </div>
 
     <div class="cart-right">
         <div class="subtotal-box">
-            <h2>Subtotal (2 items): <b>$747.00</b></h2>
+            <h2>Subtotal (<span id="total-items-top">0</span> items): <b id="subtotal-display-top">$0.00</b></h2>
             <button class="checkout-btn">Proceed to checkout</button>
         </div>
     </div>
 </main>
+
+<script>
+    function updateBadges() {
+        // Cart
+        const cart = JSON.parse(localStorage.getItem('techone_cart')) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.querySelectorAll('.cart-badge').forEach(badge => {
+            badge.textContent = totalItems;
+        });
+
+        // Wishlist
+        const wishlist = JSON.parse(localStorage.getItem('techone_wishlist')) || [];
+        document.querySelectorAll('.wishlist-badge').forEach(badge => {
+            badge.textContent = wishlist.length;
+        });
+
+        // Compare
+        const compare = JSON.parse(localStorage.getItem('techone_compare')) || [];
+        document.querySelectorAll('.compare-badge').forEach(badge => {
+            badge.textContent = compare.length;
+        });
+    }
+
+    function renderCart() {
+        const container = document.getElementById('cart-items-container');
+        const cart = JSON.parse(localStorage.getItem('techone_cart')) || [];
+        const summaryLine = document.getElementById('cart-summary-line');
+        const checkoutBox = document.querySelector('.cart-right');
+        
+        if (cart.length === 0) {
+            container.innerHTML = `
+                <div class="empty-cart-container">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <h2>Your TechOne Cart is empty</h2>
+                    <p>Looks like you haven't added anything to your cart yet. Explore our latest tech deals!</p>
+                    <a href="index.html" class="continue-shopping-btn">Continue Shopping</a>
+                </div>
+            `;
+            summaryLine.style.display = 'none';
+            checkoutBox.style.display = 'none';
+            updateCartBadge();
+            return;
+        }
+
+        summaryLine.style.display = 'block';
+        checkoutBox.style.display = 'block';
+        container.innerHTML = '';
+        
+        let subtotal = 0;
+        let totalItems = 0;
+
+        cart.forEach((item, index) => {
+            const priceValue = parseFloat(item.price.replace(/[^0-9.-]+/g,""));
+            const itemTotal = priceValue * item.quantity;
+            subtotal += itemTotal;
+            totalItems += item.quantity;
+
+            container.innerHTML += `
+                <div class="cart-item">
+                    <div class="cart-item-img" style="background-image: url('${item.img}');"></div>
+                    <div class="cart-item-info">
+                        <h2>${item.name}</h2>
+                        <p class="stock">In Stock</p>
+                        <div class="cart-item-actions">
+                            <label>Qty:</label>
+                            <select onchange="updateQty('${item.name}', this.value)">
+                                ${[1,2,3,4,5,6,7,8,9,10].map(n => `<option value="${n}" ${item.quantity == n ? 'selected' : ''}>${n}</option>`).join('')}
+                            </select>
+                            <a href="javascript:void(0)" onclick="removeFromCart('${item.name}')">Delete</a>
+                            <a href="#">Save for later</a>
+                        </div>
+                    </div>
+                    <div class="cart-item-price">${item.price}</div>
+                </div>
+            `;
+        });
+
+        const formattedSubtotal = `$${subtotal.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+        document.getElementById('subtotal-display-bottom').textContent = formattedSubtotal;
+        document.getElementById('subtotal-display-top').textContent = formattedSubtotal;
+        document.getElementById('total-items-count').textContent = totalItems;
+        document.getElementById('total-items-top').textContent = totalItems;
+        
+        updateCartBadge();
+    }
+
+    function updateQty(name, newQty) {
+        let cart = JSON.parse(localStorage.getItem('techone_cart')) || [];
+        const item = cart.find(i => i.name === name);
+        if (item) {
+            item.quantity = parseInt(newQty);
+            localStorage.setItem('techone_cart', JSON.stringify(cart));
+            renderCart();
+        }
+    }
+
+    function removeFromCart(name) {
+        let cart = JSON.parse(localStorage.getItem('techone_cart')) || [];
+        cart = cart.filter(item => item.name !== name);
+        localStorage.setItem('techone_cart', JSON.stringify(cart));
+        renderCart();
+    }
+
+    // Initial render
+    renderCart();
+</script>
 
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">

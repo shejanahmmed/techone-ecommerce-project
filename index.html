@@ -83,6 +83,20 @@
                     <span class="nav-sub-label">Returns &</span>
                     <span class="nav-main-label">Orders</span>
                 </a>
+                <a href="wishlist.html" class="nav-item" id="nav-wishlist">
+                    <div class="cart-icon-wrap">
+                        <i class="fa-solid fa-heart"></i>
+                        <span class="wishlist-badge">0</span>
+                    </div>
+                    <span class="nav-main-label">Wishlist</span>
+                </a>
+                <a href="compare.html" class="nav-item" id="nav-compare">
+                    <div class="cart-icon-wrap">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                        <span class="compare-badge">0</span>
+                    </div>
+                    <span class="nav-main-label">Compare</span>
+                </a>
                 <a href="cart.html" class="nav-item nav-cart" id="nav-cart">
                     <div class="cart-icon-wrap">
                         <i class="fa-solid fa-cart-shopping"></i>
@@ -1287,6 +1301,51 @@
 
 </footer>
 
+<!-- ===== QUICK VIEW MODAL ===== -->
+<div id="quick-view-modal" class="quick-view-modal">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-body">
+            <div class="modal-img-col">
+                <img src="" alt="Product Image" id="modal-img">
+            </div>
+            <div class="modal-details-col">
+                <span id="modal-tag" class="product-tag"></span>
+                <h3 id="modal-title" class="modal-title"></h3>
+                <div class="modal-rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span id="modal-reviews">(4.8/5 based on 124 reviews)</span>
+                </div>
+                <div id="modal-price" class="modal-price"></div>
+                <p class="modal-desc">
+                    Experience premium quality and exceptional performance. This product features state-of-the-art technology tailored for enthusiasts and professionals alike. Available now with specialized shipping options.
+                </p>
+
+                <ul id="modal-features" class="modal-features-list">
+                    <!-- Dynamic Features Injected Here -->
+                </ul>
+                
+                <div id="modal-colors-container" class="color-selection modal-colors-wrap">
+                    <span class="color-label">Color Options:</span>
+                    <div id="modal-colors" class="color-options">
+                        <!-- Dynamic Swatches -->
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="modal-add-cart"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
+                    <button class="modal-wishlist"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     // Countdown Timer
     function startCountdown(seconds) {
@@ -1325,6 +1384,320 @@
             this.classList.add('active');
         });
     });
+
+    // --- GLOBAL SYNC LOGIC ---
+    function updateBadges() {
+        // Cart
+        const cart = JSON.parse(localStorage.getItem('techone_cart')) || [];
+        const totalCart = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.querySelectorAll('.cart-badge').forEach(badge => {
+            badge.textContent = totalCart;
+        });
+
+        // Wishlist
+        const wishlist = JSON.parse(localStorage.getItem('techone_wishlist')) || [];
+        document.querySelectorAll('.wishlist-badge').forEach(badge => {
+            badge.textContent = wishlist.length;
+        });
+
+        // Compare
+        const compare = JSON.parse(localStorage.getItem('techone_compare')) || [];
+        document.querySelectorAll('.compare-badge').forEach(badge => {
+            badge.textContent = compare.length;
+        });
+        
+        // Update all grid heart & compare icons based on storage
+        document.querySelectorAll('.product-img-wrap').forEach(wrap => {
+            const card = wrap.closest('.product-card');
+            const name = card.querySelector('.product-name').textContent;
+            
+            const heart = wrap.querySelector('.wishlist-heart');
+            if (heart) {
+                if (wishlist.some(item => item.name === name)) {
+                    heart.classList.add('active');
+                    heart.innerHTML = '<i class="fa-solid fa-heart"></i>';
+                } else {
+                    heart.classList.remove('active');
+                    heart.innerHTML = '<i class="fa-regular fa-heart"></i>';
+                }
+            }
+
+            const compIcon = wrap.querySelector('.compare-icon');
+            if (compIcon) {
+                if (compare.some(item => item.name === name)) {
+                    compIcon.classList.add('active');
+                } else {
+                    compIcon.classList.remove('active');
+                }
+            }
+        });
+    }
+
+    function showToast(productName, type = 'cart', errorMsg = null) {
+        let toast = document.getElementById('cart-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'cart-toast';
+            toast.className = 'toast-msg';
+            document.body.appendChild(toast);
+        }
+        
+        if (errorMsg) {
+            toast.classList.add('error');
+            toast.innerHTML = `<i class="fa-solid fa-circle-exclamation" style="color:#fff;"></i> ${errorMsg}`;
+        } else {
+            toast.classList.remove('error');
+            let icon = 'fa-circle-check';
+            let action = 'Added';
+            let dest = 'cart';
+            
+            if (type === 'wishlist') { icon = 'fa-heart'; action = 'Saved'; dest = 'wishlist'; }
+            if (type === 'compare') { icon = 'fa-scale-balanced'; action = 'Added'; dest = 'compare list'; }
+            
+            toast.innerHTML = `<i class="fa-solid ${icon}"></i> ${action} <b>${productName}</b> to ${dest}!`;
+        }
+        
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    function toggleCompare(product) {
+        let compare = JSON.parse(localStorage.getItem('techone_compare')) || [];
+        const index = compare.findIndex(item => item.name === product.name);
+        
+        if (index > -1) {
+            compare.splice(index, 1);
+            localStorage.setItem('techone_compare', JSON.stringify(compare));
+            updateBadges();
+            return;
+        } 
+        
+        // Validation Checks
+        if (compare.length > 0) {
+            const firstTag = compare[0].tag;
+            if (product.tag !== firstTag) {
+                showToast(null, null, `Can only compare products of the same type (${firstTag}).`);
+                return;
+            }
+        }
+        
+        if (compare.length >= 4) {
+            showToast(null, null, `You can only compare up to 4 items at once.`);
+            return;
+        }
+
+        compare.push(product);
+        localStorage.setItem('techone_compare', JSON.stringify(compare));
+        updateBadges();
+        showToast(product.name, 'compare');
+    }
+
+    function addToCart(product) {
+        let cart = JSON.parse(localStorage.getItem('techone_cart')) || [];
+        const existingItem = cart.find(item => item.name === product.name);
+        
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ ...product, quantity: 1 });
+        }
+        
+        localStorage.setItem('techone_cart', JSON.stringify(cart));
+        updateBadges();
+        showToast(product.name, 'cart');
+    }
+
+    function toggleWishlist(product) {
+        let wishlist = JSON.parse(localStorage.getItem('techone_wishlist')) || [];
+        const index = wishlist.findIndex(item => item.name === product.name);
+        
+        if (index > -1) {
+            wishlist.splice(index, 1);
+        } else {
+            wishlist.push(product);
+            showToast(product.name, 'wishlist');
+        }
+        
+        localStorage.setItem('techone_wishlist', JSON.stringify(wishlist));
+        updateBadges();
+    }
+
+    // Grid Auto-Injection (Quick View, Wishlist & Compare)
+    document.querySelectorAll('.product-img-wrap').forEach(wrap => {
+        // Quick View
+        const qvBtn = document.createElement('span');
+        qvBtn.className = 'quick-view-btn';
+        qvBtn.innerHTML = '<i class="fa-solid fa-eye"></i> Quick View';
+        
+        qvBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const card = this.closest('.product-card');
+            openQuickView(card);
+        });
+        
+        // Wishlist Heart
+        const wlBtn = document.createElement('button');
+        wlBtn.className = 'wishlist-heart';
+        wlBtn.innerHTML = '<i class="fa-regular fa-heart"></i>';
+        
+        wlBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const card = this.closest('.product-card');
+            const product = {
+                name: card.querySelector('.product-name').textContent,
+                price: card.querySelector('.product-price').textContent,
+                img: card.querySelector('img').src,
+                tag: card.querySelector('.product-tag').textContent
+            };
+            toggleWishlist(product);
+        });
+
+        // Compare Button
+        const compBtn = document.createElement('button');
+        compBtn.className = 'compare-icon';
+        compBtn.innerHTML = '<i class="fa-solid fa-scale-balanced" title="Compare"></i>';
+        compBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const card = this.closest('.product-card');
+            const product = {
+                name: card.querySelector('.product-name').textContent,
+                price: card.querySelector('.product-price').textContent,
+                img: card.querySelector('img').src,
+                tag: card.querySelector('.product-tag').textContent
+            };
+            toggleCompare(product);
+        });
+
+        wrap.appendChild(qvBtn);
+        wrap.appendChild(wlBtn);
+        wrap.appendChild(compBtn);
+    });
+
+    function openQuickView(card) {
+        // Extract Data
+        const imgEl = card.querySelector('img');
+        let imgSrc = imgEl ? imgEl.src : '';
+        const titleEl = card.querySelector('.product-name');
+        let title = titleEl ? titleEl.textContent : 'Product Title';
+        const priceEl = card.querySelector('.product-price');
+        let price = priceEl ? priceEl.textContent : '$0.00';
+        const tagEl = card.querySelector('.product-tag');
+        let tag = tagEl ? tagEl.textContent : 'General';
+        
+        const colorOptionsHtml = card.querySelector('.color-options') ? card.querySelector('.color-options').innerHTML : '';
+        const singleColorText = card.querySelector('.color-label') && !card.querySelector('.color-options') ? card.querySelector('.color-label').textContent : '';
+
+        // Update Modal UI
+        document.getElementById('modal-img').src = imgSrc;
+        document.getElementById('modal-title').textContent = title;
+        document.getElementById('modal-price').textContent = price;
+        document.getElementById('modal-tag').textContent = tag;
+        
+        // Sync Modal Wishlist Heart
+        const wishlist = JSON.parse(localStorage.getItem('techone_wishlist')) || [];
+        const isLoved = wishlist.some(i => i.name === title);
+        const modalHeart = document.querySelector('.modal-wishlist');
+        if(isLoved) {
+            modalHeart.innerHTML = '<i class="fa-solid fa-heart"></i>';
+            modalHeart.style.color = '#ff7300';
+        } else {
+            modalHeart.innerHTML = '<i class="fa-regular fa-heart"></i>';
+            modalHeart.style.color = '';
+        }
+
+        // Handle Features dynamically... (omitted mapping for brevity but kept in original code)
+        const featuresList = document.getElementById('modal-features');
+        let featuresHtml = '';
+        let t = tag.toLowerCase();
+        if(t.includes('laptop')) { featuresHtml = '<li><i class="fa-solid fa-microchip"></i> High-Performance CPU</li><li><i class="fa-solid fa-memory"></i> Fast NVMe SSD</li><li><i class="fa-solid fa-battery-half"></i> All-Day Battery</li>'; }
+        else if (t.includes('gaming') || t.includes('pad')) { featuresHtml = '<li><i class="fa-solid fa-gamepad"></i> Pro Gaming Grade</li><li><i class="fa-solid fa-bolt"></i> Ultra-Low Latency</li><li><i class="fa-solid fa-shield-halved"></i> 2 Year Warranty</li>'; }
+        else if (t.includes('audio') || t.includes('ear') || t.includes('head')) { featuresHtml = '<li><i class="fa-solid fa-music"></i> Hi-Res Audio</li><li><i class="fa-solid fa-volume-high"></i> Premium Acoustics</li><li><i class="fa-solid fa-headphones-simple"></i> Ergonomic Comfort</li>'; }
+        else if (t.includes('dji') || t.includes('drone')) { featuresHtml = '<li><i class="fa-solid fa-plane-up"></i> 4K/6K Aerial Video</li><li><i class="fa-solid fa-signal"></i> Extended Range</li><li><i class="fa-solid fa-camera"></i> Stabilized Gimbal</li>'; }
+        else if (t.includes('camera') || t.includes('lens')) { featuresHtml = '<li><i class="fa-solid fa-camera-retro"></i> Ultra Sharp Optics</li><li><i class="fa-solid fa-video"></i> Professional Grade</li><li><i class="fa-solid fa-shield-halved"></i> 1 Year Warranty</li>'; }
+        else { featuresHtml = '<li><i class="fa-solid fa-truck-fast"></i> Free Fast Shipping</li><li><i class="fa-solid fa-shield-halved"></i> Standard Warranty</li><li><i class="fa-solid fa-rotate-left"></i> 14-Day Returns</li>'; }
+        featuresList.innerHTML = featuresHtml;
+
+        // Handle Colors dynamically
+        const colorContainer = document.getElementById('modal-colors-container');
+        const colorDiv = document.getElementById('modal-colors');
+        
+        if(colorOptionsHtml) {
+            colorContainer.style.display = 'block';
+            colorDiv.innerHTML = colorOptionsHtml;
+            colorDiv.querySelectorAll('.color-swatch').forEach(swatch => {
+                swatch.addEventListener('click', function() {
+                    const newImg = this.getAttribute('data-img');
+                    document.getElementById('modal-img').src = newImg;
+                    this.parentElement.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        } else {
+            colorContainer.style.display = 'none';
+        }
+
+        // Open Modal
+        document.getElementById('quick-view-modal').classList.add('active');
+        document.body.style.overflow = 'hidden'; 
+    }
+
+    // Grid Add to Cart Listeners
+    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const card = this.closest('.product-card');
+            const product = {
+                name: card.querySelector('.product-name').textContent,
+                price: card.querySelector('.product-price').textContent,
+                img: card.querySelector('img').src,
+                tag: card.querySelector('.product-tag').textContent
+            };
+            addToCart(product);
+        });
+    });
+
+    // Modal Add to Cart Listener
+    document.querySelector('.modal-add-cart').addEventListener('click', function() {
+        const product = {
+            name: document.getElementById('modal-title').textContent,
+            price: document.getElementById('modal-price').textContent,
+            img: document.getElementById('modal-img').src,
+            tag: document.getElementById('modal-tag').textContent
+        };
+        addToCart(product);
+        closeModal();
+    });
+
+    // Modal Wishlist Listener
+    document.querySelector('.modal-wishlist').addEventListener('click', function() {
+        const product = {
+            name: document.getElementById('modal-title').textContent,
+            price: document.getElementById('modal-price').textContent,
+            img: document.getElementById('modal-img').src,
+            tag: document.getElementById('modal-tag').textContent
+        };
+        toggleWishlist(product);
+        // Refresh modal heart icon
+        const wishlist = JSON.parse(localStorage.getItem('techone_wishlist')) || [];
+        const isLoved = wishlist.some(i => i.name === product.name);
+        if(isLoved) {
+            this.innerHTML = '<i class="fa-solid fa-heart"></i>';
+            this.style.color = '#ff7300';
+        } else {
+            this.innerHTML = '<i class="fa-regular fa-heart"></i>';
+            this.style.color = '';
+        }
+    });
+
+    function closeModal() {
+        document.getElementById('quick-view-modal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Initial Badge Sync
+    updateBadges();
 </script>
 
 </body>

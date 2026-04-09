@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TechOne Compare – Compare features and prices of our premium tech products.">
+    <title>Compare Products – TechOne</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="cart-body">
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+    <nav class="navbar">
+        <div class="navbar-inner">
+
+            <a href="index.html" class="nav-logo">
+                <div class="logo-img"></div>
+            </a>
+
+            <div class="nav-deliver">
+                <i class="fa-solid fa-location-dot nav-deliver-icon"></i>
+                <div>
+                    <span class="nav-sub-label">Deliver to</span>
+                    <select class="country-select">
+                        <option value="BD">Bangladesh</option>
+                        <option value="US">USA</option>
+                        <option value="UK">UK</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="nav-search">
+                <select class="search-category">
+                    <option>All</option>
+                </select>
+                <input type="text" class="search-input" placeholder="Search saved items...">
+                <button class="search-btn" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+
+            <div class="nav-right">
+                <a href="login.html" class="nav-item">
+                    <span class="nav-sub-label">Hello, Sign in</span>
+                    <span class="nav-main-label">Account <i class="fa-solid fa-chevron-down nav-chevron"></i></span>
+                </a>
+                <a href="wishlist.html" class="nav-item" id="nav-wishlist">
+                    <div class="cart-icon-wrap">
+                        <i class="fa-solid fa-heart"></i>
+                        <span class="wishlist-badge">0</span>
+                    </div>
+                    <span class="nav-main-label">Wishlist</span>
+                </a>
+                <a href="compare.html" class="nav-item" id="nav-compare">
+                    <div class="cart-icon-wrap">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                        <span class="compare-badge">0</span>
+                    </div>
+                    <span class="nav-main-label">Compare</span>
+                </a>
+                <a href="cart.html" class="nav-item nav-cart">
+                    <div class="cart-icon-wrap">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-badge">0</span>
+                    </div>
+                    <span class="nav-main-label">Cart</span>
+                </a>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+<!-- ===== COMPARE HUB ===== -->
+<main class="cart-main">
+    <div class="cart-left" style="flex: 1;">
+        <div class="compare-hub-header" style="padding: 20px 0; background: none; border: none; margin-bottom: 20px;">
+            <h1>Comparison Hub</h1>
+            <p>Analyze technical specifications Side-by-Side. Select up to 4 products from the same category.</p>
+            
+            <div class="compare-search-wrapper" id="compare-search-wrapper" style="display: none;">
+                <input type="text" id="compare-page-search" class="compare-page-search" placeholder="Type name of product (e.g. 'Ajazz' or 'Mavic')...">
+                <div id="autocomplete-dropdown" class="autocomplete-dropdown"></div>
+            </div>
+        </div>
+
+        <div id="compare-container" class="compare-container">
+            <!-- Dynamic Matrix Injected Here -->
+        </div>
+    </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+    <p style="text-align:center; padding: 40px 0; color: #6c757d;">© 2025 TechOne Limited. Intelligent Shopping.</p>
+</footer>
+
+<script>
+    const PRODUCT_CATALOG = [
+  {
+    "img": "./Image/Products/Gaming/Ajazz DG160 Wireless Multi-Platform Gamepad - Black.jpg",
+    "tag": "Game Pad / Joystick",
+    "name": "Ajazz DG160 Wireless Multi-Platform Gamepad",
+    "price": "$59.00"
+  },
+  {
+    "img": "./Image/Products/Gaming/Thunderobot G50s Tri-Mode Gaming Controller - Black.jpg",
+    "tag": "Game Pad / Joystick",
+    "name": "Thunderobot G50s Tri-Mode Gaming Controller",
+    "price": "$89.00"
+  },
+  {
+    "img": "./Image/Products/Gaming/DAREU H105 Tri-mode Gamepad - black.jpg",
+    "tag": "Game Pad / Joystick",
+    "name": "DAREU H105 Tri-mode Gamepad",
+    "price": "$65.00"
+  },
+  {
+    "img": "./Image/Products/Gaming/Fantech EOS PRO II WGP15 V2S Wireless Gamepad - Black.jpg",
+    "tag": "Game Pad / Joystick",
+    "name": "Fantech EOS PRO II WGP15 V2S Wireless Gamepad",
+    "price": "$79.00"
+  },
+  {
+    "img": "./Image/Products/Gaming/GameSir Nova Lite Tri-Mode Multiplatform Gaming Controller - Black.jpg",
+    "tag": "Game Pad / Joystick",
+    "name": "GameSir Nova Lite Tri-Mode Multiplatform Gaming Controller",
+    "price": "$39.00"
+  },
+  {
+    "img": "./Image/Products/Gaming/Fantech WGP13S Wireless Gamepad - Black.jpg",
+    "tag": "Game Pad / Joystick",
+    "name": "Fantech WGP13S Wireless Gamepad",
+    "price": "$45.00"
+  },
+  {
+    "img": "./Image/Products/Gaming/EasySMX X05 Multiplatform Gaming Controller.jpg",
+    "tag": "Game Pad / Joystick",
+    "name": "EasySMX X05 Multiplatform Gaming Controller",
+    "price": "$54.00"
+  },
+  {
+    "img": "./Image/Products/Gaming/FANTECH WGP15V2 EOS PRO II Tri-Mode Multi-Platform Wireless Controller.jpg",
+    "tag": "Game Pad / Joystick",
+    "name": "Fantech EOS PRO II WGP15 V2 Tri-Mode Controller",
+    "price": "$85.00"
+  },
+  {
+    "img": "./Image/Products/Gaming/AJAZZ AJ159 APEX 8KHz Tri-Mode Gaming Mouse - black.png",
+    "tag": "Gaming Mouse",
+    "name": "AJAZZ AJ159 APEX 8KHz Tri-Mode Gaming Mouse",
+    "price": "$89.99"
+  },
+  {
+    "img": "./Image/Products/Gaming/Razer DeathAdder V4 Pro Gaming Mouse - blue.jpg",
+    "tag": "Gaming Mouse",
+    "name": "Razer DeathAdder V4 Pro Gaming Mouse",
+    "price": "$149.99"
+  },
+  {
+    "img": "./Image/Products/Gaming/JEDEL GWH-111 Tri-Mode RGB Gaming Mouse with Charging Dock.jpg",
+    "tag": "Gaming Mouse",
+    "name": "JEDEL GWH-111 Tri-Mode RGB Gaming Mouse",
+    "price": "$49.99"
+  },
+  {
+    "img": "./Image/Products/Gaming/Horizon Ergonomic Gaming Chair Series‑NITRO - black.jpg",
+    "tag": "Gaming Chair",
+    "name": "Horizon Ergonomic Gaming Chair Series‑NITRO",
+    "price": "$249.00"
+  },
+  {
+    "img": "./Image/Products/Gaming/Horizon APEX Mesh Version 2 Ergonomic Chair.jpg",
+    "tag": "Gaming Chair",
+    "name": "Horizon APEX Mesh Version 2 Ergonomic Chair",
+    "price": "$199.00"
+  },
+  {
+    "img": "./Image/Products/Gaming/Dareu EH745s Gaming Headset.jpg",
+    "tag": "headset",
+    "name": "Dareu EH745s Gaming Headset",
+    "price": "$59.00"
+  },
+  {
+    "img": "./Image/Products/Gaming/Logitech G PRO X USB Gaming Headphone.jpg",
+    "tag": "headset",
+    "name": "Logitech G PRO X USB Gaming Headphone",
+    "price": "$129.00"
+  },
+  {
+    "img": "./Image/Products/Laptops/ASUS ProArt P16 H7606WV Ryzen AI 9 HX 370 RTX 4060 8GB 4K OLED Copilot+PC Touch Laptop.jpg",
+    "tag": "Laptops",
+    "name": "ASUS ProArt P16 Ryzen AI 9 4K OLED RTX 4060",
+    "price": "$2,299.00"
+  },
+  {
+    "img": "./Image/Products/Laptops/ASUS Vivobook 15 X1504VA Core i7 13th Gen 15.6 FHD Laptop.webp",
+    "tag": "Laptops",
+    "name": "ASUS Vivobook 15 Core i7 13th Gen 15.6\" FHD",
+    "price": "$649.00"
+  },
+  {
+    "img": "./Image/Products/Laptops/ASUS Vivobook 15 X1504VA Core i7 13th Gen 16GB RAM 15.6 FHD Laptop.webp",
+    "tag": "Laptops",
+    "name": "ASUS Vivobook 15 Core i7 16GB RAM Pro",
+    "price": "$749.00"
+  },
+  {
+    "img": "./Image/Products/Laptops/HP 15-fr0065TU Core i5 13th Gen 15.6 FHD Laptop.webp",
+    "tag": "Laptops",
+    "name": "HP 15-fr0065TU Core i5 13th Gen 15.6\"",
+    "price": "$599.00"
+  },
+  {
+    "img": "./Image/Products/Laptops/Lenovo IdeaPad Flex 5 14ABR8 Ryzen 7 5825U 14 WUXZA Touch Laptop.webp",
+    "tag": "Laptops",
+    "name": "Lenovo IdeaPad Flex 5 Ryzen 7 Touch 2-in-1",
+    "price": "$699.00"
+  },
+  {
+    "img": "./Image/Products/Laptops/Lenovo IdeaPad Slim 3 14IRH10 Core i5 13th Gen 14 WUXGA Laptop With FreeDOS.webp",
+    "tag": "Laptops",
+    "name": "Lenovo IdeaPad Slim 3 Core i5 14\" WUXGA",
+    "price": "$549.00"
+  },
+  {
+    "img": "./Image/Products/Laptops/Lenovo IdeaPad Slim 3 15IRH10R Core 5 210H 16GB RAM 15.3 IPS Laptop.webp",
+    "tag": "Laptops",
+    "name": "Lenovo IdeaPad Slim 3 Core 5 15.3\" 16GB",
+    "price": "$629.00"
+  },
+  {
+    "img": "./Image/Products/Laptops/Lenovo IdeaPad Slim 5 13ARP10 Ryzen 7 7735HS 13.3 WUXGA Laptop.webp",
+    "tag": "Laptops",
+    "name": "Lenovo IdeaPad Slim 5 Ryzen 7 13.3\"",
+    "price": "$799.00"
+  },
+  {
+    "img": "./Image/Products/Laptops/Lenovo IdeaPad Slim 5 14IRH10 Core i5 13th Gen 14 WUXGA OLED Laptop.webp",
+    "tag": "windows laptop",
+    "name": "Lenovo IdeaPad Slim 5 Core i5 14\" OLED",
+    "price": "$849.00"
+  },
+  {
+    "img": "./Image/Products/Laptops/THUNDEROBOT IGER E1 Notebook with IPS Display.jpg",
+    "tag": "Laptops",
+    "name": "THUNDEROBOT IGER E1 IPS Notebook",
+    "price": "$499.00"
+  },
+  {
+    "img": "./Image/Products/Headphones & Audio/Anker R50i True Wireless Earbuds - black.jpeg",
+    "tag": "bluetooth earbuds",
+    "name": "Anker R50i True Wireless Earbuds",
+    "price": "$29.00"
+  },
+  {
+    "img": "./Image/Products/Headphones & Audio/Moondrop Space Travel True Wireless Earbuds.webp",
+    "tag": "bluetooth earbuds",
+    "name": "Moondrop Space Travel True Wireless Earbuds",
+    "price": "$45.00"
+  },
+  {
+    "img": "./Image/Products/Headphones & Audio/FiiO JD1 Earphone.webp",
+    "tag": "IEM earphones",
+    "name": "FiiO JD1 Hi-Res Dynamic In-Ear Earphones",
+    "price": "$19.00"
+  },
+  {
+    "img": "./Image/Products/Headphones & Audio/Kefine Delci Earphone.webp",
+    "tag": "IEM earphones",
+    "name": "Kefine Delci 10mm DLC Diaphragm IEM",
+    "price": "$75.00"
+  },
+  {
+    "img": "./Image/Products/Headphones & Audio/Kefine Klean 10mm DLC Diaphragm Dynamic Driver HiFi In Ear Monitors.webp",
+    "tag": "IEM earphones",
+    "name": "Kefine Klean HiFi In-Ear Monitors",
+    "price": "$129.00"
+  },
+  {
+    "img": "./Image/Products/Headphones & Audio/FiiO JD3 Earphone.webp",
+    "tag": "earphones",
+    "name": "FiiO JD3 Hi-Res Earphones with Mic",
+    "price": "$12.00"
+  },
+  {
+    "img": "./Image/Products/Headphones & Audio/TANCHJIM Tanya 7MM In Ear Monitor.jpeg",
+    "tag": "earphones",
+    "name": "TANCHJIM Tanya 7MM Dynamic Earphones",
+    "price": "$22.00"
+  },
+  {
+    "img": "./Image/Products/Headphones & Audio/Audeze Maxwell Wireless Gaming Headphone.webp",
+    "tag": "headphones",
+    "name": "Audeze Maxwell Wireless Gaming Headphone",
+    "price": "$299.00"
+  },
+  {
+    "img": "./Image/Products/Headphones & Audio/Sony WH-CH520 Wireless Headphones.jpg",
+    "tag": "headphones",
+    "name": "Sony WH-CH520 Wireless Over-Ear Headphones",
+    "price": "$59.00"
+  },
+  {
+    "img": "./Image/Products/Headphones & Audio/Edifier M60 2.0 Mini Powerful Compact Desktop Speaker.jpg",
+    "tag": "speakers",
+    "name": "Edifier M60 2.0 Mini Powerful Compact Desktop Speaker",
+    "price": "$89.00"
+  },
+  {
+    "img": "./Image/Products/Headphones & Audio/FONENG M2 15w Bluetooth Portable Speaker.webp",
+    "tag": "speakers",
+    "name": "FONENG M2 15w Bluetooth Portable Speaker",
+    "price": "$35.00"
+  },
+  {
+    "img": "./Image/Products/Drones/DJI Air 3 Fly More Combo With DJI RC 2 Remote Controller.webp",
+    "tag": "dji",
+    "name": "DJI Air 3 Fly More Combo (RC 2)",
+    "price": "$1,349.00"
+  },
+  {
+    "img": "./Image/Products/Drones/DJI Air 3S Fly More Combo With DJI RC 2 Remote Controller.webp",
+    "tag": "dji",
+    "name": "DJI Air 3S Fly More Combo (RC 2)",
+    "price": "$1,549.00"
+  },
+  {
+    "img": "./Image/Products/Drones/DJI Avata 2 Fly More Combo Drone with Goggles 3 & RC Motion 3 Controller.webp",
+    "tag": "dji",
+    "name": "DJI Avata 2 Fly More Combo with Goggles 3",
+    "price": "$999.00"
+  },
+  {
+    "img": "./Image/Products/Drones/DJI Avata Fly Smart Drone Combo with FPV Goggles V2.webp",
+    "tag": "dji",
+    "name": "DJI Avata Fly Smart Combo (FPV V2)",
+    "price": "$829.00"
+  },
+  {
+    "img": "./Image/Products/Drones/DJI Matrice 300 RTK Commercial Drone.jpg",
+    "tag": "dji",
+    "name": "DJI Matrice 300 RTK Commercial Drone",
+    "price": "$12,999.00"
+  },
+  {
+    "img": "./Image/Products/Drones/DJI Matrice 4E.webp",
+    "tag": "dji",
+    "name": "DJI Matrice 4E Enterprise Drone",
+    "price": "$4,499.00"
+  },
+  {
+    "img": "./Image/Products/Drones/DJI Matrice 4T.webp",
+    "tag": "dji",
+    "name": "DJI Matrice 4T Thermal Enterprise",
+    "price": "$5,499.00"
+  },
+  {
+    "img": "./Image/Products/Drones/DJI Mavic 2 Enterprise Dual Edition Drone.webp",
+    "tag": "dji",
+    "name": "DJI Mavic 2 Enterprise Dual Edition",
+    "price": "$3,199.00"
+  },
+  {
+    "img": "./Image/Products/Drones/DJI Mavic 3 Classic Combo Drone.webp",
+    "tag": "dji",
+    "name": "DJI Mavic 3 Classic Combo Drone",
+    "price": "$1,599.00"
+  },
+  {
+    "img": "./Image/Products/Drones/DJI Mini 5 Pro Fly More Combo Plus With RC2.webp",
+    "tag": "dji",
+    "name": "DJI Mini 5 Pro Fly More Combo Plus",
+    "price": "$959.00"
+  },
+  {
+    "img": "./Image/Products/Drones/DJI P4 Multispectral Drone.webp",
+    "tag": "dji",
+    "name": "DJI P4 Multispectral Enterprise Drone",
+    "price": "$6,099.00"
+  },
+  {
+    "img": "./Image/Products/Cameras/Sony FE 50mm F2.8 Macro.webp",
+    "tag": "lens",
+    "name": "Sony FE 50mm F2.8 Macro Lens",
+    "price": "$499.00"
+  },
+  {
+    "img": "./Image/Products/Cameras/Sony SEL35F18 E 35mm F1.8 OSS Lens.webp",
+    "tag": "lens",
+    "name": "Sony E 35mm F1.8 OSS Prime Lens",
+    "price": "$449.00"
+  },
+  {
+    "img": "./Image/Products/Cameras/Sony SEL50F18 E 50mm F1.8 OSS Lens.webp",
+    "tag": "lens",
+    "name": "Sony E 50mm F1.8 OSS Portrait Lens",
+    "price": "$299.00"
+  },
+  {
+    "img": "./Image/Products/Cameras/Sony H300 Camera with 35x Optical Zoom.webp",
+    "tag": "camera",
+    "name": "Sony H300 Camera with 35x Optical Zoom",
+    "price": "$249.00"
+  },
+  {
+    "img": "./Image/Products/Cameras/Sony Interchangeable-Lens Vlog Camera (Only Body).webp",
+    "tag": "camera",
+    "name": "Sony Interchangeable-Lens Vlog Camera (Body Only)",
+    "price": "$699.00"
+  },
+  {
+    "img": "./Image/Products/Cameras/Sony a5100  ILCE-5100L E-Mount Camera with APS-C Sensor + 16-50mm Power Zoom Lens - Black.webp",
+    "tag": "camera",
+    "name": "Sony a5100 E-Mount Camera with 16-50mm Lens",
+    "price": "$449.00"
+  }
+];
+
+    function updateBadges() {
+        const cart = JSON.parse(localStorage.getItem('techone_cart')) || [];
+        document.querySelectorAll('.cart-badge').forEach(b => b.textContent = cart.reduce((sum, item) => sum + item.quantity, 0));
+
+        const wishlist = JSON.parse(localStorage.getItem('techone_wishlist')) || [];
+        document.querySelectorAll('.wishlist-badge').forEach(b => b.textContent = wishlist.length);
+
+        const compare = JSON.parse(localStorage.getItem('techone_compare')) || [];
+        document.querySelectorAll('.compare-badge').forEach(b => b.textContent = compare.length);
+    }
+
+    function getCategorySpecs(items) {
+        if(items.length === 0) return [];
+        let t = items[0].tag.toLowerCase();
+        if(t.includes('laptop')) { return [ {label: "Processor", icon: "fa-microchip"}, {label: "Storage", icon: "fa-memory"}, {label: "Battery", icon: "fa-battery-half"}, {label: "Display", icon: "fa-display"} ]; }
+        if (t.includes('gaming') || t.includes('pad')) { return [ {label: "Response", icon: "fa-gauge-high"}, {label: "Controls", icon: "fa-bolt"}, {label: "Build", icon: "fa-shield-check"}, {label: "Customization", icon: "fa-code"} ]; }
+        if (t.includes('audio') || t.includes('ear') || t.includes('head')) { return [ {label: "Audio Quality", icon: "fa-music"}, {label: "Acoustics", icon: "fa-volume-high"}, {label: "Design", icon: "fa-headphones"}, {label: "Microphone", icon: "fa-microphone"} ]; }
+        if (t.includes('dji') || t.includes('drone')) { return [ {label: "Camera", icon: "fa-plane-up"}, {label: "Range", icon: "fa-tower-broadcast"}, {label: "Stabilization", icon: "fa-camera-viewfinder"}, {label: "Wind Resist", icon: "fa-wind"} ]; }
+        if (t.includes('camera') || t.includes('lens')) { return [ {label: "Autofocus", icon: "fa-bullseye"}, {label: "Video", icon: "fa-video"}, {label: "Durability", icon: "fa-shield"}, {label: "Optics", icon: "fa-circle-notch"} ]; }
+        return [ {label: "Shipping", icon: "fa-truck-fast"}, {label: "Warranty", icon: "fa-check-circle"}, {label: "Returns", icon: "fa-clock-rotate-left"}, {label: "Quality", icon: "fa-star"} ];
+    }
+
+    function getProductSpecs(tag) {
+        let t = tag.toLowerCase();
+        if(t.includes('laptop')) { return ['High-Performance CPU', 'Fast NVMe SSD Storage', 'Long-Life Battery', 'Pro-Grade IPS Display']; }
+        if (t.includes('gaming') || t.includes('pad')) { return ['Low-Latency Response', 'Fast-Acting Triggers', 'Quality Verified', 'Fully Programmable']; }
+        if (t.includes('audio') || t.includes('ear') || t.includes('head')) { return ['Hi-Resolution Audio', 'Precision Tuned', 'Ergonomic Fit', 'Studio Clear Mic']; }
+        if (t.includes('dji') || t.includes('drone')) { return ['4K UHD Aerial Imaging', 'Extended Signal Range', '3-Axis Gimbal', 'Wind Stable']; }
+        if (t.includes('camera') || t.includes('lens')) { return ['High-Focus Precision', '4K Video Ready', 'Durable Construction', 'Premium Optics']; }
+        return ['Express Logistics', 'Official Warranty', 'Easy Returns', 'Quality Assured'];
+    }
+
+    function renderCompare() {
+        const container = document.getElementById('compare-container');
+        const searchWrapper = document.getElementById('compare-search-wrapper');
+        const compareData = JSON.parse(localStorage.getItem('techone_compare')) || [];
+        
+        if (compareData.length === 0) {
+            container.innerHTML = `
+                <div class="empty-compare">
+                    <i class="fa-solid fa-table-list"></i>
+                    <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 10px;">Your Matrix is Empty</h2>
+                    <p style="color: #8b949e; margin-bottom: 30px;">Add items to build a professional side-by-side technical comparison.</p>
+                    <a href="index.html" class="continue-shopping-btn" style="padding: 15px 40px; border-radius: 30px;">
+                        Build Matrix
+                    </a>
+                </div>
+            `;
+            searchWrapper.style.display = 'block';
+            updateBadges();
+            return;
+        }
+
+        searchWrapper.style.display = 'block';
+        let specsLabels = getCategorySpecs(compareData);
+        
+        let matrixHtml = '<div class="matrix-table-wrapper"><table class="matrix-table">';
+        
+        // Header Row
+        matrixHtml += '<thead><tr>';
+        matrixHtml += '<th class="matrix-corner"><h3>Tech Specs</h3><p>' + compareData[0].tag + '</p></th>';
+        
+        compareData.forEach((item, index) => {
+            matrixHtml += `
+                <th class="matrix-product-head" style="animation: fadeInUp ${0.3 + index * 0.1}s ease backwards">
+                    <button class="matrix-remove" onclick="removeFromCompare('${item.name}')">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <div class="matrix-img" style="background-image: url('${item.img}');"></div>
+                    <h3 class="matrix-title">${item.name}</h3>
+                    <div class="matrix-price">${item.price}</div>
+                    <button onclick='moveToCart(${JSON.stringify(item).replace(/'/g, "&apos;")})' class="matrix-buy-btn">
+                        <i class="fa-solid fa-cart-shopping" style="margin-right: 5px;"></i> Buy Pick
+                    </button>
+                </th>
+            `;
+        });
+        matrixHtml += '</tr></thead>';
+        
+        // Body (Specs)
+        matrixHtml += '<tbody>';
+        specsLabels.forEach((specObj, specIndex) => {
+            matrixHtml += `<tr class="matrix-row" style="animation: fadeInUp ${0.5 + specIndex * 0.1}s ease backwards">`;
+            matrixHtml += `<td class="matrix-label"><i class="fa-solid ${specObj.icon}"></i> <span>${specObj.label}</span></td>`;
+            compareData.forEach(item => {
+                let pSpecs = getProductSpecs(item.tag);
+                let val = pSpecs[specIndex] || '-';
+                matrixHtml += `<td class="matrix-value">${val}</td>`;
+            });
+            matrixHtml += `</tr>`;
+        });
+        
+        matrixHtml += '</tbody></table></div>';
+        container.innerHTML = matrixHtml;
+        updateBadges();
+    }
+
+    function removeFromCompare(name) {
+        let compareData = JSON.parse(localStorage.getItem('techone_compare')) || [];
+        compareData = compareData.filter(item => item.name !== name);
+        localStorage.setItem('techone_compare', JSON.stringify(compareData));
+        renderCompare();
+    }
+
+    function moveToCart(product) {
+        let cart = JSON.parse(localStorage.getItem('techone_cart')) || [];
+        const existing = cart.find(i => i.name === product.name);
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push({ ...product, quantity: 1 });
+        }
+        localStorage.setItem('techone_cart', JSON.stringify(cart));
+        updateBadges();
+        alert("Added to cart!");
+    }
+
+    function toggleCompare(product) {
+        let compare = JSON.parse(localStorage.getItem('techone_compare')) || [];
+        const index = compare.findIndex(item => item.name === product.name);
+        if (index > -1) return; // Already exists
+
+        if (compare.length > 0 && product.tag !== compare[0].tag) {
+            alert(`Can only compare products of the same type (${compare[0].tag}).`);
+            return;
+        }
+        
+        if (compare.length >= 4) {
+            alert(`You can only compare up to 4 items at once.`);
+            return;
+        }
+
+        compare.push(product);
+        localStorage.setItem('techone_compare', JSON.stringify(compare));
+        updateBadges();
+        renderCompare();
+    }
+
+    // --- AUTOCOMPLETE LOGIC ---
+    const searchInput = document.getElementById('compare-page-search');
+    const dropdown = document.getElementById('autocomplete-dropdown');
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        dropdown.innerHTML = '';
+        
+        if (!query) {
+            dropdown.classList.remove('active');
+            return;
+        }
+
+        const compareData = JSON.parse(localStorage.getItem('techone_compare')) || [];
+        const activeTag = compareData.length > 0 ? compareData[0].tag : null;
+
+        const results = PRODUCT_CATALOG.filter(item => {
+            const matchesQuery = item.name.toLowerCase().includes(query);
+            const matchesTag = activeTag ? (item.tag === activeTag) : true;
+            const notAlreadyInCompare = !compareData.some(c => c.name === item.name);
+            return matchesQuery && matchesTag && notAlreadyInCompare;
+        });
+
+        if (results.length === 0) {
+            dropdown.innerHTML = '<div style="padding: 15px; color:#6c757d;">No matching products found.</div>';
+            dropdown.classList.add('active');
+            return;
+        }
+
+        results.slice(0, 5).forEach(item => {
+            const el = document.createElement('div');
+            el.className = 'autocomplete-item';
+            el.innerHTML = `
+                <img src="${item.img}" alt="">
+                <div class="autocomplete-item-details">
+                    <span class="autocomplete-item-name">${item.name}</span>
+                    <span class="autocomplete-item-price">${item.price}</span>
+                </div>
+            `;
+            el.addEventListener('click', () => {
+                toggleCompare(item);
+                searchInput.value = '';
+                dropdown.classList.remove('active');
+            });
+            dropdown.appendChild(el);
+        });
+        
+        dropdown.classList.add('active');
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('active');
+        }
+    });
+
+    // Initial render
+    renderCompare();
+</script>
+
+</body>
+</html>
