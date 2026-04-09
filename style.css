@@ -1256,6 +1256,19 @@ img { max-width: 100%; display: block; }
     -webkit-box-orient: vertical;
 }
 
+.product-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary);
+    background: rgba(255, 107, 0, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
 .product-price {
     font-size: 1.25rem;
     font-weight: 800;
@@ -1303,6 +1316,8 @@ img { max-width: 100%; display: block; }
 .color-swatch.white { background-color: #fff; }
 .color-swatch.gray { background-color: #888; }
 .color-swatch.red { background-color: #e02020; }
+.color-swatch.blue { background-color: #007bff; }
+.color-swatch.orange { background-color: #ff6b00; }
 
 .add-to-cart-btn {
     width: 100%;
