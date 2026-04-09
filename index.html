@@ -57,20 +57,24 @@
             </div>
 
             <!-- Search -->
-            <div class="nav-search">
-                <select class="search-category" id="search-category">
-                    <option>All</option>
-                    <option>Laptops</option>
-                    <option>Phones</option>
-                    <option>Audio</option>
-                    <option>Cameras</option>
-                    <option>Gaming</option>
-                    <option>Wearables</option>
-                </select>
-                <input type="text" class="search-input" id="search-input" placeholder="Search for tech products...">
-                <button class="search-btn" id="search-btn" aria-label="Search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
+            <div class="nav-search-wrapper" style="position: relative; flex-grow: 1;">
+                <div class="nav-search">
+                    <select class="search-category" id="search-category">
+                        <option>All</option>
+                        <option>Laptops</option>
+                        <option>Phones</option>
+                        <option>Audio</option>
+                        <option>Cameras</option>
+                        <option>Gaming</option>
+                        <option>Wearables</option>
+                    </select>
+                    <input type="text" class="search-input" id="search-input" placeholder="Search for tech products..." autocomplete="off">
+                    <button class="search-btn" id="search-btn" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <!-- Autocomplete Dropdown -->
+                <div id="autocomplete-dropdown" class="autocomplete-dropdown" style="width: 100%; top: calc(100% + 5px);"></div>
             </div>
 
             <!-- Right Nav Items -->
@@ -1698,6 +1702,152 @@
 
     // Initial Badge Sync
     updateBadges();
+
+    // ==========================================
+    // GLOBAL AUTOCOMPLETE SEARCH LOGIC
+    // ==========================================
+    const productsCatalog = [
+      { "img": "./Image/Products/Gaming/AJAZZ AJ159 APEX 8KHz Tri-Mode Gaming Mouse - black.png", "tag": "Gaming Mouse", "name": "AJAZZ AJ159 APEX 8KHz Tri-Mode Gaming Mouse", "price": "$89.99" },
+      { "img": "./Image/Products/Gaming/Razer DeathAdder V4 Pro Gaming Mouse - blue.jpg", "tag": "Gaming Mouse", "name": "Razer DeathAdder V4 Pro Gaming Mouse", "price": "$149.99" },
+      { "img": "./Image/Products/Gaming/JEDEL GWH-111 Tri-Mode RGB Gaming Mouse with Charging Dock.jpg", "tag": "Gaming Mouse", "name": "JEDEL GWH-111 Tri-Mode RGB Gaming Mouse", "price": "$49.99" },
+      { "img": "./Image/Products/Gaming/Horizon Ergonomic Gaming Chair Series‑NITRO - black.jpg", "tag": "Gaming Chair", "name": "Horizon Ergonomic Gaming Chair Series‑NITRO", "price": "$249.00" },
+      { "img": "./Image/Products/Gaming/Horizon APEX Mesh Version 2 Ergonomic Chair.jpg", "tag": "Gaming Chair", "name": "Horizon APEX Mesh Version 2 Ergonomic Chair", "price": "$199.00" },
+      { "img": "./Image/Products/Gaming/Dareu EH745s Gaming Headset.jpg", "tag": "headset", "name": "Dareu EH745s Gaming Headset", "price": "$59.00" },
+      { "img": "./Image/Products/Gaming/Logitech G PRO X USB Gaming Headphone.jpg", "tag": "headset", "name": "Logitech G PRO X USB Gaming Headphone", "price": "$129.00" },
+      { "img": "./Image/Products/Laptops/ASUS ProArt P16 H7606WV Ryzen AI 9 HX 370 RTX 4060 8GB 4K OLED Copilot+PC Touch Laptop.jpg", "tag": "Laptops", "name": "ASUS ProArt P16 Ryzen AI 9 4K OLED RTX 4060", "price": "$2,299.00" },
+      { "img": "./Image/Products/Laptops/ASUS Vivobook 15 X1504VA Core i7 13th Gen 15.6 FHD Laptop.webp", "tag": "Laptops", "name": "ASUS Vivobook 15 Core i7 13th Gen 15.6\" FHD", "price": "$649.00" },
+      { "img": "./Image/Products/Laptops/ASUS Vivobook 15 X1504VA Core i7 13th Gen 16GB RAM 15.6 FHD Laptop.webp", "tag": "Laptops", "name": "ASUS Vivobook 15 Core i7 16GB RAM Pro", "price": "$749.00" },
+      { "img": "./Image/Products/Laptops/HP 15-fr0065TU Core i5 13th Gen 15.6 FHD Laptop.webp", "tag": "Laptops", "name": "HP 15-fr0065TU Core i5 13th Gen 15.6\"", "price": "$599.00" },
+      { "img": "./Image/Products/Laptops/Lenovo IdeaPad Flex 5 14ABR8 Ryzen 7 5825U 14 WUXZA Touch Laptop.webp", "tag": "Laptops", "name": "Lenovo IdeaPad Flex 5 Ryzen 7 Touch 2-in-1", "price": "$699.00" },
+      { "img": "./Image/Products/Laptops/Lenovo IdeaPad Slim 3 14IRH10 Core i5 13th Gen 14 WUXGA Laptop With FreeDOS.webp", "tag": "Laptops", "name": "Lenovo IdeaPad Slim 3 Core i5 14\" WUXGA", "price": "$549.00" },
+      { "img": "./Image/Products/Laptops/Lenovo IdeaPad Slim 3 15IRH10R Core 5 210H 16GB RAM 15.3 IPS Laptop.webp", "tag": "Laptops", "name": "Lenovo IdeaPad Slim 3 Core 5 15.3\" 16GB", "price": "$629.00" },
+      { "img": "./Image/Products/Laptops/Lenovo IdeaPad Slim 5 13ARP10 Ryzen 7 7735HS 13.3 WUXGA Laptop.webp", "tag": "Laptops", "name": "Lenovo IdeaPad Slim 5 Ryzen 7 13.3\"", "price": "$799.00" },
+      { "img": "./Image/Products/Laptops/Lenovo IdeaPad Slim 5 14IRH10 Core i5 13th Gen 14 WUXGA OLED Laptop.webp", "tag": "windows laptop", "name": "Lenovo IdeaPad Slim 5 Core i5 14\" OLED", "price": "$849.00" },
+      { "img": "./Image/Products/Laptops/THUNDEROBOT IGER E1 Notebook with IPS Display.jpg", "tag": "Laptops", "name": "THUNDEROBOT IGER E1 IPS Notebook", "price": "$499.00" },
+      { "img": "./Image/Products/Headphones & Audio/Anker R50i True Wireless Earbuds - black.jpeg", "tag": "bluetooth earbuds", "name": "Anker R50i True Wireless Earbuds", "price": "$29.00" },
+      { "img": "./Image/Products/Headphones & Audio/Moondrop Space Travel True Wireless Earbuds.webp", "tag": "bluetooth earbuds", "name": "Moondrop Space Travel True Wireless Earbuds", "price": "$45.00" },
+      { "img": "./Image/Products/Headphones & Audio/FiiO JD1 Earphone.webp", "tag": "IEM earphones", "name": "FiiO JD1 Hi-Res Dynamic In-Ear Earphones", "price": "$19.00" },
+      { "img": "./Image/Products/Headphones & Audio/Kefine Delci Earphone.webp", "tag": "IEM earphones", "name": "Kefine Delci 10mm DLC Diaphragm IEM", "price": "$75.00" },
+      { "img": "./Image/Products/Headphones & Audio/Kefine Klean 10mm DLC Diaphragm Dynamic Driver HiFi In Ear Monitors.webp", "tag": "IEM earphones", "name": "Kefine Klean HiFi In-Ear Monitors", "price": "$129.00" },
+      { "img": "./Image/Products/Headphones & Audio/FiiO JD3 Earphone.webp", "tag": "earphones", "name": "FiiO JD3 Hi-Res Earphones with Mic", "price": "$12.00" },
+      { "img": "./Image/Products/Headphones & Audio/TANCHJIM Tanya 7MM In Ear Monitor.jpeg", "tag": "earphones", "name": "TANCHJIM Tanya 7MM Dynamic Earphones", "price": "$22.00" },
+      { "img": "./Image/Products/Headphones & Audio/Audeze Maxwell Wireless Gaming Headphone.webp", "tag": "headphones", "name": "Audeze Maxwell Wireless Gaming Headphone", "price": "$299.00" },
+      { "img": "./Image/Products/Headphones & Audio/Sony WH-CH520 Wireless Headphones.jpg", "tag": "headphones", "name": "Sony WH-CH520 Wireless Over-Ear Headphones", "price": "$59.00" },
+      { "img": "./Image/Products/Headphones & Audio/Edifier M60 2.0 Mini Powerful Compact Desktop Speaker.jpg", "tag": "speakers", "name": "Edifier M60 2.0 Mini Powerful Compact Desktop Speaker", "price": "$89.00" },
+      { "img": "./Image/Products/Headphones & Audio/FONENG M2 15w Bluetooth Portable Speaker.webp", "tag": "speakers", "name": "FONENG M2 15w Bluetooth Portable Speaker", "price": "$35.00" },
+      { "img": "./Image/Products/Drones/DJI Air 3 Fly More Combo With DJI RC 2 Remote Controller.webp", "tag": "dji", "name": "DJI Air 3 Fly More Combo (RC 2)", "price": "$1,349.00" },
+      { "img": "./Image/Products/Drones/DJI Air 3S Fly More Combo With DJI RC 2 Remote Controller.webp", "tag": "dji", "name": "DJI Air 3S Fly More Combo (RC 2)", "price": "$1,549.00" },
+      { "img": "./Image/Products/Drones/DJI Avata 2 Fly More Combo Drone with Goggles 3 & RC Motion 3 Controller.webp", "tag": "dji", "name": "DJI Avata 2 Fly More Combo with Goggles 3", "price": "$999.00" },
+      { "img": "./Image/Products/Drones/DJI Avata Fly Smart Drone Combo with FPV Goggles V2.webp", "tag": "dji", "name": "DJI Avata Fly Smart Combo (FPV V2)", "price": "$829.00" },
+      { "img": "./Image/Products/Drones/DJI Matrice 300 RTK Commercial Drone.jpg", "tag": "dji", "name": "DJI Matrice 300 RTK Commercial Drone", "price": "$12,999.00" },
+      { "img": "./Image/Products/Drones/DJI Matrice 4E.webp", "tag": "dji", "name": "DJI Matrice 4E Enterprise Drone", "price": "$4,499.00" },
+      { "img": "./Image/Products/Drones/DJI Matrice 4T.webp", "tag": "dji", "name": "DJI Matrice 4T Thermal Enterprise", "price": "$5,499.00" },
+      { "img": "./Image/Products/Drones/DJI Mavic 2 Enterprise Dual Edition Drone.webp", "tag": "dji", "name": "DJI Mavic 2 Enterprise Dual Edition", "price": "$3,199.00" },
+      { "img": "./Image/Products/Drones/DJI Mavic 3 Classic Combo Drone.webp", "tag": "dji", "name": "DJI Mavic 3 Classic Combo Drone", "price": "$1,599.00" },
+      { "img": "./Image/Products/Drones/DJI Mini 5 Pro Fly More Combo Plus With RC2.webp", "tag": "dji", "name": "DJI Mini 5 Pro Fly More Combo Plus", "price": "$959.00" },
+      { "img": "./Image/Products/Drones/DJI P4 Multispectral Drone.webp", "tag": "dji", "name": "DJI P4 Multispectral Enterprise Drone", "price": "$6,099.00" },
+      { "img": "./Image/Products/Cameras/Sony FE 50mm F2.8 Macro.webp", "tag": "lens", "name": "Sony FE 50mm F2.8 Macro Lens", "price": "$499.00" },
+      { "img": "./Image/Products/Cameras/Sony SEL35F18 E 35mm F1.8 OSS Lens.webp", "tag": "lens", "name": "Sony E 35mm F1.8 OSS Prime Lens", "price": "$449.00" },
+      { "img": "./Image/Products/Cameras/Sony SEL50F18 E 50mm F1.8 OSS Lens.webp", "tag": "lens", "name": "Sony E 50mm F1.8 OSS Portrait Lens", "price": "$299.00" },
+      { "img": "./Image/Products/Cameras/Sony H300 Camera with 35x Optical Zoom.webp", "tag": "camera", "name": "Sony H300 Camera with 35x Optical Zoom", "price": "$249.00" },
+      { "img": "./Image/Products/Cameras/Sony Interchangeable-Lens Vlog Camera (Only Body).webp", "tag": "camera", "name": "Sony Interchangeable-Lens Vlog Camera (Body Only)", "price": "$699.00" },
+      { "img": "./Image/Products/Cameras/Sony a5100  ILCE-5100L E-Mount Camera with APS-C Sensor + 16-50mm Power Zoom Lens - Black.webp", "tag": "camera", "name": "Sony a5100 E-Mount Camera with 16-50mm Lens", "price": "$449.00" }
+    ];
+
+    const searchInput = document.getElementById('search-input');
+    const dropdown = document.getElementById('autocomplete-dropdown');
+    const searchCategory = document.getElementById('search-category');
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        const selectedCat = searchCategory.value.toLowerCase();
+        
+        if (query.length < 2) {
+            dropdown.classList.remove('active');
+            return;
+        }
+
+        const filtered = productsCatalog.filter(item => {
+            const matchesQuery = item.name.toLowerCase().includes(query) || item.tag.toLowerCase().includes(query);
+            // Simple mapping from dropdown categories to tags
+            let matchesCategory = true;
+            if (selectedCat !== 'all') {
+                if (selectedCat === 'laptops') matchesCategory = item.tag.toLowerCase().includes('laptop');
+                if (selectedCat === 'gaming') matchesCategory = item.tag.toLowerCase().includes('gaming');
+                if (selectedCat === 'audio') matchesCategory = item.tag.toLowerCase().includes('head') || item.tag.toLowerCase().includes('ear') || item.tag.toLowerCase().includes('speaker');
+                if (selectedCat === 'cameras') matchesCategory = item.tag.toLowerCase().includes('camera') || item.tag.toLowerCase().includes('lens');
+                // Wearables and Phones not effectively in mock catalog, but logic applies
+            }
+            return matchesQuery && matchesCategory;
+        });
+
+        if (filtered.length > 0) {
+            let html = '';
+            filtered.forEach(item => {
+                html += `
+                    <div class="autocomplete-item" onclick="handleSearchSelect('${item.name.replace(/'/g, "\\'")}')">
+                        <img src="${item.img}" alt="${item.name}">
+                        <div>
+                            <span class="autocomplete-item-name">${item.name}</span>
+                            <span class="autocomplete-item-price">${item.price}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            dropdown.innerHTML = html;
+            dropdown.classList.add('active');
+        } else {
+            dropdown.innerHTML = '<div style="padding: 15px; color: #8b949e; text-align: center;">No matches found</div>';
+            dropdown.classList.add('active');
+        }
+    });
+
+    // Handle clicking outside to close
+    document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('active');
+        }
+    });
+
+    // Interaction when user selects an item from global search
+    window.handleSearchSelect = function(name) {
+        dropdown.classList.remove('active');
+        searchInput.value = '';
+        
+        // Find product card in the DOM to simulate clicking it
+        const productTitles = document.querySelectorAll('.product-name');
+        let targetCard = null;
+        productTitles.forEach(title => {
+            if(title.textContent === name) {
+                targetCard = title.closest('.product-card');
+            }
+        });
+
+        if (targetCard) {
+            // Scroll to the product
+            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Highlight it temporarily
+            const originalBorder = targetCard.style.borderColor;
+            const originalShadow = targetCard.style.boxShadow;
+            
+            targetCard.style.transition = 'all 0.5s ease';
+            targetCard.style.borderColor = '#ff6b00';
+            targetCard.style.boxShadow = '0 0 20px rgba(255,107,0,0.5)';
+            
+            setTimeout(() => {
+                targetCard.style.borderColor = originalBorder;
+                targetCard.style.boxShadow = originalShadow;
+            }, 1500);
+
+            // Optional: Automatically open quick view
+            const quickBtn = targetCard.querySelector('.quick-view-btn');
+            if (quickBtn) setTimeout(() => quickBtn.click(), 600);
+        } else {
+            alert('Product found in catalog but not currently displayed on this page prototype.');
+        }
+    };
+
 </script>
 
 </body>
