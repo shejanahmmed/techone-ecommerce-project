@@ -2107,16 +2107,10 @@
         updateBadges();
     }
 
-    // Grid Auto-Injection (Quick View, Wishlist & Compare)
+    // Grid Auto-Injection (Wishlist & Compare) & Image Click for Quick View
     document.querySelectorAll('.product-img-wrap').forEach(wrap => {
-        // Quick View
-        const qvBtn = document.createElement('span');
-        qvBtn.className = 'quick-view-btn';
-        qvBtn.innerHTML = '<i class="fa-solid fa-eye"></i> Quick View';
-        
-        qvBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
+        // Open Quick View on Image Click
+        wrap.addEventListener('click', function() {
             const card = this.closest('.product-card');
             openQuickView(card);
         });
@@ -2156,7 +2150,6 @@
             toggleCompare(product);
         });
 
-        wrap.appendChild(qvBtn);
         wrap.appendChild(wlBtn);
         wrap.appendChild(compBtn);
     });
@@ -2451,8 +2444,7 @@
             }, 1500);
 
             // Optional: Automatically open quick view
-            const quickBtn = targetCard.querySelector('.quick-view-btn');
-            if (quickBtn) setTimeout(() => quickBtn.click(), 600);
+            if (targetCard) setTimeout(() => openQuickView(targetCard), 600);
         } else {
             alert('Product found in catalog but not currently displayed on this page prototype.');
         }
