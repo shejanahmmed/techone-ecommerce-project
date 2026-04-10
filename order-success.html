@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Order Successful. Thank you for shopping with TechOne.">
+    <title>Order Successful – TechOne</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="cart-body">
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-img"></div>
+            </a>
+            <div class="nav-right">
+                <a href="index.html" class="nav-item">
+                    <span class="nav-main-label" style="font-size: 0.95rem;">Continue Shopping</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- ===== SUCCESS MAIN ===== -->
+<main class="success-main">
+    <div class="success-container">
+        <div class="success-header">
+            <div class="success-icon-wrap">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h1>Payment Successful!</h1>
+            <p>Thank you for your order. We've received your payment and will begin processing your shipment shortly.</p>
+        </div>
+
+        <div class="order-details-box">
+            <div class="od-top">
+                <div>
+                    <span class="od-label">Order Number</span>
+                    <strong id="disp-order-id">#ORD-XXXXXX</strong>
+                </div>
+                <div>
+                    <span class="od-label">Date</span>
+                    <strong id="disp-order-date">MM/DD/YYYY</strong>
+                </div>
+                <div>
+                    <span class="od-label">Total Paid</span>
+                    <strong id="disp-order-total" style="color: var(--primary); font-size: 1.1rem;">$0.00</strong>
+                </div>
+            </div>
+            
+            <h3 class="od-title">Items Ordered</h3>
+            <div id="success-items" class="success-items-list">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+
+        <div class="success-actions" style="display: flex; justify-content: center; gap: 20px; align-items: center; margin-top: 20px;">
+            <button class="success-btn-primary" onclick="window.location.href='index.html'" style="min-width: 180px;">Continue Shopping</button>
+            <button class="success-btn-secondary" onclick="downloadPDF()" style="min-width: 180px;"><i class="fa-solid fa-file-pdf" style="margin-right: 8px;"></i> Download PDF Receipt</button>
+        </div>
+    </div>
+</main>
+
+<!-- html2pdf Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+    function downloadPDF() {
+        // Temporarily hide the buttons during PDF generation
+        const actions = document.querySelector('.success-actions');
+        actions.style.display = 'none';
+
+        const element = document.querySelector('.success-container');
+        const opt = {
+            margin:       10,
+            filename:     'TechOne_Receipt.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        html2pdf().set(opt).from(element).save().then(() => {
+            // Restore buttons after generation
+            actions.style.display = 'flex';
+        });
+    }
+
+    function renderSuccess() {
+        const orderData = JSON.parse(localStorage.getItem('techone_latest_order'));
+        
+        if (!orderData) {
+            window.location.href = 'index.html';
+            return;
+        }
+
+        document.getElementById('disp-order-id').textContent = orderData.id;
+        document.getElementById('disp-order-date').textContent = orderData.date;
+        document.getElementById('disp-order-total').textContent = orderData.total;
+
+        const container = document.getElementById('success-items');
+        container.innerHTML = '';
+
+        orderData.items.forEach(item => {
+            container.innerHTML += `
+                <div class="chk-item">
+                    <img src="${item.img}" alt="${item.name}">
+                    <div class="chk-item-info">
+                        <h4 style="color: var(--dark-2);">${item.name}</h4>
+                        <p>Qty: ${item.quantity}</p>
+                    </div>
+                    <div class="chk-item-price" style="font-weight: 700; color: #111;">${item.price}</div>
+                </div>
+            `;
+        });
+    }
+
+    renderSuccess();
+</script>
+
+</body>
+</html>

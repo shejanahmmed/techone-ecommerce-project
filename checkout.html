@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secure Checkout – Complete your order.">
+    <title>Checkout – TechOne</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="cart-body">
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+    <nav class="navbar">
+        <div class="navbar-inner">
+
+            <a href="index.html" class="nav-logo">
+                <div class="logo-img"></div>
+            </a>
+
+            <!-- Simplified Nav for Checkout -->
+            <div style="flex-grow: 1; text-align: center;">
+                <h1 style="color: white; font-size: 1.5rem; font-weight: 700;">Secure Checkout <i class="fa-solid fa-lock" style="font-size: 1.2rem; color: #4CAF50; margin-left: 5px;"></i></h1>
+            </div>
+
+            <div class="nav-right">
+                <a href="index.html" class="nav-item">
+                    <span class="nav-main-label" style="font-size: 0.95rem;">Cancel & Return</span>
+                </a>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+<!-- ===== CHECKOUT MAIN ===== -->
+<main class="cart-main checkout-main">
+    <div class="checkout-left">
+        <h2>Payment Method</h2>
+        <p class="section-sub">Choose how you'd like to pay for your tech.</p>
+
+        <div class="payment-methods">
+            
+            <!-- Cards Method -->
+            <div class="payment-option active" onclick="selectPayment('card')">
+                <div class="po-header">
+                    <div class="po-title">
+                        <input type="radio" name="payment_type" id="pay-card" checked>
+                        <label for="pay-card"><i class="fa-regular fa-credit-card"></i> Credit / Debit Card</label>
+                    </div>
+                    <div class="po-icons">
+                        <i class="fa-brands fa-cc-visa" style="color: #1a1f71; font-size: 1.5rem;"></i>
+                        <i class="fa-brands fa-cc-mastercard" style="color: #eb001b; font-size: 1.5rem;"></i>
+                        <i class="fa-brands fa-cc-amex" style="color: #002663; font-size: 1.5rem;"></i>
+                    </div>
+                </div>
+                <div class="po-body" id="body-card">
+                    <div class="form-group">
+                        <label>Card Number</label>
+                        <input type="text" placeholder="0000 0000 0000 0000" class="chk-input" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label>Expiry Date</label>
+                            <input type="text" placeholder="MM/YY" class="chk-input" required>
+                        </div>
+                        <div class="form-group half">
+                            <label>CVV</label>
+                            <input type="password" placeholder="123" class="chk-input" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Cardholder Name</label>
+                        <input type="text" placeholder="Name on Card" class="chk-input" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Banking Method -->
+            <div class="payment-option" onclick="selectPayment('mobile')">
+                <div class="po-header">
+                    <div class="po-title">
+                        <input type="radio" name="payment_type" id="pay-mobile">
+                        <label for="pay-mobile"><i class="fa-solid fa-mobile-screen-button"></i> Mobile Banking</label>
+                    </div>
+                    <div class="po-icons text-icons">
+                        <span>bKash</span>
+                        <span>Nagad</span>
+                        <span>Rocket</span>
+                    </div>
+                </div>
+                <div class="po-body" id="body-mobile" style="display: none;">
+                    <div class="provider-select">
+                        <label class="provider-radio">
+                            <input type="radio" name="mfs_provider" checked>
+                            <span class="provider-box bkash-style">bKash</span>
+                        </label>
+                        <label class="provider-radio">
+                            <input type="radio" name="mfs_provider">
+                            <span class="provider-box nagad-style">Nagad</span>
+                        </label>
+                        <label class="provider-radio">
+                            <input type="radio" name="mfs_provider">
+                            <span class="provider-box rocket-style">Rocket</span>
+                        </label>
+                    </div>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label>Account Number</label>
+                        <input type="text" placeholder="e.g., 01XXXXXXXXX" class="chk-input">
+                    </div>
+                    <div class="form-group">
+                        <label>PIN (Dummy Validation)</label>
+                        <input type="password" placeholder="Enter PIN" class="chk-input">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bank Transfer Method -->
+            <div class="payment-option" onclick="selectPayment('bank')">
+                <div class="po-header">
+                    <div class="po-title">
+                        <input type="radio" name="payment_type" id="pay-bank">
+                        <label for="pay-bank"><i class="fa-solid fa-building-columns"></i> Bank Transfer</label>
+                    </div>
+                </div>
+                <div class="po-body" id="body-bank" style="display: none;">
+                     <div class="bank-details">
+                         <p>Please transfer the total amount to the following account, then enter your transaction ID.</p>
+                         <div class="bd-box">
+                             <strong>Bank:</strong> TechOne Financial Bank<br>
+                             <strong>Account Name:</strong> TechOne Limited<br>
+                             <strong>Account No:</strong> 1234-5678-9012<br>
+                             <strong>Routing No:</strong> 987654321
+                         </div>
+                     </div>
+                     <div class="form-group" style="margin-top: 15px;">
+                        <label>Transaction ID / Reference</label>
+                        <input type="text" placeholder="Enter TXN ID" class="chk-input">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Right Side: Order Summary -->
+    <div class="cart-right">
+        <div class="subtotal-box order-summary-box">
+            <h2>Order Summary</h2>
+            <div id="checkout-items" class="checkout-items-list">
+                <!-- Injected via JS -->
+            </div>
+            
+            <div class="summary-totals">
+                <div class="total-row">
+                    <span>Items Subtotal:</span>
+                    <span id="chk-subtotal">$0.00</span>
+                </div>
+                <div class="total-row">
+                    <span>Shipping & Handling:</span>
+                    <span>Free</span>
+                </div>
+                <div class="total-row">
+                    <span>Estimated Tax (5%):</span>
+                    <span id="chk-tax">$0.00</span>
+                </div>
+                <div class="total-row grand-total">
+                    <span>Total:</span>
+                    <span id="chk-total">$0.00</span>
+                </div>
+            </div>
+
+            <button class="checkout-btn pay-now-btn" onclick="processPayment()">
+                <i class="fa-solid fa-lock" style="margin-right: 8px;"></i> Pay Now
+            </button>
+            <p style="text-align: center; color: #6b7280; font-size: 0.75rem; margin-top: 15px;">
+                Payments are processed securely. This is a dummy checkout for demonstration.
+            </p>
+        </div>
+    </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+    <div class="footer-bottom" style="justify-content: center; border-top: none;">
+        <p>Copyright &copy; 2026 TechOne Limited. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script>
+    function selectPayment(type) {
+        // Hide all bodies
+        document.getElementById('body-card').style.display = 'none';
+        document.getElementById('body-mobile').style.display = 'none';
+        document.getElementById('body-bank').style.display = 'none';
+        
+        // Remove active class
+        document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('active'));
+
+        // Show selected
+        const targetBody = document.getElementById('body-' + type);
+        targetBody.style.display = 'block';
+        
+        // Add active class to parent and check radio
+        targetBody.closest('.payment-option').classList.add('active');
+        document.getElementById('pay-' + type).checked = true;
+    }
+
+    function renderCheckoutSummary() {
+        const cart = JSON.parse(localStorage.getItem('techone_cart')) || [];
+        const container = document.getElementById('checkout-items');
+        
+        if (cart.length === 0) {
+            window.location.href = 'cart.html'; // Redirect if cart is empty
+            return;
+        }
+
+        container.innerHTML = '';
+        let subtotal = 0;
+
+        cart.forEach(item => {
+            const priceValue = parseFloat(item.price.replace(/[^0-9.-]+/g,""));
+            subtotal += priceValue * item.quantity;
+            
+            container.innerHTML += `
+                <div class="chk-item">
+                    <img src="${item.img}" alt="${item.name}">
+                    <div class="chk-item-info">
+                        <h4>${item.name}</h4>
+                        <p>Qty: ${item.quantity}</p>
+                    </div>
+                    <div class="chk-item-price">${item.price}</div>
+                </div>
+            `;
+        });
+
+        const tax = subtotal * 0.05;
+        const total = subtotal + tax;
+
+        document.getElementById('chk-subtotal').textContent = `$${subtotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        document.getElementById('chk-tax').textContent = `$${tax.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        document.getElementById('chk-total').textContent = `$${total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+    }
+
+    function processPayment() {
+        const btn = document.querySelector('.pay-now-btn');
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+        btn.disabled = true;
+
+        // Simulate network delay
+        setTimeout(() => {
+            const cart = JSON.parse(localStorage.getItem('techone_cart')) || [];
+            
+            // Save as latest order
+            const orderData = {
+                id: 'ORD-' + Math.floor(Math.random() * 1000000),
+                date: new Date().toLocaleDateString(),
+                items: cart,
+                total: document.getElementById('chk-total').textContent
+            };
+            localStorage.setItem('techone_latest_order', JSON.stringify(orderData));
+
+            // Clear cart
+            localStorage.setItem('techone_cart', JSON.stringify([]));
+
+            // Redirect
+            window.location.href = 'order-success.html';
+        }, 1500);
+    }
+
+    // Initialize
+    renderCheckoutSummary();
+</script>
+
+</body>
+</html>
