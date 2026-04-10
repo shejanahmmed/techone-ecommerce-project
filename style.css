@@ -941,12 +941,35 @@ img { max-width: 100%; display: block; }
    LOGIN PAGE STYLES (preserved)
    ============================================ */
 .login-body {
-    background-color: #f3f3f3;
+    background-color: #0d1117; /* Dark background to make white logo visible */
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 20px;
+    padding-top: 50px;
+    position: relative;
+    color: #fff;
+    min-height: 100vh;
 }
+
+.back-home {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    color: #8b949e;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.back-home:hover {
+    color: #ff6b00;
+    transform: translateX(-5px);
+}
+
 
 .login-logo {
     background-image: url(./Image/TechOne.png);
@@ -966,6 +989,7 @@ img { max-width: 100%; display: block; }
     border-radius: 8px;
     padding: 25px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: #111;
 }
 
 .login-card h2 {
