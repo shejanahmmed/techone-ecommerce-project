@@ -130,7 +130,7 @@ img { max-width: 100%; display: block; }
     transition: var(--transition);
 }
 
-.nav-logo:hover { border-color: rgba(255,255,255,0.25); }
+.nav-logo:hover { background: rgba(255,255,255,0.06); }
 
 .logo-img {
     background-image: url(./Image/TechOne.png);
@@ -156,7 +156,7 @@ img { max-width: 100%; display: block; }
     color: var(--text-white);
 }
 
-.nav-deliver:hover { border-color: rgba(255,255,255,0.25); }
+.nav-deliver:hover { background: rgba(255,255,255,0.06); }
 
 .nav-deliver-icon {
     color: var(--accent);
@@ -270,7 +270,7 @@ img { max-width: 100%; display: block; }
 }
 
 
-.nav-item:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); }
+.nav-item:hover { background: rgba(255,255,255,0.06); }
 
 /* Two-line text block inside icon nav items */
 .nav-item > div:not(.nav-icon-box) {

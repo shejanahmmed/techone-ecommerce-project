@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TechOne – Your one-stop shop for premium tech gadgets, laptops, smartphones, cameras, and more.">
+    <title>Press Center - TechOne</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <div class="top-bar-left">
+                <i class="fa-solid fa-bolt"></i>
+                <span>Free shipping on orders over <strong>$49</strong> | Flash Sale ends in <strong id="countdown">02:45:30</strong></span>
+            </div>
+            <div class="top-bar-right">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+
+            <!-- Logo -->
+            <a href="index.html" class="nav-logo">
+                <div class="logo-img"></div>
+            </a>
+
+            <!-- Delivery -->
+            <div class="nav-deliver" id="nav-deliver-btn">
+                <i class="fa-solid fa-location-dot nav-deliver-icon"></i>
+                <div>
+                    <span class="nav-sub-label">Deliver to</span>
+                    <select class="country-select" id="country-select">
+                        <option value="BD">Bangladesh</option>
+                        <option value="US">USA</option>
+                        <option value="UK">UK</option>
+                        <option value="CA">Canada</option>
+                        <option value="AU">Australia</option>
+                        <option value="DE">Germany</option>
+                        <option value="JP">Japan</option>
+                        <option value="AE">UAE</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Search -->
+            <div class="nav-search-wrapper" style="position: relative; flex-grow: 1;">
+                <div class="nav-search">
+                    <select class="search-category" id="search-category">
+                        <option>All</option>
+                        <option>Laptops</option>
+                        <option>Phones</option>
+                        <option>Audio</option>
+                        <option>Cameras</option>
+                        <option>Gaming</option>
+                        <option>Wearables</option>
+                    </select>
+                    <input type="text" class="search-input" id="search-input" placeholder="Search for tech products..." autocomplete="off">
+                    <button class="search-btn" id="search-btn" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <!-- Autocomplete Dropdown -->
+                <div id="autocomplete-dropdown" class="autocomplete-dropdown" style="width: 100%; top: calc(100% + 5px);"></div>
+            </div>
+
+            <!-- Right Nav Items -->
+            <div class="nav-right">
+                <a href="login.html" class="nav-item nav-icon-item" id="nav-signin">
+                    <div class="nav-icon-box">
+                        <i class="fa-regular fa-circle-user"></i>
+                    </div>
+                    <div>
+                        <span class="nav-sub-label">Hello, Sign in</span>
+                        <span class="nav-main-label">Account <i class="fa-solid fa-chevron-down nav-chevron"></i></span>
+                    </div>
+                </a>
+                <a href="orders.html" class="nav-item nav-icon-item" id="nav-orders">
+                    <div class="nav-icon-box">
+                        <i class="fa-solid fa-box"></i>
+                    </div>
+                    <div>
+                        <span class="nav-sub-label">Returns &</span>
+                        <span class="nav-main-label">Orders</span>
+                    </div>
+                </a>
+                <a href="wishlist.html" class="nav-item nav-icon-item" id="nav-wishlist">
+                    <div class="nav-icon-box">
+                        <i class="fa-regular fa-heart"></i>
+                        <span class="wishlist-badge nav-count-badge">0</span>
+                    </div>
+                    <span class="nav-main-label">Wishlist</span>
+                </a>
+                <a href="compare.html" class="nav-item nav-icon-item" id="nav-compare">
+                    <div class="nav-icon-box">
+                        <i class="fa-solid fa-arrows-left-right"></i>
+                        <span class="compare-badge nav-count-badge">0</span>
+                    </div>
+                    <span class="nav-main-label">Compare</span>
+                </a>
+                <a href="cart.html" class="nav-item nav-icon-item nav-cart" id="nav-cart">
+                    <div class="nav-icon-box cart-glow">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span class="cart-badge nav-count-badge">0</span>
+                    </div>
+                    <span class="nav-main-label">Cart</span>
+                </a>
+
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Category Strip -->
+    <div class="cat-strip">
+        <div class="cat-strip-inner">
+            <button class="cat-all-btn" id="cat-all-btn"><i class="fa-solid fa-bars"></i> All Categories</button>
+            <nav class="cat-links">
+                <a href="todays-deals.html" class="cat-link">Today's Deals</a>
+                <a href="#laptop-showcase" class="cat-link">Laptops</a>
+                <a href="#smartphones-section" class="cat-link">Smartphones</a>
+                <a href="#audio-section" class="cat-link">Headphones</a>
+                <a href="#gaming-gear" class="cat-link">Gaming</a>
+                <a href="#smartwatches-section" class="cat-link">Smartwatches</a>
+                <a href="#cameras-section" class="cat-link">Cameras</a>
+                <a href="#monitors-tvs-section" class="cat-link">Monitors & TVs</a>
+                <a href="flash-sale.html" class="cat-link cat-highlight">🔥 Flash Sale</a>
+            </nav>
+
+        </div>
+    </div>
+
+</header>
+<main class="cart-main" style="flex-direction: column; min-height: 50vh; align-items: center; justify-content: center; text-align: center; padding: 60px 20px;">
+    <div style="max-width: 800px; margin: 0 auto;">
+        <h1 style="font-size: 2.5rem; color: var(--dark); margin-bottom: 20px;">Press Center</h1>
+        <p style="font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 40px;">
+            Media resources, press releases, and corporate news.
+        </p>
+        <div style="background: #f8fafc; padding: 40px; border-radius: 8px; border: 1px dashed #cbd5e1;">
+            <i class="fa-solid fa-person-digging" style="font-size: 3rem; color: var(--primary); margin-bottom: 15px;"></i>
+            <h3 style="color: var(--dark-2);">Page Under Construction</h3>
+            <p style="color: var(--text-muted); margin-top: 10px;">We are currently building this section. Please check back later!</p>
+        </div>
+        <a href="index.html" class="hero-btn-primary" style="margin-top: 30px; display: inline-block;">Return to Home</a>
+    </div>
+</main>
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+
+    <div class="footer-top-btn" id="back-to-top">
+        <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
+            <i class="fa-solid fa-chevron-up"></i> Back to Top
+        </button>
+    </div>
+
+
+
+    <div class="footer-main">
+        <div class="footer-col">
+            <h4>Get to Know Us</h4>
+            <ul>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About TechOne</a></li>
+                <li><a href="press.html">Press Center</a></li>
+                <li><a href="investors.html">Investor Relations</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Make Money with Us</h4>
+            <ul>
+                <li><a href="sell.html">Sell on TechOne</a></li>
+                <li><a href="sell-apps.html">Sell Apps</a></li>
+                <li><a href="affiliate.html">Become an Affiliate</a></li>
+                <li><a href="advertise.html">Advertise</a></li>
+                <li><a href="self-publish.html">Self-Publish</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Payment & Delivery</h4>
+            <ul>
+                <li><a href="techone-pay.html">TechOne Pay</a></li>
+                <li><a href="shop-with-points.html">Shop with Points</a></li>
+                <li><a href="reload-balance.html">Reload Balance</a></li>
+                <li><a href="payment-methods.html">Payment Methods</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Let Us Help You</h4>
+            <ul>
+                <li><a href="login.html">Your Account</a></li>
+                <li><a href="orders.html">Your Orders</a></li>
+                <li><a href="shipping-rates.html">Shipping Rates</a></li>
+                <li><a href="returns.html">Returns & Replacements</a></li>
+                <li><a href="help-center.html">Help Center</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-brand">
+        <div class="footer-logo"></div>
+        <div class="footer-socials">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>Copyright &copy; 2025 TechOne Limited. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Cookies</a>
+        </div>
+    </div>
+
+</footer>
+
+<!-- ===== QUICK VIEW MODAL ===== -->
+<div id="quick-view-modal" class="quick-view-modal">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-body">
+            <div class="modal-img-col">
+                <img src="" alt="Product Image" id="modal-img">
+            </div>
+            <div class="modal-details-col">
+                <span id="modal-tag" class="product-tag"></span>
+                <h3 id="modal-title" class="modal-title"></h3>
+                <div class="modal-rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span id="modal-reviews">(4.8/5 based on 124 reviews)</span>
+                </div>
+                <div id="modal-price" class="modal-price"></div>
+                <p class="modal-desc">
+                    Experience premium quality and exceptional performance. This product features state-of-the-art technology tailored for enthusiasts and professionals alike. Available now with specialized shipping options.
+                </p>
+
+                <ul id="modal-features" class="modal-features-list">
+                    <!-- Dynamic Features Injected Here -->
+                </ul>
+                
+                <div id="modal-colors-container" class="color-selection modal-colors-wrap">
+                    <span class="color-label">Color Options:</span>
+                    <div id="modal-colors" class="color-options">
+                        <!-- Dynamic Swatches -->
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="modal-add-cart"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
+                    <button class="modal-wishlist"><i class="fa-regular fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Countdown Timer
+    function startCountdown(seconds) {
+        const el = document.getElementById('countdown');
+        if (!el) return;
+        setInterval(() => {
+            if (seconds <= 0) { seconds = 9999; return; }
+            seconds--;
+            const h = String(Math.floor(seconds / 3600)).padStart(2,'0');
+            const m = String(Math.floor((seconds % 3600) / 60)).padStart(2,'0');
+            const s = String(seconds % 60).padStart(2,'0');
+            el.textContent = `${h}:${m}:${s}`;
+        }, 1000);
+    }
+    startCountdown(9930);
+
+    // Back to top visible on scroll
+    window.addEventListener('scroll', () => {
+        const btn = document.getElementById('back-to-top');
+        if (btn) btn.style.opacity = window.scrollY > 300 ? '1' : '0.6';
+    });
+
+
+
+    // Color switching logic
+    document.querySelectorAll('.color-swatch').forEach(swatch => {
+        swatch.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const newImg = this.getAttribute('data-img');
+            const targetImg = document.getElementById(targetId);
+            
+            if (targetImg) {
+                targetImg.src = newImg;
+            }
+            
+            // Update active state
+            this.parentElement.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // --- GLOBAL SYNC LOGIC ---
+    function updateBadges() {
+        // Cart
+        const cart = JSON.parse(localStorage.getItem('techone_cart')) || [];
+        const totalCart = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.querySelectorAll('.cart-badge').forEach(badge => {
+            badge.textContent = totalCart;
+        });
+
+        // Wishlist
+        const wishlist = JSON.parse(localStorage.getItem('techone_wishlist')) || [];
+        document.querySelectorAll('.wishlist-badge').forEach(badge => {
+            badge.textContent = wishlist.length;
+        });
+
+        // Compare
+        const compare = JSON.parse(localStorage.getItem('techone_compare')) || [];
+        document.querySelectorAll('.compare-badge').forEach(badge => {
+            badge.textContent = compare.length;
+        });
+        
+        // Update all grid heart & compare icons based on storage
+        document.querySelectorAll('.product-img-wrap').forEach(wrap => {
+            const card = wrap.closest('.product-card');
+            const name = card.querySelector('.product-name').textContent;
+            
+            const heart = wrap.querySelector('.wishlist-heart');
+            if (heart) {
+                if (wishlist.some(item => item.name === name)) {
+                    heart.classList.add('active');
+                    heart.innerHTML = '<i class="fa-solid fa-heart"></i>';
+                } else {
+                    heart.classList.remove('active');
+                    heart.innerHTML = '<i class="fa-regular fa-heart"></i>';
+                }
+            }
+
+            const compIcon = wrap.querySelector('.compare-icon');
+            if (compIcon) {
+                if (compare.some(item => item.name === name)) {
+                    compIcon.classList.add('active');
+                } else {
+                    compIcon.classList.remove('active');
+                }
+            }
+        });
+    }
+
+    function showToast(productName, type = 'cart', errorMsg = null) {
+        let toast = document.getElementById('cart-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'cart-toast';
+            toast.className = 'toast-msg';
+            document.body.appendChild(toast);
+        }
+        
+        if (errorMsg) {
+            toast.classList.add('error');
+            toast.innerHTML = `<i class="fa-solid fa-circle-exclamation" style="color:#fff;"></i> ${errorMsg}`;
+        } else {
+            toast.classList.remove('error');
+            let icon = 'fa-circle-check';
+            let action = 'Added';
+            let dest = 'cart';
+            
+            if (type === 'wishlist') { icon = 'fa-heart'; action = 'Saved'; dest = 'wishlist'; }
+            if (type === 'compare') { icon = 'fa-scale-balanced'; action = 'Added'; dest = 'compare list'; }
+            
+            toast.innerHTML = `<i class="fa-solid ${icon}"></i> ${action} <b>${productName}</b> to ${dest}!`;
+        }
+        
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    function toggleCompare(product) {
+        let compare = JSON.parse(localStorage.getItem('techone_compare')) || [];
+        const index = compare.findIndex(item => item.name === product.name);
+        
+        if (index > -1) {
+            compare.splice(index, 1);
+            localStorage.setItem('techone_compare', JSON.stringify(compare));
+            updateBadges();
+            return;
+        } 
+        
+        // Validation Checks
+        if (compare.length > 0) {
+            const firstTag = compare[0].tag;
+            if (product.tag !== firstTag) {
+                showToast(null, null, `Can only compare products of the same type (${firstTag}).`);
+                return;
+            }
+        }
+        
+        if (compare.length >= 4) {
+            showToast(null, null, `You can only compare up to 4 items at once.`);
+            return;
+        }
+
+        compare.push(product);
+        localStorage.setItem('techone_compare', JSON.stringify(compare));
+        updateBadges();
+        showToast(product.name, 'compare');
+    }
+
+    function addToCart(product) {
+        let cart = JSON.parse(localStorage.getItem('techone_cart')) || [];
+        const existingItem = cart.find(item => item.name === product.name);
+        
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ ...product, quantity: 1 });
+        }
+        
+        localStorage.setItem('techone_cart', JSON.stringify(cart));
+        updateBadges();
+        showToast(product.name, 'cart');
+    }
+
+    function toggleWishlist(product) {
+        let wishlist = JSON.parse(localStorage.getItem('techone_wishlist')) || [];
+        const index = wishlist.findIndex(item => item.name === product.name);
+        
+        if (index > -1) {
+            wishlist.splice(index, 1);
+        } else {
+            wishlist.push(product);
+            showToast(product.name, 'wishlist');
+        }
+        
+        localStorage.setItem('techone_wishlist', JSON.stringify(wishlist));
+        updateBadges();
+    }
+
+    // Grid Auto-Injection (Wishlist & Compare) & Image Click for Quick View
+    document.querySelectorAll('.product-img-wrap').forEach(wrap => {
+        const card = wrap.closest('.product-card');
+        
+        // Open Quick View on Image Click
+        wrap.addEventListener('click', function() {
+            openQuickView(card);
+        });
+        
+        // Actions Container
+        let actions = card.querySelector('.product-card-actions');
+        if (!actions) {
+            actions = document.createElement('div');
+            actions.className = 'product-card-actions';
+            // Move Add to Cart button inside if it exists
+            const cartBtn = card.querySelector('.add-to-cart-btn');
+            if (cartBtn) {
+                cartBtn.parentNode.insertBefore(actions, cartBtn);
+                actions.appendChild(cartBtn);
+            } else {
+                card.appendChild(actions);
+            }
+        }
+
+        // Wishlist Heart
+        const wlBtn = document.createElement('button');
+        wlBtn.className = 'wishlist-heart';
+        wlBtn.innerHTML = '<i class="fa-regular fa-heart"></i>';
+        
+        wlBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const product = {
+                name: card.querySelector('.product-name').textContent,
+                price: card.querySelector('.product-price').textContent,
+                img: card.querySelector('img').src,
+                tag: card.querySelector('.product-tag').textContent
+            };
+            toggleWishlist(product);
+        });
+
+        // Compare Button
+        const compBtn = document.createElement('button');
+        compBtn.className = 'compare-icon';
+        compBtn.innerHTML = '<i class="fa-solid fa-scale-balanced" title="Compare"></i>';
+        compBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const product = {
+                name: card.querySelector('.product-name').textContent,
+                price: card.querySelector('.product-price').textContent,
+                img: card.querySelector('img').src,
+                tag: card.querySelector('.product-tag').textContent
+            };
+            toggleCompare(product);
+        });
+
+        actions.appendChild(wlBtn);
+        actions.appendChild(compBtn);
+    });
+
+    function openQuickView(card) {
+        // Extract Data
+        const imgEl = card.querySelector('img');
+        let imgSrc = imgEl ? imgEl.src : '';
+        const titleEl = card.querySelector('.product-name');
+        let title = titleEl ? titleEl.textContent : 'Product Title';
+        const priceEl = card.querySelector('.product-price');
+        let price = priceEl ? priceEl.textContent : '$0.00';
+        const tagEl = card.querySelector('.product-tag');
+        let tag = tagEl ? tagEl.textContent : 'General';
+        
+        const colorOptionsHtml = card.querySelector('.color-options') ? card.querySelector('.color-options').innerHTML : '';
+        const singleColorText = card.querySelector('.color-label') && !card.querySelector('.color-options') ? card.querySelector('.color-label').textContent : '';
+
+        // Update Modal UI
+        document.getElementById('modal-img').src = imgSrc;
+        document.getElementById('modal-title').textContent = title;
+        document.getElementById('modal-price').textContent = price;
+        document.getElementById('modal-tag').textContent = tag;
+        
+        // Sync Modal Wishlist Heart
+        const wishlist = JSON.parse(localStorage.getItem('techone_wishlist')) || [];
+        const isLoved = wishlist.some(i => i.name === title);
+        const modalHeart = document.querySelector('.modal-wishlist');
+        if(isLoved) {
+            modalHeart.innerHTML = '<i class="fa-solid fa-heart"></i>';
+            modalHeart.style.color = '#ff7300';
+        } else {
+            modalHeart.innerHTML = '<i class="fa-regular fa-heart"></i>';
+            modalHeart.style.color = '';
+        }
+
+        // Handle Features dynamically... (omitted mapping for brevity but kept in original code)
+        const featuresList = document.getElementById('modal-features');
+        let featuresHtml = '';
+        let t = tag.toLowerCase();
+        if(t.includes('laptop')) { featuresHtml = '<li><i class="fa-solid fa-microchip"></i> High-Performance CPU</li><li><i class="fa-solid fa-memory"></i> Fast NVMe SSD</li><li><i class="fa-solid fa-battery-half"></i> All-Day Battery</li>'; }
+        else if (t.includes('gaming') || t.includes('pad')) { featuresHtml = '<li><i class="fa-solid fa-gamepad"></i> Pro Gaming Grade</li><li><i class="fa-solid fa-bolt"></i> Ultra-Low Latency</li><li><i class="fa-solid fa-shield-halved"></i> 2 Year Warranty</li>'; }
+        else if (t.includes('audio') || t.includes('ear') || t.includes('head')) { featuresHtml = '<li><i class="fa-solid fa-music"></i> Hi-Res Audio</li><li><i class="fa-solid fa-volume-high"></i> Premium Acoustics</li><li><i class="fa-solid fa-headphones-simple"></i> Ergonomic Comfort</li>'; }
+        else if (t.includes('dji') || t.includes('drone')) { featuresHtml = '<li><i class="fa-solid fa-plane-up"></i> 4K/6K Aerial Video</li><li><i class="fa-solid fa-signal"></i> Extended Range</li><li><i class="fa-solid fa-camera"></i> Stabilized Gimbal</li>'; }
+        else if (t.includes('camera') || t.includes('lens')) { featuresHtml = '<li><i class="fa-solid fa-camera-retro"></i> Ultra Sharp Optics</li><li><i class="fa-solid fa-video"></i> Professional Grade</li><li><i class="fa-solid fa-shield-halved"></i> 1 Year Warranty</li>'; }
+        else { featuresHtml = '<li><i class="fa-solid fa-truck-fast"></i> Free Fast Shipping</li><li><i class="fa-solid fa-shield-halved"></i> Standard Warranty</li><li><i class="fa-solid fa-rotate-left"></i> 14-Day Returns</li>'; }
+        featuresList.innerHTML = featuresHtml;
+
+        // Handle Colors dynamically
+        const colorContainer = document.getElementById('modal-colors-container');
+        const colorDiv = document.getElementById('modal-colors');
+        
+        if(colorOptionsHtml) {
+            colorContainer.style.display = 'block';
+            colorDiv.innerHTML = colorOptionsHtml;
+            colorDiv.querySelectorAll('.color-swatch').forEach(swatch => {
+                swatch.addEventListener('click', function() {
+                    const newImg = this.getAttribute('data-img');
+                    document.getElementById('modal-img').src = newImg;
+                    this.parentElement.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        } else {
+            colorContainer.style.display = 'none';
+        }
+
+        // Open Modal
+        document.getElementById('quick-view-modal').classList.add('active');
+        document.body.style.overflow = 'hidden'; 
+    }
+
+    // Grid Add to Cart Listeners
+    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const card = this.closest('.product-card');
+            const product = {
+                name: card.querySelector('.product-name').textContent,
+                price: card.querySelector('.product-price').textContent,
+                img: card.querySelector('img').src,
+                tag: card.querySelector('.product-tag').textContent
+            };
+            addToCart(product);
+        });
+    });
+
+    // Modal Add to Cart Listener
+    document.querySelector('.modal-add-cart').addEventListener('click', function() {
+        const product = {
+            name: document.getElementById('modal-title').textContent,
+            price: document.getElementById('modal-price').textContent,
+            img: document.getElementById('modal-img').src,
+            tag: document.getElementById('modal-tag').textContent
+        };
+        addToCart(product);
+        closeModal();
+    });
+
+    // Modal Wishlist Listener
+    document.querySelector('.modal-wishlist').addEventListener('click', function() {
+        const product = {
+            name: document.getElementById('modal-title').textContent,
+            price: document.getElementById('modal-price').textContent,
+            img: document.getElementById('modal-img').src,
+            tag: document.getElementById('modal-tag').textContent
+        };
+        toggleWishlist(product);
+        // Refresh modal heart icon
+        const wishlist = JSON.parse(localStorage.getItem('techone_wishlist')) || [];
+        const isLoved = wishlist.some(i => i.name === product.name);
+        if(isLoved) {
+            this.innerHTML = '<i class="fa-solid fa-heart"></i>';
+            this.style.color = '#ff7300';
+        } else {
+            this.innerHTML = '<i class="fa-regular fa-heart"></i>';
+            this.style.color = '';
+        }
+    });
+
+    function closeModal() {
+        document.getElementById('quick-view-modal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Initial Badge Sync
+    updateBadges();
+
+    // ==========================================
+    // GLOBAL AUTOCOMPLETE SEARCH LOGIC
+    // ==========================================
+    const productsCatalog = [
+      { "img": "./Image/Products/Gaming/AJAZZ AJ159 APEX 8KHz Tri-Mode Gaming Mouse - black.png", "tag": "Gaming Mouse", "name": "AJAZZ AJ159 APEX 8KHz Tri-Mode Gaming Mouse", "price": "$89.99" },
+      { "img": "./Image/Products/Gaming/Razer DeathAdder V4 Pro Gaming Mouse - blue.jpg", "tag": "Gaming Mouse", "name": "Razer DeathAdder V4 Pro Gaming Mouse", "price": "$149.99" },
+      { "img": "./Image/Products/Gaming/JEDEL GWH-111 Tri-Mode RGB Gaming Mouse with Charging Dock.jpg", "tag": "Gaming Mouse", "name": "JEDEL GWH-111 Tri-Mode RGB Gaming Mouse", "price": "$49.99" },
+      { "img": "./Image/Products/Gaming/Horizon Ergonomic Gaming Chair Series‑NITRO - black.jpg", "tag": "Gaming Chair", "name": "Horizon Ergonomic Gaming Chair Series‑NITRO", "price": "$249.00" },
+      { "img": "./Image/Products/Gaming/Horizon APEX Mesh Version 2 Ergonomic Chair.jpg", "tag": "Gaming Chair", "name": "Horizon APEX Mesh Version 2 Ergonomic Chair", "price": "$199.00" },
+      { "img": "./Image/Products/Gaming/Dareu EH745s Gaming Headset.jpg", "tag": "headset", "name": "Dareu EH745s Gaming Headset", "price": "$59.00" },
+      { "img": "./Image/Products/Gaming/Logitech G PRO X USB Gaming Headphone.jpg", "tag": "headset", "name": "Logitech G PRO X USB Gaming Headphone", "price": "$129.00" },
+      { "img": "./Image/Products/Laptops/ASUS ProArt P16 H7606WV Ryzen AI 9 HX 370 RTX 4060 8GB 4K OLED Copilot+PC Touch Laptop.jpg", "tag": "Laptops", "name": "ASUS ProArt P16 Ryzen AI 9 4K OLED RTX 4060", "price": "$2,299.00" },
+      { "img": "./Image/Products/Laptops/ASUS Vivobook 15 X1504VA Core i7 13th Gen 15.6 FHD Laptop.webp", "tag": "Laptops", "name": "ASUS Vivobook 15 Core i7 13th Gen 15.6\" FHD", "price": "$649.00" },
+      { "img": "./Image/Products/Laptops/ASUS Vivobook 15 X1504VA Core i7 13th Gen 16GB RAM 15.6 FHD Laptop.webp", "tag": "Laptops", "name": "ASUS Vivobook 15 Core i7 16GB RAM Pro", "price": "$749.00" },
+      { "img": "./Image/Products/Laptops/HP 15-fr0065TU Core i5 13th Gen 15.6 FHD Laptop.webp", "tag": "Laptops", "name": "HP 15-fr0065TU Core i5 13th Gen 15.6\"", "price": "$599.00" },
+      { "img": "./Image/Products/Laptops/Lenovo IdeaPad Flex 5 14ABR8 Ryzen 7 5825U 14 WUXZA Touch Laptop.webp", "tag": "Laptops", "name": "Lenovo IdeaPad Flex 5 Ryzen 7 Touch 2-in-1", "price": "$699.00" },
+      { "img": "./Image/Products/Laptops/Lenovo IdeaPad Slim 3 14IRH10 Core i5 13th Gen 14 WUXGA Laptop With FreeDOS.webp", "tag": "Laptops", "name": "Lenovo IdeaPad Slim 3 Core i5 14\" WUXGA", "price": "$549.00" },
+      { "img": "./Image/Products/Laptops/Lenovo IdeaPad Slim 3 15IRH10R Core 5 210H 16GB RAM 15.3 IPS Laptop.webp", "tag": "Laptops", "name": "Lenovo IdeaPad Slim 3 Core 5 15.3\" 16GB", "price": "$629.00" },
+      { "img": "./Image/Products/Laptops/Lenovo IdeaPad Slim 5 13ARP10 Ryzen 7 7735HS 13.3 WUXGA Laptop.webp", "tag": "Laptops", "name": "Lenovo IdeaPad Slim 5 Ryzen 7 13.3\"", "price": "$799.00" },
+      { "img": "./Image/Products/Laptops/Lenovo IdeaPad Slim 5 14IRH10 Core i5 13th Gen 14 WUXGA OLED Laptop.webp", "tag": "windows laptop", "name": "Lenovo IdeaPad Slim 5 Core i5 14\" OLED", "price": "$849.00" },
+      { "img": "./Image/Products/Laptops/THUNDEROBOT IGER E1 Notebook with IPS Display.jpg", "tag": "Laptops", "name": "THUNDEROBOT IGER E1 IPS Notebook", "price": "$499.00" },
+      { "img": "./Image/Products/Headphones & Audio/Anker R50i True Wireless Earbuds - black.jpeg", "tag": "bluetooth earbuds", "name": "Anker R50i True Wireless Earbuds", "price": "$29.00" },
+      { "img": "./Image/Products/Headphones & Audio/Moondrop Space Travel True Wireless Earbuds.webp", "tag": "bluetooth earbuds", "name": "Moondrop Space Travel True Wireless Earbuds", "price": "$45.00" },
+      { "img": "./Image/Products/Headphones & Audio/FiiO JD1 Earphone.webp", "tag": "IEM earphones", "name": "FiiO JD1 Hi-Res Dynamic In-Ear Earphones", "price": "$19.00" },
+      { "img": "./Image/Products/Headphones & Audio/Kefine Delci Earphone.webp", "tag": "IEM earphones", "name": "Kefine Delci 10mm DLC Diaphragm IEM", "price": "$75.00" },
+      { "img": "./Image/Products/Headphones & Audio/Kefine Klean 10mm DLC Diaphragm Dynamic Driver HiFi In Ear Monitors.webp", "tag": "IEM earphones", "name": "Kefine Klean HiFi In-Ear Monitors", "price": "$129.00" },
+      { "img": "./Image/Products/Headphones & Audio/FiiO JD3 Earphone.webp", "tag": "earphones", "name": "FiiO JD3 Hi-Res Earphones with Mic", "price": "$12.00" },
+      { "img": "./Image/Products/Headphones & Audio/TANCHJIM Tanya 7MM In Ear Monitor.jpeg", "tag": "earphones", "name": "TANCHJIM Tanya 7MM Dynamic Earphones", "price": "$22.00" },
+      { "img": "./Image/Products/Headphones & Audio/Audeze Maxwell Wireless Gaming Headphone.webp", "tag": "headphones", "name": "Audeze Maxwell Wireless Gaming Headphone", "price": "$299.00" },
+      { "img": "./Image/Products/Headphones & Audio/Sony WH-CH520 Wireless Headphones.jpg", "tag": "headphones", "name": "Sony WH-CH520 Wireless Over-Ear Headphones", "price": "$59.00" },
+      { "img": "./Image/Products/Headphones & Audio/Edifier M60 2.0 Mini Powerful Compact Desktop Speaker.jpg", "tag": "speakers", "name": "Edifier M60 2.0 Mini Powerful Compact Desktop Speaker", "price": "$89.00" },
+      { "img": "./Image/Products/Headphones & Audio/FONENG M2 15w Bluetooth Portable Speaker.webp", "tag": "speakers", "name": "FONENG M2 15w Bluetooth Portable Speaker", "price": "$35.00" },
+      { "img": "./Image/Products/Drones/DJI Air 3 Fly More Combo With DJI RC 2 Remote Controller.webp", "tag": "dji", "name": "DJI Air 3 Fly More Combo (RC 2)", "price": "$1,349.00" },
+      { "img": "./Image/Products/Drones/DJI Air 3S Fly More Combo With DJI RC 2 Remote Controller.webp", "tag": "dji", "name": "DJI Air 3S Fly More Combo (RC 2)", "price": "$1,549.00" },
+      { "img": "./Image/Products/Drones/DJI Avata 2 Fly More Combo Drone with Goggles 3 & RC Motion 3 Controller.webp", "tag": "dji", "name": "DJI Avata 2 Fly More Combo with Goggles 3", "price": "$999.00" },
+      { "img": "./Image/Products/Drones/DJI Avata Fly Smart Drone Combo with FPV Goggles V2.webp", "tag": "dji", "name": "DJI Avata Fly Smart Combo (FPV V2)", "price": "$829.00" },
+      { "img": "./Image/Products/Drones/DJI Matrice 300 RTK Commercial Drone.jpg", "tag": "dji", "name": "DJI Matrice 300 RTK Commercial Drone", "price": "$12,999.00" },
+      { "img": "./Image/Products/Drones/DJI Matrice 4E.webp", "tag": "dji", "name": "DJI Matrice 4E Enterprise Drone", "price": "$4,499.00" },
+      { "img": "./Image/Products/Drones/DJI Matrice 4T.webp", "tag": "dji", "name": "DJI Matrice 4T Thermal Enterprise", "price": "$5,499.00" },
+      { "img": "./Image/Products/Drones/DJI Mavic 2 Enterprise Dual Edition Drone.webp", "tag": "dji", "name": "DJI Mavic 2 Enterprise Dual Edition", "price": "$3,199.00" },
+      { "img": "./Image/Products/Drones/DJI Mavic 3 Classic Combo Drone.webp", "tag": "dji", "name": "DJI Mavic 3 Classic Combo Drone", "price": "$1,599.00" },
+      { "img": "./Image/Products/Drones/DJI Mini 5 Pro Fly More Combo Plus With RC2.webp", "tag": "dji", "name": "DJI Mini 5 Pro Fly More Combo Plus", "price": "$959.00" },
+      { "img": "./Image/Products/Drones/DJI P4 Multispectral Drone.webp", "tag": "dji", "name": "DJI P4 Multispectral Enterprise Drone", "price": "$6,099.00" },
+      { "img": "./Image/Products/Cameras/Sony FE 50mm F2.8 Macro.webp", "tag": "lens", "name": "Sony FE 50mm F2.8 Macro Lens", "price": "$499.00" },
+      { "img": "./Image/Products/Cameras/Sony SEL35F18 E 35mm F1.8 OSS Lens.webp", "tag": "lens", "name": "Sony E 35mm F1.8 OSS Prime Lens", "price": "$449.00" },
+      { "img": "./Image/Products/Cameras/Sony SEL50F18 E 50mm F1.8 OSS Lens.webp", "tag": "lens", "name": "Sony E 50mm F1.8 OSS Portrait Lens", "price": "$299.00" },
+      { "img": "./Image/Products/Cameras/Sony H300 Camera with 35x Optical Zoom.webp", "tag": "camera", "name": "Sony H300 Camera with 35x Optical Zoom", "price": "$249.00" },
+      { "img": "./Image/Products/Cameras/Sony Interchangeable-Lens Vlog Camera (Only Body).webp", "tag": "camera", "name": "Sony Interchangeable-Lens Vlog Camera (Body Only)", "price": "$699.00" },
+      { "img": "./Image/Products/Cameras/Sony a5100  ILCE-5100L E-Mount Camera with APS-C Sensor + 16-50mm Power Zoom Lens - Black.webp", "tag": "camera", "name": "Sony a5100 E-Mount Camera with 16-50mm Lens", "price": "$449.00" },
+      { "img": "./Image/Products/Smartphones/Samsung-Galaxy-S26-Ultra-5G-Black.webp", "tag": "samsung | android", "name": "Samsung Galaxy S26 Ultra 5G", "price": "$1,199.00" },
+      { "img": "./Image/Products/Smartphones/Samsung-Galaxy-Z-Fold6-Navy.webp", "tag": "samsung | android", "name": "Samsung Galaxy Z Fold6", "price": "$1,799.00" },
+      { "img": "./Image/Products/Smartphones/Samsung-Galaxy-Z-Flip7-Coral-Red.webp", "tag": "samsung | android", "name": "Samsung Galaxy Z Flip7", "price": "$999.00" },
+      { "img": "./Image/Products/Smartphones/Samsung-Galaxy-S26-Black.webp", "tag": "samsung | android", "name": "Samsung Galaxy S26", "price": "$799.00" },
+      { "img": "./Image/Products/Smartphones/ASUS-ROG-Phone-9-pro-Black.webp", "tag": "asus | android", "name": "ASUS ROG Phone 9 Pro", "price": "$1,299.00" },
+      { "img": "./Image/Products/Smartphones/ASUS-ROG-Phone-8-pro-Black.webp", "tag": "asus | android", "name": "ASUS ROG Phone 8 Pro", "price": "$1,099.00" },
+      { "img": "./Image/Products/Smartphones/Asus-Zenfone-11-Ultra-Eternal-Black.webp", "tag": "asus | android", "name": "ASUS Zenfone 11 Ultra", "price": "$899.00" },
+      { "img": "./Image/Products/Smartphones/Asus-ROG-Phone-7-Ultimate-White.webp", "tag": "asus | android", "name": "ASUS ROG Phone 7 Ultimate", "price": "$999.00" },
+      { "img": "./Image/Products/Smartphones/Samsung-Galaxy-S24-Ultra-5G-Titanium-Black.webp", "tag": "samsung | android", "name": "Samsung Galaxy S24 Ultra 5G", "price": "$1,099.00" },
+      { "img": "./Image/Products/Smartphones/Samsung-Galaxy-S24-5G-Cobalt-Violet.webp", "tag": "samsung | android", "name": "Samsung Galaxy S24 5G", "price": "$699.00" },
+      { "img": "./Image/Products/Smartphones/Samsung-Galaxy-S25-Blue-Black.webp", "tag": "samsung | android", "name": "Samsung Galaxy S25", "price": "$799.00" },
+      { "img": "./Image/Products/Smartphones/Samsung-Galaxy-S23-Ultra-Black.webp", "tag": "samsung | android", "name": "Samsung Galaxy S23 Ultra", "price": "$899.00" },
+      { "img": "./Image/Products/Smartphones/iPhone-17-Pro-Max-Black.webp", "tag": "apple | ios", "name": "iPhone 17 Pro Max", "price": "$1,299.00" },
+      { "img": "./Image/Products/Smartphones/iPhone-17-Black.webp", "tag": "apple | ios", "name": "iPhone 17", "price": "$899.00" },
+      { "img": "./Image/Products/Smartphones/iPhone-16-Black.webp", "tag": "apple | ios", "name": "iPhone 16", "price": "$799.00" },
+      { "img": "./Image/Products/Smartphones/iPhone Air - black.webp", "tag": "apple | ios", "name": "iPhone Air", "price": "$999.00" },
+      { "img": "./Image/Products/Smartwatches/Apple-Watch-Series-11-Jet-Black.webp", "tag": "apple watch", "name": "Apple Watch Series 11", "price": "$399.00" },
+      { "img": "./Image/Products/Smartwatches/Apple-Watch-SE-3-Midnight.webp", "tag": "apple watch", "name": "Apple Watch SE (3rd Gen)", "price": "$249.00" },
+      { "img": "./Image/Products/Smartwatches/Apple-Watch-SE-2nd-Gen-Black.webp", "tag": "apple watch", "name": "Apple Watch SE (2nd Gen)", "price": "$219.00" },
+      { "img": "./Image/Products/Smartwatches/Apple Watch SE 2023-Black.webp", "tag": "apple watch", "name": "Apple Watch SE (2023 Edition)", "price": "$199.00" },
+      { "img": "./Image/Products/Smartwatches/Google Fitbit Versa 4-Black.webp", "tag": "fitbit", "name": "Google Fitbit Versa 4", "price": "$199.00" },
+      { "img": "./Image/Products/Smartwatches/Honor-Band-6-Black.webp", "tag": "honor band", "name": "Honor Band 6", "price": "$49.00" },
+      { "img": "./Image/Products/Smartwatches/Honor-Band-ES-Black.webp", "tag": "honor band", "name": "Honor Band ES", "price": "$79.00" },
+      { "img": "./Image/Products/Smartwatches/Huawei-Watch-Buds-Black.webp", "tag": "huawei", "name": "Huawei Watch Buds", "price": "$449.00" },
+      { "img": "./Image/Products/Smartwatches/Huawei-Watch-Fit-4-Pro-Titanium-Black.webp", "tag": "huawei", "name": "Huawei Watch Fit 4 Pro", "price": "$299.00" },
+      { "img": "./Image/Products/Smartwatches/Huawei-Watch-GT-3-SE-Black.webp", "tag": "huawei", "name": "Huawei Watch GT 3 SE", "price": "$179.00" },
+      { "img": "./Image/Products/Smartwatches/Motorola-Moto-Watch-Fit-Green.webp", "tag": "motorola", "name": "Motorola Moto Watch Fit", "price": "$149.00" },
+      { "img": "./Image/Products/Smartwatches/Oppo-Watch-X2-Mini-Black.webp", "tag": "oppo", "name": "Oppo Watch X2 Mini", "price": "$129.00" },
+      { "img": "./Image/Products/Smartwatches/vivo-Watch-5-Stainless-Steel-Silver.webp", "tag": "vivo", "name": "vivo Watch 5", "price": "$199.00" },
+      { "img": "./Image/Products/Monitors & TVs/Samsung-50U8000F-50-inch-Crystal-4K-UHD-LED-Smart-TV-Black.webp", "tag": "TV", "name": "Samsung 50U8000F 50\" Crystal 4K UHD LED Smart TV", "price": "$449.00" },
+      { "img": "./Image/Products/Monitors & TVs/Samsung-65Q7F-65-Inch-QLED-4K-Vision-AI-Smart-TV-Black.webp", "tag": "TV", "name": "Samsung 65Q7F 65\" QLED 4K Vision AI Smart TV", "price": "$899.00" },
+      { "img": "./Image/Products/Monitors & TVs/Samsung-77S95F-77-4K-OLED-Smart-TV-Black.webp", "tag": "TV", "name": "Samsung 77S95F 77\" 4K OLED Smart TV", "price": "$2,499.00" },
+      { "img": "./Image/Products/Monitors & TVs/Sony-BRAVIA-XR-65-Inch-Class-A80L-OLED-4K-HDR-Google-TV-2023-Black.webp", "tag": "TV", "name": "Sony BRAVIA XR 65\" A80L OLED 4K HDR Google TV", "price": "$1,899.00" },
+      { "img": "./Image/Products/Monitors & TVs/Xiaomi-TV-S-Mini-65-2025-LED-4K-UHD-QD-Mini-LED-Smart-Android-TV-Black.webp", "tag": "TV", "name": "Xiaomi TV S Mini 65\" 2025 Mini LED Smart TV", "price": "$799.00" },
+      { "img": "./Image/Products/Monitors & TVs/AOC AG493QCX (4)-500x500-Black.jpg", "tag": "Monitor", "name": "AOC AGON AG493QCX 49\" Ultrawide Gaming Monitor", "price": "$899.00" },
+      { "img": "./Image/Products/Monitors & TVs/AOC-24G11ZE-1-500x500-Black.png", "tag": "Monitor", "name": "AOC 24G11ZE 24\" 240Hz Gaming Monitor", "price": "$179.00" },
+      { "img": "./Image/Products/Monitors & TVs/BenQ-MOBIUZ-EX321UX-32-inch-Gaming-Monitor-Black.webp", "tag": "Monitor", "name": "BenQ MOBIUZ EX321UX 32\" 4K Gaming Monitor", "price": "$749.00" },
+      { "img": "./Image/Products/Monitors & TVs/BenQ-ZOWIE-24.5-240Hz-Gaming-Monitor-Black.webp", "tag": "Monitor", "name": "BenQ ZOWIE XL2546K 24.5\" 240Hz Gaming Monitor", "price": "$429.00" },
+      { "img": "./Image/Products/Monitors & TVs/BenQ-Zowie-24.1-400Hz-Gaming-Monitor-Black.webp", "tag": "Monitor", "name": "BenQ ZOWIE XL2566K 24.1\" 400Hz Gaming Monitor", "price": "$599.00" },
+      { "img": "./Image/Products/Monitors & TVs/MSI MAG 255F  Gaming Monitor Black", "tag": "Monitor", "name": "MSI MAG 255F 24.5\" 180Hz Gaming Monitor", "price": "$199.00" },
+      { "img": "./Image/Products/Monitors & TVs/MSI-MAG-275QF-27-Inch-WQHD-Gaming-Monitor-Black.webp", "tag": "Monitor", "name": "MSI MAG 275QF 27\" WQHD 180Hz Gaming Monitor", "price": "$299.00" },
+      { "img": "./Image/Products/Monitors & TVs/MSI-PRO-MP225-21.5-100Hz-IPS-FHD-Monitor-4-Black.webp", "tag": "Monitor", "name": "MSI PRO MP225 21.5\" 100Hz IPS Business Monitor", "price": "$109.00" },
+      { "img": "./Image/Products/Monitors & TVs/ViewSonic-Omni-VX2758A-2K-PRO-2-27Inch-170hz-Gaming-Monitor-Black.webp", "tag": "Monitor", "name": "ViewSonic Omni VX2758A-2K-PRO 27\" 170Hz Gaming Monitor", "price": "$249.00" },
+      { "img": "./Image/Products/Monitors & TVs/Xiaomi-G-Pro-27-QHD-2K-180Hz-Gaming-Monitor-Black.webp", "tag": "Monitor", "name": "Xiaomi G Pro 27\" QHD 180Hz Gaming Monitor", "price": "$329.00" },
+      { "img": "./Image/Products/Monitors & TVs/Xiaomi-Redmi-A27U-Monitor-Black.webp", "tag": "Monitor", "name": "Xiaomi Redmi A27U 27\" 4K UHD Monitor", "price": "$229.00" },
+      { "img": "./Image/Products/Monitors & TVs/Xiaomi-Redmi-G34WQ-Gaming-Monitor-Black.webp", "tag": "Monitor", "name": "Xiaomi Redmi G34WQ 34\" Curved Ultrawide Gaming Monitor", "price": "$399.00" }
+    ];
+
+    const searchInput = document.getElementById('search-input');
+    const dropdown = document.getElementById('autocomplete-dropdown');
+    const searchCategory = document.getElementById('search-category');
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        const selectedCat = searchCategory.value.toLowerCase();
+        
+        if (query.length < 2) {
+            dropdown.classList.remove('active');
+            return;
+        }
+
+        const filtered = productsCatalog.filter(item => {
+            const matchesQuery = item.name.toLowerCase().includes(query) || item.tag.toLowerCase().includes(query);
+            // Simple mapping from dropdown categories to tags
+            let matchesCategory = true;
+            if (selectedCat !== 'all') {
+                if (selectedCat === 'laptops') matchesCategory = item.tag.toLowerCase().includes('laptop');
+                if (selectedCat === 'gaming') matchesCategory = item.tag.toLowerCase().includes('gaming');
+                if (selectedCat === 'audio') matchesCategory = item.tag.toLowerCase().includes('head') || item.tag.toLowerCase().includes('ear') || item.tag.toLowerCase().includes('speaker');
+                if (selectedCat === 'cameras') matchesCategory = item.tag.toLowerCase().includes('camera') || item.tag.toLowerCase().includes('lens');
+                // Wearables and Phones not effectively in mock catalog, but logic applies
+            }
+            return matchesQuery && matchesCategory;
+        });
+
+        if (filtered.length > 0) {
+            let html = '';
+            filtered.forEach(item => {
+                html += `
+                    <div class="autocomplete-item" onclick="handleSearchSelect('${item.name.replace(/'/g, "\\'")}')">
+                        <img src="${item.img}" alt="${item.name}">
+                        <div>
+                            <span class="autocomplete-item-name">${item.name}</span>
+                            <span class="autocomplete-item-price">${item.price}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            dropdown.innerHTML = html;
+            dropdown.classList.add('active');
+        } else {
+            dropdown.innerHTML = '<div style="padding: 15px; color: #8b949e; text-align: center;">No matches found</div>';
+            dropdown.classList.add('active');
+        }
+    });
+
+    // Handle clicking outside to close
+    document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('active');
+        }
+    });
+
+    // Interaction when user selects an item from global search
+    window.handleSearchSelect = function(name) {
+        dropdown.classList.remove('active');
+        searchInput.value = '';
+        
+        // Find product card in the DOM to simulate clicking it
+        const productTitles = document.querySelectorAll('.product-name');
+        let targetCard = null;
+        productTitles.forEach(title => {
+            if(title.textContent === name) {
+                targetCard = title.closest('.product-card');
+            }
+        });
+
+        if (targetCard) {
+            // Scroll to the product
+            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Highlight it temporarily
+            const originalBorder = targetCard.style.borderColor;
+            const originalShadow = targetCard.style.boxShadow;
+            
+            targetCard.style.transition = 'all 0.5s ease';
+            targetCard.style.borderColor = '#ff6b00';
+            targetCard.style.boxShadow = '0 0 20px rgba(255,107,0,0.5)';
+            
+            setTimeout(() => {
+                targetCard.style.borderColor = originalBorder;
+                targetCard.style.boxShadow = originalShadow;
+            }, 1500);
+
+            // Optional: Automatically open quick view
+            if (targetCard) setTimeout(() => openQuickView(targetCard), 600);
+        } else {
+            alert('Product found in catalog but not currently displayed on this page prototype.');
+        }
+    };
+
+    // Toggle "Browse All / Show Less" for product sections
+    document.addEventListener('click', function(e) {
+        const target = e.target.closest('.view-all, .view-all-link');
+        if (target) {
+            e.preventDefault();
+            
+            const sectionHeader = target.closest('.section-header') || target.parentElement;
+            const productGrid = sectionHeader.nextElementSibling;
+            
+            if (productGrid && productGrid.classList.contains('product-grid')) {
+                productGrid.classList.toggle('collapsed');
+                
+                if (productGrid.classList.contains('collapsed')) {
+                    target.innerHTML = target.getAttribute('data-original-text') || target.innerHTML;
+                } else {
+                    if (!target.hasAttribute('data-original-text')) {
+                        target.setAttribute('data-original-text', target.innerHTML);
+                    }
+                    target.innerHTML = 'Show Less <i class="fa-solid fa-arrow-up"></i>';
+                }
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>
+
+
+
+
