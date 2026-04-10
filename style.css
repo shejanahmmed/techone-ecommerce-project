@@ -771,7 +771,8 @@ img { max-width: 100%; display: block; }
 }
 
 .card-img {
-    height: 210px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     background-size: cover;
     background-position: center;
     transition: transform 0.5s ease;
