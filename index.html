@@ -118,7 +118,7 @@
         <div class="cat-strip-inner">
             <button class="cat-all-btn" id="cat-all-btn"><i class="fa-solid fa-bars"></i> All Categories</button>
             <nav class="cat-links">
-                <a href="#" class="cat-link">Today's Deals</a>
+                <a href="#shop" class="cat-link">Today's Deals</a>
                 <a href="#laptop-showcase" class="cat-link">Laptops</a>
                 <a href="#smartphones-section" class="cat-link">Smartphones</a>
                 <a href="#audio-section" class="cat-link">Headphones</a>
@@ -126,15 +126,17 @@
                 <a href="#smartwatches-section" class="cat-link">Smartwatches</a>
                 <a href="#cameras-section" class="cat-link">Cameras</a>
                 <a href="#monitors-tvs-section" class="cat-link">Monitors & TVs</a>
-                <a href="#" class="cat-link cat-highlight">🔥 Flash Sale</a>
+                <a href="flash-sale.html" class="cat-link cat-highlight">🔥 Flash Sale</a>
             </nav>
+
         </div>
     </div>
 
 </header>
 
 <!-- ===== HERO SECTION ===== -->
-<section class="hero">
+<section class="hero" id="hero-section">
+
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -2070,6 +2072,8 @@
         </button>
     </div>
 
+
+
     <div class="footer-main">
         <div class="footer-col">
             <h4>Get to Know Us</h4>
@@ -2199,6 +2203,8 @@
         const btn = document.getElementById('back-to-top');
         if (btn) btn.style.opacity = window.scrollY > 300 ? '1' : '0.6';
     });
+
+
 
     // Color switching logic
     document.querySelectorAll('.color-swatch').forEach(swatch => {

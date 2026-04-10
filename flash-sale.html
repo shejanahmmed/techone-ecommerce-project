@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TechOne Flash Sale – Limited-time deals on premium tech gadgets, laptops, smartphones, and more. Don't miss out!">
+    <title>🔥 Flash Sale – TechOne</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           FLASH SALE PAGE – EXCLUSIVE STYLES
+           ============================================ */
+
+        /* Hero Banner */
+        .fs-hero {
+            background:
+                linear-gradient(135deg, rgba(13,17,23,0.82) 0%, rgba(26,10,0,0.75) 40%, rgba(45,0,0,0.80) 100%),
+                url('./Image/flash-sale-hero.jpg') center center / cover no-repeat;
+            padding: 70px 0 60px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+
+        .fs-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(255,107,0,0.12) 0%, transparent 60%);
+            animation: pulse-bg 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-bg {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        .fs-hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .fs-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,107,0,0.15);
+            border: 1px solid rgba(255,107,0,0.4);
+            color: #ff8c40;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            animation: glow-badge 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow-badge {
+            from { box-shadow: 0 0 10px rgba(255,107,0,0.2); }
+            to { box-shadow: 0 0 25px rgba(255,107,0,0.5); }
+        }
+
+        .fs-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .fs-hero h1 .fire-text {
+            background: linear-gradient(135deg, #ff6b00, #ff3d00, #ff8c40);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .fs-hero p {
+            color: rgba(255,255,255,0.65);
+            font-size: 1.1rem;
+            max-width: 550px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        /* Countdown Timer */
+        .fs-countdown-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .fs-countdown-label {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-right: 8px;
+        }
+
+        .fs-timer-block {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,107,0,0.3);
+            border-radius: 12px;
+            padding: 14px 18px;
+            min-width: 72px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .fs-timer-num {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ff6b00;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .fs-timer-unit {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 4px;
+        }
+
+        .fs-colon {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: rgba(255,107,0,0.6);
+            margin-top: -8px;
+        }
+
+        /* Stats bar */
+        .fs-stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .fs-stat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .fs-stat-item i {
+            color: #ff6b00;
+            font-size: 1.1rem;
+        }
+
+        .fs-stat-item strong {
+            color: #fff;
+        }
+
+        /* Filter Bar */
+        .fs-filter-bar {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        }
+
+        .fs-filter-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .fs-filter-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .fs-filter-tab {
+            padding: 8px 18px;
+            border-radius: 50px;
+            border: 1.5px solid #e2e8f0;
+            background: #fff;
+            color: #555;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .fs-filter-tab:hover {
+            border-color: #ff6b00;
+            color: #ff6b00;
+        }
+
+        .fs-filter-tab.active {
+            background: #ff6b00;
+            border-color: #ff6b00;
+            color: #fff;
+        }
+
+        .fs-filter-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .fs-sort-select {
+            padding: 8px 14px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #444;
+            font-weight: 500;
+            background: #fff;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .fs-deal-count {
+            font-size: 0.85rem;
+            color: #888;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .fs-deal-count strong {
+            color: #ff6b00;
+        }
+
+        /* Main Content Layout */
+        .fs-main {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        /* Section headings */
+        .fs-section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            margin-top: 50px;
+        }
+
+        .fs-section-title:first-child {
+            margin-top: 0;
+        }
+
+        .fs-section-title h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #0d1117;
+        }
+
+        .fs-section-title .fs-flame {
+            background: linear-gradient(135deg, #ff6b00, #ff3d00);
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .fs-section-bar {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255,107,0,0.3), transparent);
+        }
+
+        .fs-ends-badge {
+            background: #fff5f0;
+            border: 1px solid rgba(255,107,0,0.3);
+            color: #ff6b00;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* Product Grid */
+        .fs-product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        /* Flash Sale Product Card */
+        .fs-card {
+            background: #fff;
+            border-radius: 16px;
+            border: 1px solid #eef1f5;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fs-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: rgba(255,107,0,0.2);
+        }
+
+        /* Discount Badge */
+        .fs-discount-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: linear-gradient(135deg, #ff3d00, #ff6b00);
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 5px 10px;
+            border-radius: 8px;
+            z-index: 3;
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 10px rgba(255,61,0,0.4);
+        }
+
+        /* Stock Badge */
+        .fs-stock-badge {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            z-index: 3;
+        }
+
+        .fs-stock-badge.hot {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .fs-stock-badge.limited {
+            background: #fce4ec;
+            color: #c62828;
+        }
+
+        /* Card Image */
+        .fs-card-img {
+            background: #f8f9fa;
+            padding: 28px;
+            text-align: center;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .fs-card-img img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+            transition: transform 0.4s ease;
+        }
+
+        .fs-card:hover .fs-card-img img {
+            transform: scale(1.08);
+        }
+
+        /* Card Body */
+        .fs-card-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 8px;
+        }
+
+        .fs-card-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ff6b00;
+        }
+
+        .fs-card-name {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: #0d1117;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Price Row */
+        .fs-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .fs-price-sale {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #ff3d00;
+        }
+
+        .fs-price-original {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #aaa;
+            text-decoration: line-through;
+        }
+
+        .fs-savings {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #2e7d32;
+            background: #e8f5e9;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Stock Progress */
+        .fs-stock-bar-wrap {
+            margin-top: 2px;
+        }
+
+        .fs-stock-text {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .fs-stock-text .sold-count {
+            color: #e65100;
+            font-weight: 700;
+        }
+
+        .fs-stock-bar {
+            height: 5px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .fs-stock-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #ff6b00, #ff3d00);
+            transition: width 0.8s ease;
+        }
+
+        /* Add to Cart */
+        .fs-card-btn {
+            margin-top: auto;
+            padding-top: 14px;
+        }
+
+        .fs-add-btn {
+            width: 100%;
+            background: #0d1117;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .fs-add-btn:hover {
+            background: #ff6b00;
+            transform: translateY(-1px);
+            box-shadow: 0 5px 20px rgba(255,107,0,0.3);
+        }
+
+        /* Featured Deal (Wide Card) */
+        .fs-featured-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .fs-featured-card {
+            background: linear-gradient(135deg, #0d1117 0%, #1a1a2e 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 32px;
+            position: relative;
+            border: 1px solid rgba(255,107,0,0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .fs-featured-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border-color: rgba(255,107,0,0.4);
+        }
+
+        .fs-featured-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle at top right, rgba(255,107,0,0.12), transparent);
+            pointer-events: none;
+        }
+
+        .fs-featured-img {
+            width: 160px;
+            height: 160px;
+            object-fit: contain;
+            mix-blend-mode: lighten;
+            flex-shrink: 0;
+            transition: transform 0.4s ease;
+            filter: brightness(1.1);
+        }
+
+        .fs-featured-card:hover .fs-featured-img {
+            transform: scale(1.05);
+        }
+
+        .fs-featured-content {
+            flex: 1;
+        }
+
+        .fs-featured-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #ff6b00;
+            margin-bottom: 8px;
+        }
+
+        .fs-featured-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .fs-featured-discount {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff3d00, #ff6b00);
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 900;
+            padding: 6px 16px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(255,61,0,0.4);
+        }
+
+        .fs-featured-prices {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .fs-featured-sale {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .fs-featured-orig {
+            font-size: 1rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.4);
+            text-decoration: line-through;
+        }
+
+        .fs-featured-btn {
+            background: #ff6b00;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .fs-featured-btn:hover {
+            background: #e66100;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,107,0,0.4);
+        }
+
+        /* Urgency Banner */
+        .fs-urgency-bar {
+            background: linear-gradient(90deg, #ff6b00 0%, #ff9a3c 50%, #ffb347 100%);
+
+            padding: 12px 24px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .fs-urgency-bar span {
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .fs-urgency-bar i {
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .fs-featured-grid { grid-template-columns: 1fr; }
+            .fs-featured-card { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 700px) {
+            .fs-hero { padding: 50px 0 40px; }
+            .fs-timer-num { font-size: 1.5rem; }
+            .fs-countdown-wrap { gap: 6px; }
+            .fs-filter-inner { flex-direction: column; align-items: flex-start; }
+            .fs-product-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+        }
+
+        @media (max-width: 480px) {
+            .fs-product-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <div class="top-bar-left">
+                <i class="fa-solid fa-bolt"></i>
+                <span>Free shipping on orders over <strong>$49</strong> | Flash Sale ends in <strong id="countdown">02:45:30</strong></span>
+            </div>
+            <div class="top-bar-right">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-img"></div>
+            </a>
+            <div class="nav-deliver" id="nav-deliver-btn">
+                <i class="fa-solid fa-location-dot nav-deliver-icon"></i>
+                <div>
+                    <span class="nav-sub-label">Deliver to</span>
+                    <select class="country-select" id="country-select">
+                        <option value="BD">Bangladesh</option>
+                        <option value="US">USA</option>
+                        <option value="UK">UK</option>
+                        <option value="CA">Canada</option>
+                        <option value="AU">Australia</option>
+                    </select>
+                </div>
+            </div>
+            <div class="nav-search-wrapper" style="position: relative; flex-grow: 1;">
+                <div class="nav-search">
+                    <select class="search-category" id="search-category">
+                        <option>All</option>
+                        <option>Laptops</option>
+                        <option>Phones</option>
+                        <option>Audio</option>
+                        <option>Cameras</option>
+                        <option>Gaming</option>
+                        <option>Wearables</option>
+                    </select>
+                    <input type="text" class="search-input" id="search-input" placeholder="Search for tech products..." autocomplete="off">
+                    <button class="search-btn" id="search-btn" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="nav-right">
+                <a href="login.html" class="nav-item" id="nav-signin">
+                    <span class="nav-sub-label">Hello, Sign in</span>
+                    <span class="nav-main-label">Account <i class="fa-solid fa-chevron-down nav-chevron"></i></span>
+                </a>
+                <a href="login.html" class="nav-item" id="nav-orders">
+                    <span class="nav-sub-label">Returns &</span>
+                    <span class="nav-main-label">Orders</span>
+                </a>
+                <a href="wishlist.html" class="nav-item" id="nav-wishlist">
+                    <div class="cart-icon-wrap">
+                        <i class="fa-solid fa-heart"></i>
+                        <span class="wishlist-badge">0</span>
+                    </div>
+                    <span class="nav-main-label">Wishlist</span>
+                </a>
+                <a href="compare.html" class="nav-item" id="nav-compare">
+                    <div class="cart-icon-wrap">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                        <span class="compare-badge">0</span>
+                    </div>
+                    <span class="nav-main-label">Compare</span>
+                </a>
+                <a href="cart.html" class="nav-item nav-cart" id="nav-cart">
+                    <div class="cart-icon-wrap">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-badge">0</span>
+                    </div>
+                    <span class="nav-main-label">Cart</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Category Strip -->
+    <div class="cat-strip">
+        <div class="cat-strip-inner">
+            <button class="cat-all-btn" id="cat-all-btn"><i class="fa-solid fa-bars"></i> All Categories</button>
+            <nav class="cat-links">
+                <a href="index.html#shop" class="cat-link">Today's Deals</a>
+                <a href="index.html#laptop-showcase" class="cat-link">Laptops</a>
+                <a href="index.html#smartphones-section" class="cat-link">Smartphones</a>
+                <a href="index.html#audio-section" class="cat-link">Headphones</a>
+                <a href="index.html#gaming-gear" class="cat-link">Gaming</a>
+                <a href="index.html#smartwatches-section" class="cat-link">Smartwatches</a>
+                <a href="index.html#cameras-section" class="cat-link">Cameras</a>
+                <a href="index.html#monitors-tvs-section" class="cat-link">Monitors & TVs</a>
+                <a href="flash-sale.html" class="cat-link cat-highlight">🔥 Flash Sale</a>
+            </nav>
+        </div>
+    </div>
+
+</header>
+
+<!-- ===== URGENCY BAR ===== -->
+<div class="fs-urgency-bar">
+    <i class="fa-solid fa-fire-flame-curved"></i>
+    <span>🔥 MEGA FLASH SALE — Prices drop every hour! Don't miss these limited-time deals.</span>
+    <i class="fa-solid fa-fire-flame-curved"></i>
+</div>
+
+<!-- ===== HERO BANNER ===== -->
+<section class="fs-hero">
+    <div class="fs-hero-inner">
+        <div class="fs-badge">
+            <i class="fa-solid fa-bolt"></i>
+            Limited Time Offers
+        </div>
+        <h1>🔥 <span class="fire-text">Flash Sale</span><br>Up to 45% Off</h1>
+        <p>Grab the hottest tech deals before they're gone. Limited quantities, fire prices — today only.</p>
+
+        <!-- Live Countdown -->
+        <div class="fs-countdown-wrap">
+            <span class="fs-countdown-label"><i class="fa-solid fa-clock"></i> Ends in</span>
+            <div class="fs-timer-block">
+                <span class="fs-timer-num" id="fs-hours">02</span>
+                <span class="fs-timer-unit">Hours</span>
+            </div>
+            <span class="fs-colon">:</span>
+            <div class="fs-timer-block">
+                <span class="fs-timer-num" id="fs-mins">45</span>
+                <span class="fs-timer-unit">Mins</span>
+            </div>
+            <span class="fs-colon">:</span>
+            <div class="fs-timer-block">
+                <span class="fs-timer-num" id="fs-secs">30</span>
+                <span class="fs-timer-unit">Secs</span>
+            </div>
+        </div>
+
+        <div class="fs-stats">
+            <div class="fs-stat-item"><i class="fa-solid fa-tag"></i> <span><strong>18</strong> Active Deals</span></div>
+            <div class="fs-stat-item"><i class="fa-solid fa-truck-fast"></i> <span>Free shipping on <strong>all flash orders</strong></span></div>
+            <div class="fs-stat-item"><i class="fa-solid fa-shield-halved"></i> <span><strong>1-Year</strong> Warranty Included</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FILTER BAR ===== -->
+<div class="fs-filter-bar">
+    <div class="fs-filter-inner">
+        <div class="fs-filter-tabs">
+            <button class="fs-filter-tab active" data-filter="all">All Deals</button>
+            <button class="fs-filter-tab" data-filter="laptops">Laptops</button>
+            <button class="fs-filter-tab" data-filter="smartphones">Smartphones</button>
+            <button class="fs-filter-tab" data-filter="audio">Audio</button>
+            <button class="fs-filter-tab" data-filter="gaming">Gaming</button>
+            <button class="fs-filter-tab" data-filter="smartwatches">Smartwatches</button>
+        </div>
+        <div class="fs-filter-right">
+            <select class="fs-sort-select" id="fs-sort">
+                <option value="discount">Biggest Discount</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+            </select>
+            <span class="fs-deal-count"><strong id="deal-count">18</strong> deals found</span>
+        </div>
+    </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="fs-main">
+
+    <!-- ===== FEATURED DEALS ===== -->
+    <div class="fs-section-title">
+        <div class="fs-flame"><i class="fa-solid fa-fire"></i></div>
+        <h2>Featured Deals</h2>
+        <div class="fs-section-bar"></div>
+        <span class="fs-ends-badge">⚡ Ending Soon</span>
+    </div>
+
+    <div class="fs-featured-grid">
+        <!-- Featured 1: iPhone 17 Pro Max -->
+        <div class="fs-featured-card" data-category="smartphones">
+            <img src="./Image/Products/Smartphones/iPhone-17-Pro-Max-Black.webp" alt="iPhone 17 Pro Max" class="fs-featured-img">
+            <div class="fs-featured-content">
+                <div class="fs-featured-tag">🍎 Apple | iOS</div>
+                <div class="fs-featured-title">iPhone 17 Pro Max<br>256GB – Black</div>
+                <div class="fs-featured-discount">30% OFF</div>
+                <div class="fs-featured-prices">
+                    <span class="fs-featured-sale">$909.00</span>
+                    <span class="fs-featured-orig">$1,299.00</span>
+                </div>
+                <button class="fs-featured-btn" onclick="addToCartFS({name:'iPhone 17 Pro Max', price:'$909.00', img:'./Image/Products/Smartphones/iPhone-17-Pro-Max-Black.webp', tag:'apple | ios'})">
+                    <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                </button>
+            </div>
+        </div>
+
+        <!-- Featured 2: Samsung Z Fold6 -->
+        <div class="fs-featured-card" data-category="smartphones">
+            <img src="./Image/Products/Smartphones/Samsung-Galaxy-Z-Fold6-Black.webp" alt="Samsung Galaxy Z Fold6" class="fs-featured-img">
+            <div class="fs-featured-content">
+                <div class="fs-featured-tag">🇰🇷 Samsung | Android</div>
+                <div class="fs-featured-title">Samsung Galaxy Z Fold6<br>Phantom Black</div>
+                <div class="fs-featured-discount">25% OFF</div>
+                <div class="fs-featured-prices">
+                    <span class="fs-featured-sale">$1,349.00</span>
+                    <span class="fs-featured-orig">$1,799.00</span>
+                </div>
+                <button class="fs-featured-btn" onclick="addToCartFS({name:'Samsung Galaxy Z Fold6', price:'$1,349.00', img:'./Image/Products/Smartphones/Samsung-Galaxy-Z-Fold6-Black.webp', tag:'samsung | android'})">
+                    <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ALL FLASH DEALS GRID ===== -->
+    <div class="fs-section-title">
+        <div class="fs-flame"><i class="fa-solid fa-tags"></i></div>
+        <h2>All Flash Deals</h2>
+        <div class="fs-section-bar"></div>
+        <span class="fs-ends-badge">🔥 Limited Stock</span>
+    </div>
+
+    <div class="fs-product-grid" id="fs-grid">
+
+        <!-- Card 1: Samsung Galaxy S26 Ultra -->
+        <div class="fs-card" data-category="smartphones" data-price="839" data-discount="30">
+            <div class="fs-discount-badge">-30%</div>
+            <div class="fs-stock-badge hot">🔥 Hot Deal</div>
+            <div class="fs-card-img">
+                <img src="./Image/Products/Smartphones/Samsung-Galaxy-S26-Ultra-5G-Black.webp" alt="Samsung Galaxy S26 Ultra">
+            </div>
+            <div class="fs-card-body">
+                <span class="fs-card-tag">Samsung | Android</span>
+                <h3 class="fs-card-name">Samsung Galaxy S26 Ultra 5G</h3>
+                <div class="fs-price-row">
+                    <span class="fs-price-sale">$839.00</span>
+                    <span class="fs-price-original">$1,199.00</span>
+                </div>
+                <span class="fs-savings">Save $360.00</span>
+                <div class="fs-stock-bar-wrap">
+                    <div class="fs-stock-text">
+                        <span class="sold-count">72 sold</span>
+                        <span>Only 28 left</span>
+                    </div>
+                    <div class="fs-stock-bar"><div class="fs-stock-fill" style="width:72%"></div></div>
+                </div>
+                <div class="fs-card-btn">
+                    <button class="fs-add-btn" onclick="addToCartFS({name:'Samsung Galaxy S26 Ultra 5G', price:'$839.00', img:'./Image/Products/Smartphones/Samsung-Galaxy-S26-Ultra-5G-Black.webp', tag:'samsung | android'})">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Sony FiiO JD3 -->
+        <div class="fs-card" data-category="audio" data-price="8" data-discount="33">
+            <div class="fs-discount-badge">-33%</div>
+            <div class="fs-stock-badge limited">🚨 Almost Gone</div>
+            <div class="fs-card-img">
+                <img src="./Image/Products/Headphones & Audio/FiiO JD3 Earphone.webp" alt="FiiO JD3">
+            </div>
+            <div class="fs-card-body">
+                <span class="fs-card-tag">Earphones</span>
+                <h3 class="fs-card-name">FiiO JD3 Hi-Res Earphones with Mic</h3>
+                <div class="fs-price-row">
+                    <span class="fs-price-sale">$8.00</span>
+                    <span class="fs-price-original">$12.00</span>
+                </div>
+                <span class="fs-savings">Save $4.00</span>
+                <div class="fs-stock-bar-wrap">
+                    <div class="fs-stock-text">
+                        <span class="sold-count">89 sold</span>
+                        <span>Only 11 left</span>
+                    </div>
+                    <div class="fs-stock-bar"><div class="fs-stock-fill" style="width:89%"></div></div>
+                </div>
+                <div class="fs-card-btn">
+                    <button class="fs-add-btn" onclick="addToCartFS({name:'FiiO JD3 Hi-Res Earphones with Mic', price:'$8.00', img:'./Image/Products/Headphones & Audio/FiiO JD3 Earphone.webp', tag:'earphones'})">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Apple Watch SE 2nd Gen -->
+        <div class="fs-card" data-category="smartwatches" data-price="164" data-discount="25">
+            <div class="fs-discount-badge">-25%</div>
+            <div class="fs-stock-badge hot">🔥 Hot Deal</div>
+            <div class="fs-card-img">
+                <img src="./Image/Products/Smartwatches/Apple-Watch-SE-2nd-Gen-Black.webp" alt="Apple Watch SE">
+            </div>
+            <div class="fs-card-body">
+                <span class="fs-card-tag">Apple Watch</span>
+                <h3 class="fs-card-name">Apple Watch SE (2nd Gen)</h3>
+                <div class="fs-price-row">
+                    <span class="fs-price-sale">$164.00</span>
+                    <span class="fs-price-original">$219.00</span>
+                </div>
+                <span class="fs-savings">Save $55.00</span>
+                <div class="fs-stock-bar-wrap">
+                    <div class="fs-stock-text">
+                        <span class="sold-count">55 sold</span>
+                        <span>45 remaining</span>
+                    </div>
+                    <div class="fs-stock-bar"><div class="fs-stock-fill" style="width:55%"></div></div>
+                </div>
+                <div class="fs-card-btn">
+                    <button class="fs-add-btn" onclick="addToCartFS({name:'Apple Watch SE (2nd Gen)', price:'$164.00', img:'./Image/Products/Smartwatches/Apple-Watch-SE-2nd-Gen-Black.webp', tag:'apple watch'})">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4: ASUS ROG Phone 8 Pro -->
+        <div class="fs-card" data-category="smartphones" data-price="769" data-discount="30">
+            <div class="fs-discount-badge">-30%</div>
+            <div class="fs-stock-badge hot">🔥 Hot Deal</div>
+            <div class="fs-card-img">
+                <img src="./Image/Products/Smartphones/ASUS-ROG-Phone-8-pro-Black.webp" alt="ASUS ROG Phone 8 Pro">
+            </div>
+            <div class="fs-card-body">
+                <span class="fs-card-tag">ASUS | Android</span>
+                <h3 class="fs-card-name">ASUS ROG Phone 8 Pro</h3>
+                <div class="fs-price-row">
+                    <span class="fs-price-sale">$769.00</span>
+                    <span class="fs-price-original">$1,099.00</span>
+                </div>
+                <span class="fs-savings">Save $330.00</span>
+                <div class="fs-stock-bar-wrap">
+                    <div class="fs-stock-text">
+                        <span class="sold-count">63 sold</span>
+                        <span>37 remaining</span>
+                    </div>
+                    <div class="fs-stock-bar"><div class="fs-stock-fill" style="width:63%"></div></div>
+                </div>
+                <div class="fs-card-btn">
+                    <button class="fs-add-btn" onclick="addToCartFS({name:'ASUS ROG Phone 8 Pro', price:'$769.00', img:'./Image/Products/Smartphones/ASUS-ROG-Phone-8-pro-Black.webp', tag:'asus | android'})">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5: Sony WH-CH520 -->
+        <div class="fs-card" data-category="audio" data-price="41" data-discount="30">
+            <div class="fs-discount-badge">-30%</div>
+            <div class="fs-stock-badge limited">🚨 Low Stock</div>
+            <div class="fs-card-img">
+                <img src="./Image/Products/Headphones & Audio/Sony WH-CH520 Wireless Headphones.jpg" alt="Sony WH-CH520">
+            </div>
+            <div class="fs-card-body">
+                <span class="fs-card-tag">Headphones</span>
+                <h3 class="fs-card-name">Sony WH-CH520 Wireless Over-Ear Headphones</h3>
+                <div class="fs-price-row">
+                    <span class="fs-price-sale">$41.00</span>
+                    <span class="fs-price-original">$59.00</span>
+                </div>
+                <span class="fs-savings">Save $18.00</span>
+                <div class="fs-stock-bar-wrap">
+                    <div class="fs-stock-text">
+                        <span class="sold-count">80 sold</span>
+                        <span>20 remaining</span>
+                    </div>
+                    <div class="fs-stock-bar"><div class="fs-stock-fill" style="width:80%"></div></div>
+                </div>
+                <div class="fs-card-btn">
+                    <button class="fs-add-btn" onclick="addToCartFS({name:'Sony WH-CH520 Wireless Over-Ear Headphones', price:'$41.00', img:'./Image/Products/Headphones & Audio/Sony WH-CH520 Wireless Headphones.jpg', tag:'headphones'})">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 6: DJI Mavic 3 Classic -->
+        <div class="fs-card" data-category="gaming" data-price="1119" data-discount="30">
+            <div class="fs-discount-badge">-30%</div>
+            <div class="fs-stock-badge hot">🔥 Hot Deal</div>
+            <div class="fs-card-img">
+                <img src="./Image/Products/Drones/DJI Mavic 3 Classic Combo Drone.webp" alt="DJI Mavic 3">
+            </div>
+            <div class="fs-card-body">
+                <span class="fs-card-tag">DJI Drones</span>
+                <h3 class="fs-card-name">DJI Mavic 3 Classic Combo Drone</h3>
+                <div class="fs-price-row">
+                    <span class="fs-price-sale">$1,119.00</span>
+                    <span class="fs-price-original">$1,599.00</span>
+                </div>
+                <span class="fs-savings">Save $480.00</span>
+                <div class="fs-stock-bar-wrap">
+                    <div class="fs-stock-text">
+                        <span class="sold-count">48 sold</span>
+                        <span>52 remaining</span>
+                    </div>
+                    <div class="fs-stock-bar"><div class="fs-stock-fill" style="width:48%"></div></div>
+                </div>
+                <div class="fs-card-btn">
+                    <button class="fs-add-btn" onclick="addToCartFS({name:'DJI Mavic 3 Classic Combo Drone', price:'$1,119.00', img:'./Image/Products/Drones/DJI Mavic 3 Classic Combo Drone.webp', tag:'dji'})">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 7: AOC 24G11ZE -->
+        <div class="fs-card" data-category="gaming" data-price="125" data-discount="30">
+            <div class="fs-discount-badge">-30%</div>
+            <div class="fs-stock-badge hot">🔥 Hot Deal</div>
+            <div class="fs-card-img">
+                <img src="./Image/Products/Monitors & TVs/AOC-24G11ZE-1-500x500-Black.png" alt="AOC 24G11ZE">
+            </div>
+            <div class="fs-card-body">
+                <span class="fs-card-tag">Monitor</span>
+                <h3 class="fs-card-name">AOC 24G11ZE 24" 240Hz Gaming Monitor</h3>
+                <div class="fs-price-row">
+                    <span class="fs-price-sale">$125.00</span>
+                    <span class="fs-price-original">$179.00</span>
+                </div>
+                <span class="fs-savings">Save $54.00</span>
+                <div class="fs-stock-bar-wrap">
+                    <div class="fs-stock-text">
+                        <span class="sold-count">61 sold</span>
+                        <span>39 remaining</span>
+                    </div>
+                    <div class="fs-stock-bar"><div class="fs-stock-fill" style="width:61%"></div></div>
+                </div>
+                <div class="fs-card-btn">
+                    <button class="fs-add-btn" onclick="addToCartFS({name:'AOC 24G11ZE 24&quot; 240Hz Gaming Monitor', price:'$125.00', img:'./Image/Products/Monitors & TVs/AOC-24G11ZE-1-500x500-Black.png', tag:'monitor'})">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 8: Huawei Watch Fit 4 Pro -->
+        <div class="fs-card" data-category="smartwatches" data-price="209" data-discount="30">
+            <div class="fs-discount-badge">-30%</div>
+            <div class="fs-stock-badge hot">🔥 Hot Deal</div>
+            <div class="fs-card-img">
+                <img src="./Image/Products/Smartwatches/Huawei-Watch-Fit-4-Pro-Titanium-Black.webp" alt="Huawei Watch Fit 4 Pro">
+            </div>
+            <div class="fs-card-body">
+                <span class="fs-card-tag">Huawei</span>
+                <h3 class="fs-card-name">Huawei Watch Fit 4 Pro</h3>
+                <div class="fs-price-row">
+                    <span class="fs-price-sale">$209.00</span>
+                    <span class="fs-price-original">$299.00</span>
+                </div>
+                <span class="fs-savings">Save $90.00</span>
+                <div class="fs-stock-bar-wrap">
+                    <div class="fs-stock-text">
+                        <span class="sold-count">67 sold</span>
+                        <span>33 remaining</span>
+                    </div>
+                    <div class="fs-stock-bar"><div class="fs-stock-fill" style="width:67%"></div></div>
+                </div>
+                <div class="fs-card-btn">
+                    <button class="fs-add-btn" onclick="addToCartFS({name:'Huawei Watch Fit 4 Pro', price:'$209.00', img:'./Image/Products/Smartwatches/Huawei-Watch-Fit-4-Pro-Titanium-Black.webp', tag:'huawei'})">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 9: Samsung Galaxy S24 5G -->
+        <div class="fs-card" data-category="smartphones" data-price="489" data-discount="30">
+            <div class="fs-discount-badge">-30%</div>
+            <div class="fs-stock-badge limited">🚨 Almost Gone</div>
+            <div class="fs-card-img">
+                <img src="./Image/Products/Smartphones/Samsung-Galaxy-S24-5G-Cobalt-Violet.webp" alt="Samsung Galaxy S24">
+            </div>
+            <div class="fs-card-body">
+                <span class="fs-card-tag">Samsung | Android</span>
+                <h3 class="fs-card-name">Samsung Galaxy S24 5G</h3>
+                <div class="fs-price-row">
+                    <span class="fs-price-sale">$489.00</span>
+                    <span class="fs-price-original">$699.00</span>
+                </div>
+                <span class="fs-savings">Save $210.00</span>
+                <div class="fs-stock-bar-wrap">
+                    <div class="fs-stock-text">
+                        <span class="sold-count">91 sold</span>
+                        <span>9 remaining</span>
+                    </div>
+                    <div class="fs-stock-bar"><div class="fs-stock-fill" style="width:91%"></div></div>
+                </div>
+                <div class="fs-card-btn">
+                    <button class="fs-add-btn" onclick="addToCartFS({name:'Samsung Galaxy S24 5G', price:'$489.00', img:'./Image/Products/Smartphones/Samsung-Galaxy-S24-5G-Cobalt-Violet.webp', tag:'samsung | android'})">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 10: Sony a5100 -->
+        <div class="fs-card" data-category="gaming" data-price="314" data-discount="30">
+            <div class="fs-discount-badge">-30%</div>
+            <div class="fs-stock-badge hot">🔥 Hot Deal</div>
+            <div class="fs-card-img">
+                <img src="./Image/Products/Cameras/Sony a5100  ILCE-5100L E-Mount Camera with APS-C Sensor + 16-50mm Power Zoom Lens - Black.webp" alt="Sony a5100">
+            </div>
+            <div class="fs-card-body">
+                <span class="fs-card-tag">Camera</span>
+                <h3 class="fs-card-name">Sony a5100 E-Mount Camera with 16-50mm Lens</h3>
+                <div class="fs-price-row">
+                    <span class="fs-price-sale">$314.00</span>
+                    <span class="fs-price-original">$449.00</span>
+                </div>
+                <span class="fs-savings">Save $135.00</span>
+                <div class="fs-stock-bar-wrap">
+                    <div class="fs-stock-text">
+                        <span class="sold-count">42 sold</span>
+                        <span>58 remaining</span>
+                    </div>
+                    <div class="fs-stock-bar"><div class="fs-stock-fill" style="width:42%"></div></div>
+                </div>
+                <div class="fs-card-btn">
+                    <button class="fs-add-btn" onclick="addToCartFS({name:'Sony a5100 E-Mount Camera with 16-50mm Lens', price:'$314.00', img:'./Image/Products/Cameras/Sony a5100  ILCE-5100L E-Mount Camera with APS-C Sensor + 16-50mm Power Zoom Lens - Black.webp', tag:'camera'})">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 11: DJI Air 3 -->
+        <div class="fs-card" data-category="gaming" data-price="944" data-discount="30">
+            <div class="fs-discount-badge">-30%</div>
+            <div class="fs-stock-badge hot">🔥 Hot Deal</div>
+            <div class="fs-card-img">
+                <img src="./Image/Products/Drones/DJI Air 3 Fly More Combo With DJI RC 2 Remote Controller.webp" alt="DJI Air 3">
+            </div>
+            <div class="fs-card-body">
+                <span class="fs-card-tag">DJI Drones</span>
+                <h3 class="fs-card-name">DJI Air 3 Fly More Combo (RC 2)</h3>
+                <div class="fs-price-row">
+                    <span class="fs-price-sale">$944.00</span>
+                    <span class="fs-price-original">$1,349.00</span>
+                </div>
+                <span class="fs-savings">Save $405.00</span>
+                <div class="fs-stock-bar-wrap">
+                    <div class="fs-stock-text">
+                        <span class="sold-count">38 sold</span>
+                        <span>62 remaining</span>
+                    </div>
+                    <div class="fs-stock-bar"><div class="fs-stock-fill" style="width:38%"></div></div>
+                </div>
+                <div class="fs-card-btn">
+                    <button class="fs-add-btn" onclick="addToCartFS({name:'DJI Air 3 Fly More Combo (RC 2)', price:'$944.00', img:'./Image/Products/Drones/DJI Air 3 Fly More Combo With DJI RC 2 Remote Controller.webp', tag:'dji'})">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 12: Oppo Watch X2 Mini -->
+        <div class="fs-card" data-category="smartwatches" data-price="90" data-discount="30">
+            <div class="fs-discount-badge">-30%</div>
+            <div class="fs-stock-badge limited">🚨 Low Stock</div>
+            <div class="fs-card-img">
+                <img src="./Image/Products/Smartwatches/Oppo-Watch-X2-Mini-Black.webp" alt="Oppo Watch X2 Mini">
+            </div>
+            <div class="fs-card-body">
+                <span class="fs-card-tag">Oppo</span>
+                <h3 class="fs-card-name">Oppo Watch X2 Mini</h3>
+                <div class="fs-price-row">
+                    <span class="fs-price-sale">$90.00</span>
+                    <span class="fs-price-original">$129.00</span>
+                </div>
+                <span class="fs-savings">Save $39.00</span>
+                <div class="fs-stock-bar-wrap">
+                    <div class="fs-stock-text">
+                        <span class="sold-count">77 sold</span>
+                        <span>23 remaining</span>
+                    </div>
+                    <div class="fs-stock-bar"><div class="fs-stock-fill" style="width:77%"></div></div>
+                </div>
+                <div class="fs-card-btn">
+                    <button class="fs-add-btn" onclick="addToCartFS({name:'Oppo Watch X2 Mini', price:'$90.00', img:'./Image/Products/Smartwatches/Oppo-Watch-X2-Mini-Black.webp', tag:'oppo'})">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 13: iPhone Air -->
+        <div class="fs-card" data-category="smartphones" data-price="699" data-discount="30">
+            <div class="fs-discount-badge">-30%</div>
+            <div class="fs-stock-badge hot">🔥 Hot Deal</div>
+            <div class="fs-card-img">
+                <img src="./Image/Products/Smartphones/iPhone Air - black.webp" alt="iPhone Air">
+            </div>
+            <div class="fs-card-body">
+                <span class="fs-card-tag">Apple | iOS</span>
+                <h3 class="fs-card-name">iPhone Air</h3>
+                <div class="fs-price-row">
+                    <span class="fs-price-sale">$699.00</span>
+                    <span class="fs-price-original">$999.00</span>
+                </div>
+                <span class="fs-savings">Save $300.00</span>
+                <div class="fs-stock-bar-wrap">
+                    <div class="fs-stock-text">
+                        <span class="sold-count">58 sold</span>
+                        <span>42 remaining</span>
+                    </div>
+                    <div class="fs-stock-bar"><div class="fs-stock-fill" style="width:58%"></div></div>
+                </div>
+                <div class="fs-card-btn">
+                    <button class="fs-add-btn" onclick="addToCartFS({name:'iPhone Air', price:'$699.00', img:'./Image/Products/Smartphones/iPhone Air - black.webp', tag:'apple | ios'})">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 14: Edifier M60 -->
+        <div class="fs-card" data-category="audio" data-price="62" data-discount="30">
+            <div class="fs-discount-badge">-30%</div>
+            <div class="fs-stock-badge hot">🔥 Hot Deal</div>
+            <div class="fs-card-img">
+                <img src="./Image/Products/Headphones & Audio/Edifier M60 2.0 Mini Powerful Compact Desktop Speaker.jpg" alt="Edifier M60">
+            </div>
+            <div class="fs-card-body">
+                <span class="fs-card-tag">Speakers</span>
+                <h3 class="fs-card-name">Edifier M60 2.0 Mini Powerful Compact Desktop Speaker</h3>
+                <div class="fs-price-row">
+                    <span class="fs-price-sale">$62.00</span>
+                    <span class="fs-price-original">$89.00</span>
+                </div>
+                <span class="fs-savings">Save $27.00</span>
+                <div class="fs-stock-bar-wrap">
+                    <div class="fs-stock-text">
+                        <span class="sold-count">44 sold</span>
+                        <span>56 remaining</span>
+                    </div>
+                    <div class="fs-stock-bar"><div class="fs-stock-fill" style="width:44%"></div></div>
+                </div>
+                <div class="fs-card-btn">
+                    <button class="fs-add-btn" onclick="addToCartFS({name:'Edifier M60 2.0 Mini Compact Desktop Speaker', price:'$62.00', img:'./Image/Products/Headphones & Audio/Edifier M60 2.0 Mini Powerful Compact Desktop Speaker.jpg', tag:'speakers'})">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 15: Xiaomi Redmi A27U -->
+        <div class="fs-card" data-category="gaming" data-price="160" data-discount="30">
+            <div class="fs-discount-badge">-30%</div>
+            <div class="fs-stock-badge hot">🔥 Hot Deal</div>
+            <div class="fs-card-img">
+                <img src="./Image/Products/Monitors & TVs/Xiaomi-Redmi-A27U-Monitor-Black.webp" alt="Xiaomi Redmi A27U">
+            </div>
+            <div class="fs-card-body">
+                <span class="fs-card-tag">Monitor</span>
+                <h3 class="fs-card-name">Xiaomi Redmi A27U 27" 4K UHD Monitor</h3>
+                <div class="fs-price-row">
+                    <span class="fs-price-sale">$160.00</span>
+                    <span class="fs-price-original">$229.00</span>
+                </div>
+                <span class="fs-savings">Save $69.00</span>
+                <div class="fs-stock-bar-wrap">
+                    <div class="fs-stock-text">
+                        <span class="sold-count">52 sold</span>
+                        <span>48 remaining</span>
+                    </div>
+                    <div class="fs-stock-bar"><div class="fs-stock-fill" style="width:52%"></div></div>
+                </div>
+                <div class="fs-card-btn">
+                    <button class="fs-add-btn" onclick="addToCartFS({name:'Xiaomi Redmi A27U 27&quot; 4K UHD Monitor', price:'$160.00', img:'./Image/Products/Monitors & TVs/Xiaomi-Redmi-A27U-Monitor-Black.webp', tag:'monitor'})">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 16: Audeze Maxwell -->
+        <div class="fs-card" data-category="audio" data-price="209" data-discount="30">
+            <div class="fs-discount-badge">-30%</div>
+            <div class="fs-stock-badge limited">🚨 Low Stock</div>
+            <div class="fs-card-img">
+                <img src="./Image/Products/Headphones & Audio/Audeze Maxwell Wireless Gaming Headphone.webp" alt="Audeze Maxwell">
+            </div>
+            <div class="fs-card-body">
+                <span class="fs-card-tag">Headphones</span>
+                <h3 class="fs-card-name">Audeze Maxwell Wireless Gaming Headphone</h3>
+                <div class="fs-price-row">
+                    <span class="fs-price-sale">$209.00</span>
+                    <span class="fs-price-original">$299.00</span>
+                </div>
+                <span class="fs-savings">Save $90.00</span>
+                <div class="fs-stock-bar-wrap">
+                    <div class="fs-stock-text">
+                        <span class="sold-count">83 sold</span>
+                        <span>17 remaining</span>
+                    </div>
+                    <div class="fs-stock-bar"><div class="fs-stock-fill" style="width:83%"></div></div>
+                </div>
+                <div class="fs-card-btn">
+                    <button class="fs-add-btn" onclick="addToCartFS({name:'Audeze Maxwell Wireless Gaming Headphone', price:'$209.00', img:'./Image/Products/Headphones & Audio/Audeze Maxwell Wireless Gaming Headphone.webp', tag:'headphones'})">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- end #fs-grid -->
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+    <div class="footer-top-btn" id="back-to-top">
+        <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
+            <i class="fa-solid fa-chevron-up"></i> Back to Top
+        </button>
+    </div>
+    <div class="footer-main">
+        <div class="footer-col">
+            <h4>Get to Know Us</h4>
+            <ul>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">About TechOne</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Let Us Help You</h4>
+            <ul>
+                <li><a href="#">Your Account</a></li>
+                <li><a href="#">Your Orders</a></li>
+                <li><a href="#">Help Center</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Payment & Delivery</h4>
+            <ul>
+                <li><a href="#">TechOne Pay</a></li>
+                <li><a href="#">Payment Methods</a></li>
+                <li><a href="#">Shipping Rates</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Make Money with Us</h4>
+            <ul>
+                <li><a href="#">Sell on TechOne</a></li>
+                <li><a href="#">Become an Affiliate</a></li>
+                <li><a href="#">Advertise</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-brand">
+        <div class="footer-logo"></div>
+        <div class="footer-socials">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright &copy; 2025 TechOne Limited. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Cookies</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // ====== LIVE COUNTDOWN TIMER ======
+    (function () {
+        let totalSeconds = 2 * 3600 + 45 * 60 + 30;
+
+        function tick() {
+            if (totalSeconds <= 0) { totalSeconds = 86400; return; }
+            totalSeconds--;
+            const h = Math.floor(totalSeconds / 3600);
+            const m = Math.floor((totalSeconds % 3600) / 60);
+            const s = totalSeconds % 60;
+            const pad = (n) => String(n).padStart(2, '0');
+
+            const fsH = document.getElementById('fs-hours');
+            const fsM = document.getElementById('fs-mins');
+            const fsS = document.getElementById('fs-secs');
+            const hdrCD = document.getElementById('countdown');
+            if (fsH) fsH.textContent = pad(h);
+            if (fsM) fsM.textContent = pad(m);
+            if (fsS) fsS.textContent = pad(s);
+            if (hdrCD) hdrCD.textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
+        }
+
+        setInterval(tick, 1000);
+    })();
+
+    // ====== FILTER TABS ======
+    const tabs = document.querySelectorAll('.fs-filter-tab');
+    const cards = document.querySelectorAll('#fs-grid .fs-card');
+    const dealCountEl = document.getElementById('deal-count');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+            tabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            const filter = this.getAttribute('data-filter');
+            let visible = 0;
+            cards.forEach(card => {
+                const cat = card.getAttribute('data-category');
+                if (filter === 'all' || cat === filter) {
+                    card.style.display = '';
+                    visible++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            if (dealCountEl) dealCountEl.textContent = visible + 2; // +2 for featured cards
+        });
+    });
+
+    // ====== SORT ======
+    document.getElementById('fs-sort').addEventListener('change', function () {
+        const val = this.value;
+        const grid = document.getElementById('fs-grid');
+        const cardArr = Array.from(grid.querySelectorAll('.fs-card'));
+        cardArr.sort((a, b) => {
+            const da = parseInt(a.getAttribute('data-discount'));
+            const db = parseInt(b.getAttribute('data-discount'));
+            const pa = parseFloat(a.getAttribute('data-price'));
+            const pb = parseFloat(b.getAttribute('data-price'));
+            if (val === 'discount') return db - da;
+            if (val === 'price-asc') return pa - pb;
+            if (val === 'price-desc') return pb - pa;
+            return 0;
+        });
+        cardArr.forEach(c => grid.appendChild(c));
+    });
+
+    // ====== CART FUNCTION ======
+    function addToCartFS(product) {
+        let cart = JSON.parse(localStorage.getItem('techone_cart')) || [];
+        const existing = cart.find(i => i.name === product.name);
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push({ ...product, quantity: 1 });
+        }
+        localStorage.setItem('techone_cart', JSON.stringify(cart));
+        updateBadges();
+        showToast(product.name);
+    }
+
+    function updateBadges() {
+        const cart = JSON.parse(localStorage.getItem('techone_cart')) || [];
+        const total = cart.reduce((s, i) => s + i.quantity, 0);
+        document.querySelectorAll('.cart-badge').forEach(b => b.textContent = total);
+        const wishlist = JSON.parse(localStorage.getItem('techone_wishlist')) || [];
+        document.querySelectorAll('.wishlist-badge').forEach(b => b.textContent = wishlist.length);
+        const compare = JSON.parse(localStorage.getItem('techone_compare')) || [];
+        document.querySelectorAll('.compare-badge').forEach(b => b.textContent = compare.length);
+    }
+
+    function showToast(name) {
+        let toast = document.getElementById('cart-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'cart-toast';
+            toast.className = 'toast-msg';
+            document.body.appendChild(toast);
+        }
+        toast.classList.remove('error');
+        toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> Added <b>${name}</b> to cart!`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    updateBadges();
+
+    // ====== BACK TO TOP ======
+    window.addEventListener('scroll', () => {
+        const btn = document.getElementById('back-to-top');
+        if (btn) btn.style.opacity = window.scrollY > 300 ? '1' : '0.6';
+    });
+</script>
+</body>
+</html>
