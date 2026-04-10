@@ -254,14 +254,20 @@
         setTimeout(() => {
             const cart = JSON.parse(localStorage.getItem('techone_cart')) || [];
             
-            // Save as latest order
+            // Save as latest order for the success page
             const orderData = {
                 id: 'ORD-' + Math.floor(Math.random() * 1000000),
                 date: new Date().toLocaleDateString(),
                 items: cart,
-                total: document.getElementById('chk-total').textContent
+                total: document.getElementById('chk-total').textContent,
+                status: 'Processing'
             };
             localStorage.setItem('techone_latest_order', JSON.stringify(orderData));
+
+            // Append to order history
+            const orderHistory = JSON.parse(localStorage.getItem('techone_orders')) || [];
+            orderHistory.unshift(orderData); // Add to the top
+            localStorage.setItem('techone_orders', JSON.stringify(orderHistory));
 
             // Clear cart
             localStorage.setItem('techone_cart', JSON.stringify([]));

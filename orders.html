@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View your past orders and track current shipments on TechOne.">
+    <title>Returns & Orders – TechOne</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="cart-body">
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-img"></div>
+            </a>
+            
+            <div class="nav-search" style="visibility: hidden;"> <!-- Placeholder to keep right nav pushed -->
+            </div>
+
+            <div class="nav-right">
+                <a href="index.html" class="nav-item">
+                    <span class="nav-sub-label">Back to</span>
+                    <span class="nav-main-label">Shop</span>
+                </a>
+                <a href="cart.html" class="nav-item nav-cart">
+                    <div class="cart-icon-wrap">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-badge">0</span>
+                    </div>
+                    <span class="nav-main-label">Cart</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- ===== ORDERS MAIN ===== -->
+<main class="cart-main" style="flex-direction: column;">
+    <div style="margin-bottom: 25px; display: flex; justify-content: space-between; align-items: flex-end;">
+        <div>
+            <h1 style="font-size: 2rem; color: var(--dark);">Your Orders</h1>
+            <p style="color: var(--text-muted); margin-top: 5px;">Track, return, or buy items again.</p>
+        </div>
+        <div class="orders-filter">
+            <label style="font-size: 0.9rem; font-weight: 600; margin-right: 10px;">Filter by:</label>
+            <select style="padding: 8px; border-radius: 4px; border: 1px solid #cbd5e1;">
+                <option>All Orders</option>
+                <option>Last 30 Days</option>
+                <option>Past 6 Months</option>
+                <option>Cancelled</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="orders-container" style="display: flex; flex-direction: column; gap: 20px;">
+        <!-- Injected via JS -->
+    </div>
+
+</main>
+
+<script>
+    function renderOrders() {
+        const orders = JSON.parse(localStorage.getItem('techone_orders')) || [];
+        const container = document.getElementById('orders-container');
+
+        if (orders.length === 0) {
+            container.innerHTML = `
+                <div class="empty-cart-container" style="text-align: center; padding: 60px 20px; background: #fff; border-radius: 8px;">
+                    <i class="fa-solid fa-box-open" style="font-size: 4rem; color: #cbd5e1; margin-bottom: 20px;"></i>
+                    <h2>No orders found</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Looks like you haven't placed an order yet.</p>
+                    <a href="index.html" class="hero-btn-primary">Start Shopping</a>
+                </div>
+            `;
+            return;
+        }
+
+        container.innerHTML = '';
+
+        orders.forEach(order => {
+            let itemsHtml = '';
+            order.items.forEach(item => {
+                itemsHtml += `
+                    <div style="display: flex; gap: 15px; margin-top: 15px; align-items: center;">
+                        <img src="${item.img}" alt="${item.name}" style="width: 70px; height: 70px; object-fit: contain; background: #f8fafc; padding: 5px; border-radius: 6px;">
+                        <div>
+                            <h4 style="font-size: 0.95rem; color: var(--dark);">${item.name}</h4>
+                            <p style="font-size: 0.8rem; color: var(--text-muted);">Qty: ${item.quantity} | Price: ${item.price}</p>
+                            <button style="margin-top: 8px; background: none; border: none; color: var(--primary); font-weight: 600; font-size: 0.85rem; cursor: pointer;"><i class="fa-solid fa-rotate-left"></i> Return Item</button>
+                            <button style="margin-top: 8px; margin-left: 15px; background: none; border: none; font-weight: 600; font-size: 0.85rem; cursor: pointer; color: var(--dark-2);"><i class="fa-solid fa-cart-plus"></i> Buy Again</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            const statusColor = order.status === 'Processing' ? '#f59e0b' : '#10b981';
+
+            container.innerHTML += `
+                <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                    <div style="background: #f8fafc; padding: 15px 20px; display: flex; justify-content: space-between; border-bottom: 1px solid #e2e8f0; font-size: 0.85rem; color: var(--dark-2);">
+                        <div style="display: flex; gap: 40px;">
+                            <div><span style="display: block; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Order Placed</span><strong>${order.date}</strong></div>
+                            <div><span style="display: block; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Total</span><strong>${order.total}</strong></div>
+                            <div><span style="display: block; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Ship To</span><strong style="color: var(--primary);">User Account</strong></div>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="display: block; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Order #</span>
+                            <strong>${order.id}</strong>
+                        </div>
+                    </div>
+                    <div style="padding: 20px;">
+                        <h3 style="font-size: 1.1rem; color: ${statusColor}; margin-bottom: 15px;"><i class="fa-solid fa-truck-fast"></i> ${order.status}</h3>
+                        ${itemsHtml}
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    function updateNavBadge() {
+        const cart = JSON.parse(localStorage.getItem('techone_cart')) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.querySelector('.cart-badge').textContent = totalItems;
+    }
+
+    renderOrders();
+    updateNavBadge();
+</script>
+
+</body>
+</html>
