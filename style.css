@@ -114,8 +114,10 @@ img { max-width: 100%; display: block; }
     height: 68px;
     display: flex;
     align-items: center;
-    gap: 6px;
+    justify-content: space-between;
+    gap: 12px;
 }
+
 
 /* Logo */
 .nav-logo {
@@ -159,13 +161,6 @@ img { max-width: 100%; display: block; }
 .nav-deliver-icon {
     color: var(--accent);
     font-size: 1.1rem;
-}
-
-.nav-sub-label {
-    display: block;
-    color: var(--text-dim);
-    font-size: 0.7rem;
-    line-height: 1;
 }
 
 .country-select {
@@ -254,15 +249,17 @@ img { max-width: 100%; display: block; }
 .nav-right {
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 4px;
     flex-shrink: 0;
 }
 
+
 .nav-item {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8px 12px;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
     color: var(--text-white);
     border-radius: var(--radius-sm);
     border: 1px solid transparent;
@@ -272,12 +269,29 @@ img { max-width: 100%; display: block; }
     text-decoration: none;
 }
 
-.nav-item:hover { border-color: rgba(255,255,255,0.25); }
+
+.nav-item:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); }
+
+/* Two-line text block inside icon nav items */
+.nav-item > div:not(.nav-icon-box) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.2;
+}
 
 .nav-main-label {
     font-size: 0.88rem;
     font-weight: 700;
     color: var(--text-white);
+    display: block;
+}
+
+.nav-sub-label {
+    display: block;
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    line-height: 1;
 }
 
 .nav-chevron {
@@ -286,17 +300,122 @@ img { max-width: 100%; display: block; }
     opacity: 0.7;
 }
 
-/* Cart specific */
-.nav-cart {
+
+
+/* Cart – no override needed, inherits row from nav-icon-item */
+
+/* ---- Redesigned Icon Nav Items (Wishlist / Compare / Cart) ---- */
+.nav-icon-item {
+    display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     gap: 8px;
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    color: var(--text-white);
 }
 
-.nav-cart .nav-main-label {
-    font-size: 0.95rem;
+.nav-icon-item:hover {
+    border-color: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.06);
 }
 
+.nav-icon-item .nav-main-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-white);
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+}
+
+.nav-icon-box {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.nav-icon-item:hover .nav-icon-box {
+    background: rgba(255,255,255,0.14);
+    border-color: rgba(255,255,255,0.25);
+    transform: translateY(-1px);
+}
+
+.nav-icon-box i {
+    font-size: 1rem;
+    color: var(--text-white);
+}
+
+/* Cart-specific warm glow */
+.nav-icon-box.cart-glow {
+    background: rgba(255, 107, 0, 0.15);
+    border-color: rgba(255, 107, 0, 0.35);
+}
+
+.nav-icon-box.cart-glow i {
+    color: var(--primary);
+}
+
+.nav-icon-item:hover .nav-icon-box.cart-glow {
+    background: rgba(255, 107, 0, 0.25);
+    border-color: rgba(255, 107, 0, 0.6);
+    box-shadow: 0 0 14px rgba(255, 107, 0, 0.25);
+}
+
+/* Count Badges */
+.nav-count-badge {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 800;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--nav-bg);
+    line-height: 1;
+}
+
+/* Legacy badge aliases — keep so JS still targets them */
+.cart-badge, .wishlist-badge, .compare-badge {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 800;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--nav-bg);
+    line-height: 1;
+}
+
+
+/* Old cart-icon-wrap — kept for pages other than index */
 .cart-icon-wrap {
     position: relative;
 }
@@ -306,19 +425,7 @@ img { max-width: 100%; display: block; }
     color: var(--text-white);
 }
 
-.cart-badge {
-    position: absolute;
-    top: -6px;
-    right: -8px;
-    background: var(--primary);
-    color: white;
-    font-size: 0.65rem;
-    font-weight: 800;
-    padding: 2px 5px;
-    border-radius: 99px;
-    min-width: 18px;
-    text-align: center;
-}
+
 
 /* ============================================
    CATEGORY STRIP
