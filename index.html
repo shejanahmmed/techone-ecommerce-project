@@ -300,7 +300,7 @@
         <a href="#" class="view-all-link">Browse All Gaming <i class="fa-solid fa-arrow-right"></i></a>
     </div>
     
-    <div class="product-grid">
+    <div class="product-grid collapsed">
         
         <!-- Product 1: Ajazz DG160 -->
         <div class="product-card">
@@ -589,7 +589,7 @@
         <h2>Premium Laptops</h2>
         <a href="#" class="view-all">Shop All Laptops <i class="fa-solid fa-arrow-right"></i></a>
     </div>
-    <div class="product-grid">
+    <div class="product-grid collapsed">
         <!-- Laptop 1: ASUS ProArt P16 -->
         <div class="product-card">
             <div class="product-img-wrap">
@@ -758,7 +758,7 @@
         <h2>Premium Audio gear</h2>
         <a href="#" class="view-all">Explore All Audio <i class="fa-solid fa-arrow-right"></i></a>
     </div>
-    <div class="product-grid">
+    <div class="product-grid collapsed">
         <!-- Product 1: Anker R50i -->
         <div class="product-card">
             <div class="product-img-wrap">
@@ -947,7 +947,7 @@
         <h2>Professional Drones & Aerial</h2>
         <a href="#" class="view-all">Shop All Drones <i class="fa-solid fa-arrow-right"></i></a>
     </div>
-    <div class="product-grid">
+    <div class="product-grid collapsed">
         <!-- Drone 1: DJI Air 3 -->
         <div class="product-card">
             <div class="product-img-wrap">
@@ -1132,7 +1132,7 @@
         <h2>Photography & Lenses</h2>
         <a href="#" class="view-all">Shop All Cameras <i class="fa-solid fa-arrow-right"></i></a>
     </div>
-    <div class="product-grid">
+    <div class="product-grid collapsed">
         <!-- Lens 1: Sony FE 50mm Macro -->
         <div class="product-card">
             <div class="product-img-wrap">
@@ -1238,7 +1238,7 @@
         <a href="#" class="view-all-link">Shop Samsung Mobile <i class="fa-solid fa-arrow-right"></i></a>
     </div>
     
-    <div class="product-grid">
+    <div class="product-grid collapsed">
         
         <!-- Product: S26 Ultra -->
         <div class="product-card">
@@ -1558,7 +1558,7 @@
         <a href="#" class="view-all-link">Shop Smartwatches <i class="fa-solid fa-arrow-right"></i></a>
     </div>
     
-    <div class="product-grid">
+    <div class="product-grid collapsed">
 
         <!-- Product: Apple Watch Series 11 -->
         <div class="product-card">
@@ -1817,7 +1817,7 @@
         <h2>Crystal Clear Monitors & TVs</h2>
         <a href="#" class="view-all">Shop All Displays <i class="fa-solid fa-arrow-right"></i></a>
     </div>
-    <div class="product-grid">
+    <div class="product-grid collapsed">
         <!-- Monitor 1: AOC AG493QCX -->
         <div class="product-card">
             <div class="product-img-wrap">
@@ -2744,6 +2744,30 @@
             alert('Product found in catalog but not currently displayed on this page prototype.');
         }
     };
+
+    // Toggle "Browse All / Show Less" for product sections
+    document.addEventListener('click', function(e) {
+        const target = e.target.closest('.view-all, .view-all-link');
+        if (target) {
+            e.preventDefault();
+            
+            const sectionHeader = target.closest('.section-header') || target.parentElement;
+            const productGrid = sectionHeader.nextElementSibling;
+            
+            if (productGrid && productGrid.classList.contains('product-grid')) {
+                productGrid.classList.toggle('collapsed');
+                
+                if (productGrid.classList.contains('collapsed')) {
+                    target.innerHTML = target.getAttribute('data-original-text') || target.innerHTML;
+                } else {
+                    if (!target.hasAttribute('data-original-text')) {
+                        target.setAttribute('data-original-text', target.innerHTML);
+                    }
+                    target.innerHTML = 'Show Less <i class="fa-solid fa-arrow-up"></i>';
+                }
+            }
+        }
+    });
 
 </script>
 

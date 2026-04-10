@@ -1337,6 +1337,10 @@ img { max-width: 100%; display: block; }
     margin-top: 25px;
 }
 
+.product-grid.collapsed .product-card:nth-child(n+9) {
+    display: none;
+}
+
 .product-card {
     background: white;
     border-radius: var(--radius-md);
