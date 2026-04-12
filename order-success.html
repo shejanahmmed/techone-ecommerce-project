@@ -72,21 +72,32 @@
 
 <script>
     function downloadPDF() {
-        // Temporarily hide the buttons during PDF generation
+        // Target the container
+        const element = document.querySelector('.success-container');
         const actions = document.querySelector('.success-actions');
+
+        // Temporarily hide the buttons during PDF generation
         actions.style.display = 'none';
 
-        const element = document.querySelector('.success-container');
         const opt = {
             margin:       10,
             filename:     'TechOne_Receipt.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2 },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            html2canvas:  { 
+                scale: 2, 
+                useCORS: true, 
+                scrollY: 0, // Fixes the "blank space at top" issue
+                letterRendering: true
+            },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] } // Prevents cutting items in half
         };
 
         html2pdf().set(opt).from(element).save().then(() => {
             // Restore buttons after generation
+            actions.style.display = 'flex';
+        }).catch(err => {
+            console.error('PDF Error:', err);
             actions.style.display = 'flex';
         });
     }
