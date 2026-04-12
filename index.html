@@ -2656,8 +2656,8 @@
     const dropdown = document.getElementById('autocomplete-dropdown');
     const searchCategory = document.getElementById('search-category');
 
-    searchInput.addEventListener('input', function() {
-        const query = this.value.toLowerCase().trim();
+    function performSearch() {
+        const query = searchInput.value.toLowerCase().trim();
         const selectedCat = searchCategory.value.toLowerCase();
         
         if (query.length < 2) {
@@ -2667,14 +2667,15 @@
 
         const filtered = productsCatalog.filter(item => {
             const matchesQuery = item.name.toLowerCase().includes(query) || item.tag.toLowerCase().includes(query);
-            // Simple mapping from dropdown categories to tags
             let matchesCategory = true;
             if (selectedCat !== 'all') {
-                if (selectedCat === 'laptops') matchesCategory = item.tag.toLowerCase().includes('laptop');
-                if (selectedCat === 'gaming') matchesCategory = item.tag.toLowerCase().includes('gaming');
-                if (selectedCat === 'audio') matchesCategory = item.tag.toLowerCase().includes('head') || item.tag.toLowerCase().includes('ear') || item.tag.toLowerCase().includes('speaker');
-                if (selectedCat === 'cameras') matchesCategory = item.tag.toLowerCase().includes('camera') || item.tag.toLowerCase().includes('lens');
-                // Wearables and Phones not effectively in mock catalog, but logic applies
+                const tag = item.tag.toLowerCase();
+                if (selectedCat === 'laptops') matchesCategory = tag.includes('laptop');
+                else if (selectedCat === 'gaming') matchesCategory = tag.includes('gaming');
+                else if (selectedCat === 'phones') matchesCategory = tag.includes('phone') || tag.includes('android') || tag.includes('ios');
+                else if (selectedCat === 'wearables') matchesCategory = tag.includes('watch') || tag.includes('band') || tag.includes('fitbit');
+                else if (selectedCat === 'audio') matchesCategory = tag.includes('head') || tag.includes('ear') || tag.includes('speaker');
+                else if (selectedCat === 'cameras') matchesCategory = tag.includes('camera') || tag.includes('lens');
             }
             return matchesQuery && matchesCategory;
         });
@@ -2698,7 +2699,10 @@
             dropdown.innerHTML = '<div style="padding: 15px; color: #8b949e; text-align: center;">No matches found</div>';
             dropdown.classList.add('active');
         }
-    });
+    }
+
+    searchInput.addEventListener('input', performSearch);
+    searchCategory.addEventListener('change', performSearch);
 
     // Handle clicking outside to close
     document.addEventListener('click', function(e) {
